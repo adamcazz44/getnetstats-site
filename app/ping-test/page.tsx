@@ -17,25 +17,68 @@ export const metadata: Metadata = {
     "gaming ping",
     "internet latency",
   ],
-  alternates: { canonical: "/ping-test" },
+  alternates: { canonical: "/ping-test/" },
   openGraph: {
     type: "website",
     siteName: "GetNetStats",
     title: "Ping & Jitter Test — Live Latency & Packet Loss",
     description:
       "Measure real round-trip latency, jitter and packet loss live in your browser. Free, no sign-up.",
-    url: "https://getnetstats.com/ping-test",
+    url: "https://getnetstats.com/ping-test/",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "GetNetStats — free IP lookup & internet speed test",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/og.png"],
     title: "Ping & Jitter Test — GetNetStats",
     description: "Live ping, jitter and packet loss, measured in your browser.",
   },
 };
 
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      name: "Ping & Jitter Test",
+      url: "https://getnetstats.com/ping-test/",
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Any (web browser)",
+      browserRequirements: "Requires a modern web browser",
+      description:
+        "Measure your ping, jitter and packet loss live in your browser — real round-trip latency against a global edge network. Free, no sign-up.",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      isPartOf: { "@id": "https://getnetstats.com/#website" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://getnetstats.com/" },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Ping & Jitter Test",
+          item: "https://getnetstats.com/ping-test/",
+        },
+      ],
+    },
+  ],
+};
+
 export default function PingTestPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
       <SiteHeader />
       <main id="top">
         <PingTool />

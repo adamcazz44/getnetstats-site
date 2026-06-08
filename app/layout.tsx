@@ -44,10 +44,19 @@ export const metadata: Metadata = {
     title: "What Is My IP Address? Free IP Lookup & Speed Test",
     description:
       "Instantly see your IP, ISP and location, then test real download, upload and ping. Free, fast, no sign-up.",
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "GetNetStats — free IP lookup & internet speed test",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/og.png"],
     title: "GetNetStats — What Is My IP & How Fast Is My Internet?",
     description:
       "Free IP lookup and internet speed test. Real download, upload, ping and connection quality in one tap.",
