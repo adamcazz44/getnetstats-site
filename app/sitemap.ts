@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 
+// Emit a static sitemap.xml for the GitHub Pages export.
+export const dynamic = "force-static";
+
 const SITE = "https://getnetstats.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {

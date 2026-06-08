@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+# Builds the static export from `main` and publishes it to GitHub Pages.
+# Pages "Source" must be set to "GitHub Actions" (Settings → Pages).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissions the deploy-pages action needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; let an in-progress run finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build # next build with output: "export" → ./out
+        env:
+          # Optional — set these as repo Variables (Settings → Secrets and
+          # variables → Actions → Variables) to activate real ads / a base path.
+          # Unset → ad slots render placeholders; base path stays empty.
+          PAGES_BASE_PATH: ${{ vars.PAGES_BASE_PATH }}
+          NEXT_PUBLIC_ADSENSE_CLIENT: ${{ vars.NEXT_PUBLIC_ADSENSE_CLIENT }}
+          NEXT_PUBLIC_ADSENSE_HALFPAGE_SLOT: ${{ vars.NEXT_PUBLIC_ADSENSE_HALFPAGE_SLOT }}
+          NEXT_PUBLIC_AFFILIATE_URL: ${{ vars.NEXT_PUBLIC_AFFILIATE_URL }}
+          NEXT_PUBLIC_AFFILIATE_IMG: ${{ vars.NEXT_PUBLIC_AFFILIATE_IMG }}
+          NEXT_PUBLIC_AFFILIATE_ALT: ${{ vars.NEXT_PUBLIC_AFFILIATE_ALT }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
