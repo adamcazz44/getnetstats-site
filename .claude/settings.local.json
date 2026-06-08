@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd /c dir /b \"C:\\\\Users\\\\Adam Abshire\\\\Downloads\\\\GetNetStats\")",
+      "Bash(cmd /c dir /s /b \"C:\\\\Users\\\\Adam Abshire\\\\Downloads\\\\GetNetStats\\\\design_handoff_getnetstats\")",
+      "Bash(npm --version)",
+      "Bash(npm ping *)",
+      "Bash(ls -la .claude)",
+      "Bash(cat .claude/settings*.json)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npx next *)",
+      "Bash(tee /tmp/gns-dev.log)",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell($conns = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if \\($conns\\) { $conns | ForEach-Object { $p = Get-Process -Id $_.OwningProcess -ErrorAction SilentlyContinue; \"PID $\\($_.OwningProcess\\) = $\\($p.ProcessName\\)\"; Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } } else { \"nothing on 3000\" }; Start-Sleep -Seconds 1; \"done\")",
+      "Bash(npx tsc *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=GetNetStats -c user.email=dev@getnetstats.local commit -q -m ' *)"
+    ]
+  }
+}
