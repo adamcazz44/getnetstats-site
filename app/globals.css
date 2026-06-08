@@ -318,38 +318,11 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 .ping-axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--dim); margin-top: 8px; }
 
-/* ---------- whois tool (/whois) ---------- */
-.whois-form { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
-.whois-input { flex: 1 1 280px; min-width: 0; background: rgba(255,255,255,0.04); border: 1px solid var(--border-2);
-  border-radius: var(--r-sm); padding: 12px 15px; color: var(--text); font-family: var(--mono); font-size: 15px; }
-.whois-input:focus { outline: none; border-color: rgba(34,211,238,0.5); background: rgba(34,211,238,0.05); }
-.whois-input::placeholder { color: var(--dim); }
-.whois-invalid { color: var(--bad); font-size: 13px; margin-top: 8px; font-family: var(--mono); }
-
-/* result rows */
-.whois-rows { margin-top: 24px; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: rgba(255,255,255,0.018); }
-.whois-row { display: flex; gap: 16px; padding: 13px 16px; border-bottom: 1px solid var(--border); }
-.whois-row:last-child { border-bottom: 0; }
-.whois-row .lbl { flex: 0 0 148px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); padding-top: 3px; }
-.whois-row .val { flex: 1 1 auto; min-width: 0; color: var(--text); font-size: 14.5px; line-height: 1.55; word-break: break-word; }
-.whois-row .val.mono { font-family: var(--mono); font-size: 13.5px; }
-.whois-row .val .ns { display: block; font-family: var(--mono); font-size: 13px; }
-.whois-row .val .sub { color: var(--dim); font-size: 12.5px; }
-.whois-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.whois-chip { font-family: var(--mono); font-size: 11px; padding: 3px 9px; border-radius: 999px;
-  background: rgba(34,211,238,0.1); color: var(--accent-2); border: 1px solid rgba(34,211,238,0.22); }
-.whois-meta { margin-top: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--dim);
-  display: flex; gap: 14px; flex-wrap: wrap; }
-
-/* state panels (loading / empty / error / unsupported) */
-.tool-msg { margin-top: 24px; padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--panel); }
-.tool-msg .h { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
-.tool-msg .h .d { width: 8px; height: 8px; border-radius: 50%; background: var(--dim); flex: 0 0 auto; }
-.tool-msg p { color: var(--muted); font-size: 13.5px; line-height: 1.6; margin: 8px 0 0; }
-.tool-msg.loading .h svg { width: 15px; height: 15px; animation: spin 1s linear infinite; color: var(--accent-2); }
-.tool-msg.warn { border-color: rgba(251,191,36,0.28); } .tool-msg.warn .h .d { background: var(--warn); box-shadow: 0 0 8px var(--warn); }
-.tool-msg.error { border-color: rgba(248,113,113,0.3); } .tool-msg.error .h .d { background: var(--bad); box-shadow: 0 0 8px var(--bad); }
-.tool-msg.neutral .h .d { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+/* ---------- "coming soon" tool cards (not-yet-built tools) ---------- */
+.tool-card.soon { cursor: default; opacity: 0.55; }
+.tool-card.soon:hover { border-color: var(--border); background: var(--panel); transform: none; }
+.tool-soon { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--dim); border: 1px solid var(--border-2); border-radius: 999px; padding: 2px 8px; margin-left: 2px; }
 
 /* ---------- reduced motion ---------- */
 /* Respect prefers-reduced-motion: gate the radar sweep / blip / entrance
@@ -364,6 +337,5 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
   .rerun-pill:disabled svg { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .ping-bar { transition: none; }
-  .tool-msg.loading .h svg { animation: none; }
   * { scroll-behavior: auto !important; }
 }

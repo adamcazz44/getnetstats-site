@@ -33,11 +33,9 @@ export default function SiteFooter() {
           <FootCol
             title="Tools"
             links={[
-              ["IP Address Lookup", "/#tools"],
+              ["IP Address Lookup", "/"],
               ["Speed Test", "/"],
               ["Ping Test", "/ping-test"],
-              ["WHOIS Lookup", "/whois"],
-              ["DNS Checker", "#"],
             ]}
           />
           <FootCol

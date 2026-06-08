@@ -93,16 +93,17 @@ interface Tool {
   k: string;
   t: string;
   d: string;
-  href?: string;
+  href?: string; // live tools link here
+  soon?: boolean; // not-yet-built: rendered as a disabled "Soon" card (no link)
 }
 
 const TOOLS: Tool[] = [
-  { k: "ip", t: "IP Address Lookup", d: "See the public IP, ISP, and location of any address — yours or one you paste in." },
-  { k: "speed", t: "Internet Speed Test", d: "Measure real download, upload, latency and jitter against a global CDN." },
+  { k: "ip", t: "IP Address Lookup", d: "See the public IP, ISP, and location of any address — yours or one you paste in.", href: "/" },
+  { k: "speed", t: "Internet Speed Test", d: "Measure real download, upload, latency and jitter against a global CDN.", href: "/" },
   { k: "ping", t: "Ping & Jitter Test", d: "Check round-trip latency and stability — the numbers that matter for calls and gaming.", href: "/ping-test" },
-  { k: "whois", t: "WHOIS Lookup", d: "Pull registration, registrar and ownership records for any domain.", href: "/whois" },
-  { k: "dns", t: "DNS Checker", d: "Inspect A, AAAA, MX and TXT records and how they resolve worldwide." },
-  { k: "isp", t: "What's My ISP", d: "Identify your provider, connection type and the network you are routed through." },
+  { k: "whois", t: "WHOIS Lookup", d: "Pull registration, registrar and ownership records for any domain.", soon: true },
+  { k: "dns", t: "DNS Checker", d: "Inspect A, AAAA, MX and TXT records and how they resolve worldwide.", soon: true },
+  { k: "isp", t: "What's My ISP", d: "Identify your provider, connection type and the network you are routed through.", soon: true },
 ];
 
 export default function RelatedTools() {
@@ -118,15 +119,25 @@ export default function RelatedTools() {
           your browser and links back here — bookmark the set you use most.
         </p>
         <div className="tools-grid">
-          {TOOLS.map((tool) => (
-            <a className="tool-card" href={tool.href ?? "#" + tool.k} key={tool.k}>
-              <span className="ico">{ICONS[tool.k]}</span>
-              <span className="t">
-                {tool.t} {ARROW}
-              </span>
-              <span className="d">{tool.d}</span>
-            </a>
-          ))}
+          {TOOLS.map((tool) =>
+            tool.soon ? (
+              <div className="tool-card soon" key={tool.k} aria-disabled="true">
+                <span className="ico">{ICONS[tool.k]}</span>
+                <span className="t">
+                  {tool.t} <span className="tool-soon">Soon</span>
+                </span>
+                <span className="d">{tool.d}</span>
+              </div>
+            ) : (
+              <a className="tool-card" href={tool.href} key={tool.k}>
+                <span className="ico">{ICONS[tool.k]}</span>
+                <span className="t">
+                  {tool.t} {ARROW}
+                </span>
+                <span className="d">{tool.d}</span>
+              </a>
+            ),
+          )}
         </div>
       </div>
     </section>

@@ -10,7 +10,6 @@ export default function SiteHeader() {
         </a>
         <nav className="main">
           <a href="/ping-test">Ping Test</a>
-          <a href="/whois">WHOIS</a>
           <a href="/#how">How It Works</a>
           <a href="/#faq">FAQ</a>
         </nav>
