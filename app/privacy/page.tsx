@@ -22,6 +22,16 @@ export default function PrivacyPage() {
             <h1 id="privacy-h">Privacy Policy</h1>
             <div className="updated">Last updated: June 8, 2026</div>
 
+            <div className="tldr-card" id="privacy-tldr">
+              <div className="tldr-label">Privacy in one sentence</div>
+              <p className="tldr-text">
+                The tools run entirely in your browser and store nothing, there&apos;s no account
+                or sign-up, and the only data that leaves your device goes to the IP-lookup
+                services your browser queries and the Google ads that keep the site free — which
+                use cookies you can decline; we never sell your personal data.
+              </p>
+            </div>
+
             <div className="prose">
               <p>
                 GetNetStats (&quot;GetNetStats,&quot; &quot;we,&quot; &quot;us&quot;) operates the

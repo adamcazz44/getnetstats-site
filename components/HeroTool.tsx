@@ -311,7 +311,7 @@ export default function HeroTool() {
               <li>Runs in your browser</li>
               <li>We don&apos;t sell your data</li>
             </ul>
-            <a className="trust-privacy" href="/privacy/">
+            <a className="trust-privacy" href="/privacy/#privacy-tldr">
               Privacy in one sentence <span aria-hidden="true">→</span>
             </a>
 
