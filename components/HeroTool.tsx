@@ -327,7 +327,15 @@ export default function HeroTool() {
             </div>
 
             <div className="readouts">
-              <Readout shown={shown.ping} k="Ping">
+              <Readout
+                shown={shown.ping}
+                k="Ping"
+                action={
+                  <a className="ro-test" href="/ping-test" aria-label="Open the Ping & Jitter test">
+                    Test <span aria-hidden="true">→</span>
+                  </a>
+                }
+              >
                 <div className="v mono">
                   {ping ? <AnimatedNumber value={ping.ping} fmt={fmtInt} /> : "—"}
                   <small> ms</small>
