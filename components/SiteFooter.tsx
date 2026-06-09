@@ -41,6 +41,7 @@ export default function SiteFooter() {
           <FootCol
             title="Guides"
             links={[
+              ["VPN & Privacy Guide", "/vpn-guide"],
               ["What is an IP Address?", "/#learn"],
               ["IPv4 vs IPv6", "/#ipv4-ipv6"],
               ["Find Your IP on Any Device", "/#find-ip"],

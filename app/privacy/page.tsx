@@ -106,6 +106,22 @@ export default function PrivacyPage() {
                 </li>
               </ul>
 
+              <h2>Embedded videos</h2>
+              <p>
+                Some pages (such as our VPN &amp; privacy guide) embed YouTube videos. We use
+                YouTube&apos;s privacy-enhanced mode (<span className="mono">youtube-nocookie.com</span>),
+                and the player only loads when you <strong>click play</strong> — at which point
+                YouTube/Google may set cookies and process data under{" "}
+                <a
+                  href="https://policies.google.com/privacy"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Google&apos;s privacy policy
+                </a>
+                . Until you click play, no YouTube content or cookies load.
+              </p>
+
               <h2>Analytics</h2>
               <p>
                 We do not currently run first-party analytics. Our web fonts are self-hosted, so the
