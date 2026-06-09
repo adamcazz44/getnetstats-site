@@ -10,6 +10,7 @@ import Readout from "./Readout";
 import GoogleAd from "./ads/GoogleAd";
 import AffiliateAd from "./ads/AffiliateAd";
 import { NORDVPN_HREF } from "./ads/affiliates";
+import EkgLine from "./EkgLine";
 
 type Phase = "idle" | "running" | "done";
 type Quality = QualityLabel & { score: number };
@@ -271,6 +272,7 @@ export default function HeroTool() {
             <span className={"conn-pill " + connState}>
               <span className="led" />
               {connText}
+              {connState === "good" ? <EkgLine /> : null}
             </span>
             <button className="rerun-pill" onClick={run} disabled={phase === "running"}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

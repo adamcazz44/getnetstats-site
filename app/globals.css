@@ -79,16 +79,19 @@ nav.main a { transition: color .15s; } nav.main a:hover { color: var(--text); }
 .stage-controls { position: absolute; top: 30px; right: 30px; z-index: 4; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .conn-pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12.5px; font-weight: 500;
   padding: 7px 13px; border-radius: 999px; background: rgba(34,211,238,0.1); color: var(--accent-2); border: 1px solid rgba(34,211,238,0.25); }
-.conn-pill .led { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 8px var(--good); }
+.conn-pill .led { width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 8px var(--good); }
 .conn-pill.wait { background: rgba(251,191,36,0.1); color: var(--warn); border-color: rgba(251,191,36,0.28); }
 .conn-pill.wait .led { background: var(--warn); box-shadow: 0 0 8px var(--warn); animation: blink 1s steps(2) infinite; }
 .conn-pill.bad { background: rgba(248,113,113,0.1); color: var(--bad); border-color: rgba(248,113,113,0.3); }
 .conn-pill.bad .led { background: var(--bad); box-shadow: 0 0 8px var(--bad); }
-/* live-connection "sonar" — the connected LED emits an expanding ring, signalling
-   an active, live link (on-brand with the radar). */
-.conn-pill.good .led::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(52,211,153,0.5); animation: sonar 1.9s ease-out infinite; }
-@keyframes sonar { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); } 70%, 100% { box-shadow: 0 0 0 8px rgba(52,211,153,0); } }
+/* live EKG trace to the right of "Connected" — a two-beat strip scrolls left by
+   one beat on a loop, so the QRS blip sweeps across like a real heart monitor.
+   Green to match the LED (and authentic to a monitor screen). */
+.ekg { width: 32px; height: 13px; margin-left: 2px; overflow: hidden; display: inline-flex; align-items: center; }
+.ekg svg { width: 200%; height: 100%; display: block; animation: ekg-scroll 2.4s linear infinite; }
+.ekg path { fill: none; stroke: var(--good); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 1.5px rgba(52,211,153,0.7)); }
+@keyframes ekg-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .rerun-pill { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-family: var(--mono);
   font-size: 12.5px; font-weight: 500; letter-spacing: 0.03em; padding: 8px 14px; border-radius: 999px;
   background: rgba(34,211,238,0.1); color: var(--accent-2); border: 1px solid rgba(34,211,238,0.28);
@@ -385,7 +388,7 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
   .radar.scanning .sweep { animation: none; }
   .radar.done .blip { animation: none; }
   .conn-pill.wait .led,
-  .conn-pill.good .led::after,
+  .ekg svg,
   .status-pill.scanning .led { animation: none; }
   .rerun-pill:disabled svg { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
