@@ -59,7 +59,19 @@
       "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/ads.txt/route.ts' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/ads.txt-route.ts')",
       "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/privacy/page.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/pages/privacy.tsx')",
       "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/terms/page.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/pages/terms.tsx')",
-      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/about/page.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/pages/about.tsx')"
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/about/page.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/pages/about.tsx')",
+      "mcp__19ec4496-ce54-47f9-b0e7-1f75a60e2ecf__search_threads",
+      "Bash(echo \"tsc EXIT:$?\")",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/components/ads/AdSlot.tsx' 'C:/Users/Adam Abshire/.claude/skills/tool-site-builder/assets/ads/AdSlot.tsx')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/components/ads/AffiliateAd.tsx' 'C:/Users/Adam Abshire/.claude/skills/tool-site-builder/assets/ads/AffiliateAd.tsx')",
+      "Bash(cp components/ads/AffiliateAd.tsx \"C:/Users/Adam Abshire/.claude/skills/tool-site-builder/assets/ads/AffiliateAd.tsx\")",
+      "Bash(echo \"tsc:$?\")",
+      "Bash(awk '{printf \"%8.1f MB %s %s %s\\\\n\", $5/1048576, $\\(NF-2\\), $\\(NF-1\\), $NF}')",
+      "Bash(cp out/channel-avatar/opengraph-image \"C:/Users/Adam Abshire/Downloads/GetNetStats-youtube-avatar.png\")",
+      "Bash(awk '{print $5\" bytes\"}')",
+      "Bash(git check-ignore *)",
+      "Bash(curl -s \"https://www.youtube.com/oembed?url=https://youtu.be/QdKTM3l3YF0&format=json\")",
+      "PowerShell($p = \"D:\\\\GetNetStats\"; if \\(Test-Path $p\\) { \"EXISTS: $p`n\"; Get-ChildItem -Force $p | Select-Object Mode, Name | Format-Table -AutoSize | Out-String; \"`n--- .git present? ---\"; Test-Path \"$p\\\\.git\"; \"`n--- top-level item count ---\"; \\(Get-ChildItem -Force $p | Measure-Object\\).Count } else { \"NOT FOUND: $p\" })"
     ]
   }
 }
