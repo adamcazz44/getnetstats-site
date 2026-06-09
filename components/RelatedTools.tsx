@@ -60,13 +60,14 @@ const ICONS: Record<string, ReactNode> = {
       }
     />
   ),
-  isp: (
+  asn: (
     <Ic
       d={
         <>
-          <path d="M5 13a7 7 0 0 1 14 0" />
-          <path d="M8.5 15.5a3.5 3.5 0 0 1 7 0" />
-          <circle cx="12" cy="18.5" r="1.2" fill="currentColor" />
+          <circle cx="6" cy="12" r="2.5" />
+          <circle cx="18" cy="6" r="2.5" />
+          <circle cx="18" cy="18" r="2.5" />
+          <path d="M8.2 10.8 15.8 7.2M8.2 13.2 15.8 16.8" />
         </>
       }
     />
@@ -103,7 +104,7 @@ const TOOLS: Tool[] = [
   { k: "ping", t: "Ping & Jitter Test", d: "Check round-trip latency and stability — the numbers that matter for calls and gaming.", href: "/ping-test" },
   { k: "whois", t: "WHOIS Lookup", d: "Pull registration, registrar and ownership records for any domain.", soon: true },
   { k: "dns", t: "DNS Checker", d: "Inspect A, AAAA, MX and TXT records and how they resolve worldwide.", soon: true },
-  { k: "isp", t: "What's My ISP", d: "Identify your provider, connection type and the network you are routed through.", soon: true },
+  { k: "asn", t: "ASN & Routing", d: "Your ASN, network operator, and whether your IP looks residential, hosting or mobile.", soon: true },
 ];
 
 export default function RelatedTools() {
