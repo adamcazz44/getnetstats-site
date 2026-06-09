@@ -286,7 +286,7 @@ export default function HeroTool() {
                 <path d="M21 12a9 9 0 1 1-3.5-7.1" />
                 <path d="M21 3v5h-5" />
               </svg>
-              {phase === "running" ? "Scanning…" : phase === "done" ? "Re-run Test" : "Run Test"}
+              {phase === "running" ? "Scanning…" : phase === "done" ? "Re-run ALL" : "Run All"}
             </button>
           </div>
           <div>
