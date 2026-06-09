@@ -1,3 +1,5 @@
+import { NORDVPN_HREF } from "@/components/ads/affiliates";
+
 export default function Education() {
   return (
     <section id="learn" aria-labelledby="learn-h">
@@ -101,7 +103,15 @@ export default function Education() {
             <ul>
               <li>
                 <b>VPN</b> — encrypts your connection and replaces your IP with the VPN
-                server&apos;s. The most practical option for everyday privacy.
+                server&apos;s. The most practical option for everyday privacy.{" "}
+                <a
+                  className="ip-cta"
+                  href={NORDVPN_HREF}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                >
+                  Get NordVPN <span aria-hidden="true">→</span>
+                </a>
               </li>
               <li>
                 <b>Proxy server</b> — forwards your requests so sites see the proxy&apos;s IP.

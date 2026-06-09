@@ -234,6 +234,14 @@ h2.sec { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; letter-spacing: 
 .prose ul li { color: var(--muted); font-size: 15px; line-height: 1.5; padding-left: 26px; position: relative; }
 .prose ul li::before { content: ""; position: absolute; left: 4px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .prose ul li b { color: var(--text); font-weight: 600; }
+/* inline affiliate CTA (e.g. the VPN bullet in "how to hide your IP") */
+.ip-cta { display: inline-flex; align-items: center; gap: 6px; vertical-align: baseline; white-space: nowrap;
+  font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--accent-2);
+  border: 1px solid rgba(34,211,238,0.3); border-radius: 999px; padding: 2px 10px; margin-left: 4px;
+  transition: background .15s, border-color .15s; }
+.ip-cta:hover { background: rgba(34,211,238,0.14); border-color: rgba(34,211,238,0.5); }
+.ip-cta::before { content: "Ad"; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint);
+  border: 1px solid var(--border-2); border-radius: 4px; padding: 0 3px; }
 
 /* comparison table */
 .cmp { width: 100%; border-collapse: collapse; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; font-size: 14px; }

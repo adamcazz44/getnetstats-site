@@ -14,10 +14,15 @@ export interface Affiliate {
   cta: string;
 }
 
+// Shared so in-content CTAs (e.g. the "how to hide your IP" VPN link) and the
+// rotating banner use the same tracking link.
+export const NORDVPN_HREF =
+  "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=150104&url_id=902";
+
 export const AFFILIATES: Affiliate[] = [
   {
     name: "NordVPN",
-    href: "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=150104&url_id=902",
+    href: NORDVPN_HREF,
     alt: "NordVPN — fast, secure, no-logs VPN",
     tagline: "Hide your IP and encrypt your connection with a fast, no-logs VPN.",
     cta: "Get NordVPN",
