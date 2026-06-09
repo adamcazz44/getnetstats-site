@@ -26,3 +26,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# project context docs (kept alongside the code, NOT committed — they hold
+# deployment/monetization/account notes and must never reach a public remote)
+GetNetStats-context-handoff.md
+GetNetStats-chat-instructions.md
+GetNetStats-YouTube-Kit.md
