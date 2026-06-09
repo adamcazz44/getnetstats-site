@@ -406,8 +406,8 @@ export default function HeroTool() {
             />
             <p className="radar-note">
               <span className="radar-note-k">Honest by design:</span> your IP location is an
-              estimate, and this score is derived from real latency &amp; throughput — not your
-              router&apos;s radio signal.
+              estimate, and the Wi-Fi Signal above is derived from real latency &amp; throughput — not
+              your router&apos;s radio signal.
             </p>
             {netErr ? (
               <div
