@@ -107,8 +107,12 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 
 /* IP feature row */
 .ip-row { margin-top: 22px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.ip-box { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+.ip-box { position: relative; display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
   border-radius: var(--r-md); padding: 13px 16px; min-width: 0; }
+.ip-content { min-width: 0; }
+/* Copy button anchored to the card's top-right corner. */
+.ip-box .copy-btn { position: absolute; top: 10px; right: 10px; }
+.ip-box .k, .ip-box .ip { padding-right: 80px; } /* clear the corner button */
 .ip-box .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
 .ip-box .ip { font-family: var(--mono); font-size: clamp(20px, 2.4vw, 27px); font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
 .ip-box .meta { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
@@ -339,8 +343,6 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 }
 @media (max-width: 480px) {
   .tools-grid { grid-template-columns: 1fr; }
-  .ip-row { flex-direction: column; align-items: stretch; }
-  .copy-btn { justify-content: center; }
 }
 
 /* ---------- ping & jitter tool (/ping-test) ---------- */

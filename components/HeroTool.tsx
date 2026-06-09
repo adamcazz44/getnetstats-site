@@ -300,7 +300,7 @@ export default function HeroTool() {
 
             <div className="ip-row">
               <div className={"ip-box reveal" + (shown.ip ? " in" : "")}>
-                <div style={{ minWidth: 0 }}>
+                <div className="ip-content">
                   <div className="k">Your IP address</div>
                   <div className="ip">{ipErr ? "Unavailable" : ipInfo ? ipInfo.ip : "···"}</div>
                   <div className="meta">
@@ -322,8 +322,8 @@ export default function HeroTool() {
                     </div>
                   ) : null}
                 </div>
+                <CopyIP ip={ipInfo ? ipInfo.ip : null} />
               </div>
-              <CopyIP ip={ipInfo ? ipInfo.ip : null} />
             </div>
 
             <div className="readouts">
