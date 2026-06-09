@@ -303,7 +303,7 @@ export default function HeroTool() {
                 <div className="ip-content">
                   <div className="k">Your IP address</div>
                   <div className="ip">{ipErr ? "Unavailable" : ipInfo ? ipInfo.ip : "···"}</div>
-                  <div className="meta">
+                  <div className="meta isp">
                     {ipErr ? (
                       "Could not reach lookup service"
                     ) : ipInfo ? (

@@ -117,6 +117,8 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 .ip-box .ip { font-family: var(--mono); font-size: clamp(20px, 2.4vw, 27px); font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
 .ip-box .meta { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
 .ip-box .meta .ver { font-family: var(--mono); color: var(--accent-2); }
+/* ISP / location line — amber so the provider info stands out */
+.ip-box .meta.isp, .ip-box .meta.isp .ver { color: var(--warn); }
 .copy-btn { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; border: 1px solid var(--border-2);
   background: rgba(255,255,255,0.04); color: var(--text); border-radius: var(--r-sm); padding: 9px 13px; font-family: var(--mono);
   font-size: 12.5px; font-weight: 500; transition: background .15s, border-color .15s, transform .08s; }
