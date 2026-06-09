@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   title:
     "What Is My IP Address? Free IP Lookup & Internet Speed Test — GetNetStats",
   description:
-    "See your public IP address, ISP and location instantly — then run a free internet speed test for real download, upload, ping and connection quality. No app, no sign-up. Check your network in one tap.",
+    "See your public IP, ISP and location, then run a real speed test for download, upload and ping. Nothing stored, no sign-up, no data sold — just answers, in one clean scan.",
   keywords: [
     "what is my IP",
     "IP address lookup",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "GetNetStats",
     title: "What Is My IP Address? Free IP Lookup & Speed Test",
     description:
-      "Instantly see your IP, ISP and location, then test real download, upload and ping. Free, fast, no sign-up.",
+      "Instantly see your IP, ISP and location, then test real download, upload and ping. Nothing stored, no sign-up — just answers.",
     url: `${SITE_URL}/`,
     images: [
       {
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     images: ["/og.png"],
     title: "GetNetStats — What Is My IP & How Fast Is My Internet?",
     description:
-      "Free IP lookup and internet speed test. Real download, upload, ping and connection quality in one tap.",
+      "Free IP lookup and a real speed test — download, upload, ping. Nothing stored, no sign-up, no data sold.",
   },
   // AdSense site-verification meta (rendered only when the publisher id is set).
   ...(ADSENSE_CLIENT ? { other: { "google-adsense-account": ADSENSE_CLIENT } } : {}),

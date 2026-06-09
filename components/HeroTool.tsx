@@ -301,9 +301,19 @@ export default function HeroTool() {
               How fast is your <em>internet</em>, really?
             </h1>
             <p className="subhead">
-              One tap reveals your IP address, connection quality, latency and real-world
-              speed — no app, no sign-up, nothing stored.
+              One tap shows your IP, ISP and location, then runs a real download, upload and
+              ping test — your whole connection in one clean scan.
             </p>
+
+            <ul className="trust-strip" aria-label="Our privacy and usage promises">
+              <li>Nothing stored</li>
+              <li>No app or sign-up</li>
+              <li>Runs in your browser</li>
+              <li>We don&apos;t sell your data</li>
+            </ul>
+            <a className="trust-privacy" href="/privacy/">
+              Privacy in one sentence <span aria-hidden="true">→</span>
+            </a>
 
             <div className="ip-row">
               <div className={"ip-box reveal" + (shown.ip ? " in" : "")}>
@@ -394,6 +404,11 @@ export default function HeroTool() {
               phaseText={phaseText}
               prog={prog}
             />
+            <p className="radar-note">
+              <span className="radar-note-k">Honest by design:</span> your IP location is an
+              estimate, and this score is derived from real latency &amp; throughput — not your
+              router&apos;s radio signal.
+            </p>
             {netErr ? (
               <div
                 className="mono"

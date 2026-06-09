@@ -109,6 +109,17 @@ h1.headline { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.04; letter-spa
 h1.headline em { font-style: normal; color: var(--accent-2); }
 .subhead { color: var(--muted); font-size: 15.5px; line-height: 1.55; margin-top: 14px; max-width: 42ch; }
 
+/* trust strip — durable, true promises shown at the decision point (NOT "no
+   ads": ad-funded once AdSense is live, so every badge here must stay true) */
+.trust-strip { display: flex; flex-wrap: wrap; gap: 7px 16px; margin-top: 16px; padding: 0; list-style: none;
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.03em; color: var(--dim); }
+.trust-strip li { display: inline-flex; align-items: center; gap: 7px; }
+.trust-strip li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; flex: none;
+  background: var(--good); box-shadow: 0 0 6px rgba(52,211,153,0.55); }
+.trust-privacy { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-family: var(--mono);
+  font-size: 11.5px; letter-spacing: 0.03em; color: var(--accent-dim); transition: color .15s; }
+.trust-privacy:hover { color: var(--accent); }
+
 /* IP feature row */
 .ip-row { margin-top: 22px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .ip-box { position: relative; display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
@@ -160,6 +171,10 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 
 /* ---------- radar ---------- */
 .radar-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+/* radical-transparency caption under the signal score — the honesty incumbents
+   won't state. Differentiator, not a disclaimer. */
+.radar-note { max-width: 32ch; text-align: center; font-size: 11.5px; line-height: 1.5; color: var(--dim); margin: 0; }
+.radar-note-k { color: var(--muted); font-weight: 600; }
 .radar { position: relative; width: 100%; max-width: 320px; aspect-ratio: 1; border-radius: 50%;
   background: radial-gradient(circle, rgba(34,211,238,0.06), rgba(34,211,238,0) 70%); }
 .radar .ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(34,211,238,0.15); }
