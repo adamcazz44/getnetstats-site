@@ -9,6 +9,7 @@ import CopyIP from "./CopyIP";
 import Readout from "./Readout";
 import GoogleAd from "./ads/GoogleAd";
 import AffiliateAd from "./ads/AffiliateAd";
+import { NORDVPN_HREF } from "./ads/affiliates";
 
 type Phase = "idle" | "running" | "done";
 type Quality = QualityLabel & { score: number };
@@ -360,6 +361,20 @@ export default function HeroTool() {
                 <div className="sub">↓ from server</div>
               </Readout>
             </div>
+
+            {shown.ip && !ipErr ? (
+              <div className="ip-hide-cta reveal in">
+                <span>Your IP can reveal your location and ISP.</span>{" "}
+                <a
+                  className="ip-cta"
+                  href={NORDVPN_HREF}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                >
+                  Hide it with NordVPN <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            ) : null}
           </div>
 
           <div className="radar-wrap">

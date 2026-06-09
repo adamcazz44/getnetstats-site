@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { NORDVPN_HREF } from "@/components/ads/affiliates";
 
 const FAQS: { q: string; a: ReactNode }[] = [
   {
@@ -69,7 +70,15 @@ const FAQS: { q: string; a: ReactNode }[] = [
       <>
         Route your traffic through a VPN (the most practical choice), a proxy server, or the Tor
         network. Each replaces your visible IP with the intermediary&apos;s. Reload this page
-        afterward to confirm the change took effect.
+        afterward to confirm the change took effect.{" "}
+        <a
+          className="ip-cta"
+          href={NORDVPN_HREF}
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+        >
+          Get NordVPN <span aria-hidden="true">→</span>
+        </a>
       </>
     ),
   },
