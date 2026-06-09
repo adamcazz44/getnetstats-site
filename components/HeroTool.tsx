@@ -345,14 +345,14 @@ export default function HeroTool() {
                   <div className="sub">latency</div>
                 )}
               </Readout>
-              <Readout shown={shown.ul} k="Upload" action={testPill("/ping-test", "Open the Upload speed test")}>
+              <Readout shown={shown.ul} k="Upload" action={testPill("/upload-test", "Open the Upload speed test")}>
                 <div className="v mono">
                   {ul != null ? <AnimatedNumber value={ul} fmt={fmtSpeed} /> : "—"}
                   <small> Mbps</small>
                 </div>
                 <div className="sub">↑ to server</div>
               </Readout>
-              <Readout shown={shown.conn} k="Connection" action={testPill("/ping-test", "Open the Connection test")}>
+              <Readout shown={shown.conn} k="Connection" action={testPill("/connection-test", "Open the Connection test")}>
                 <div className="v txt">{connLabel}</div>
                 <div className="sub">{connDetail}</div>
               </Readout>

@@ -390,6 +390,89 @@ export async function measureUpload(bytes = 10_000_000): Promise<number | null> 
   return (bytes * 8) / elapsed / 1e6; // Mbps
 }
 
+// ---- live upload throughput (sequential POST chunks, per-chunk samples) ----
+// We can't read upload progress from a single request: attaching an
+// xhr.upload listener forces a CORS preflight that Cloudflare's __up sink
+// rejects (plain fetch POST works, but gives no progress). So we instead POST
+// a series of chunks back-to-back and time each one — every chunk is one real
+// throughput sample. Average/peak come from active upload time only (the gaps
+// between requests are excluded so the number reflects real line speed).
+export interface UploadSample {
+  index: number;
+  instMbps: number; // throughput for this chunk
+  avgMbps: number; // cumulative average so far
+  peakMbps: number; // best chunk so far
+  bytes: number; // total bytes sent so far
+  fraction: number; // 0..1 test progress
+}
+export interface UploadLiveOptions {
+  chunkBytes?: number; // size of each POST (default 2 MB)
+  budgetMs?: number; // total test duration (default 12000)
+  onSample?: (s: UploadSample) => void;
+  signal?: AbortSignal;
+}
+export interface UploadLiveResult {
+  samples: number[]; // per-chunk Mbps, in order
+  avgMbps: number | null; // overall average throughput (active time only)
+  peakMbps: number | null; // best single chunk
+  bytes: number; // total bytes sent
+  durationMs: number;
+}
+
+export async function measureUploadLive(
+  options: UploadLiveOptions = {},
+): Promise<UploadLiveResult> {
+  const chunkBytes = options.chunkBytes ?? 2_000_000;
+  const budgetMs = options.budgetMs ?? 12000;
+  const { onSample, signal } = options;
+  const chunk = new Blob([new Uint8Array(chunkBytes)]); // reused for every POST
+
+  const start = performance.now();
+  let totalBytes = 0;
+  let activeMs = 0; // time actually spent uploading (gaps excluded)
+  let peak = 0;
+  let idx = 0;
+  const samples: number[] = [];
+
+  while (performance.now() - start < budgetMs) {
+    if (signal?.aborted) break;
+    const c0 = performance.now();
+    try {
+      await fetchT(
+        "https://speed.cloudflare.com/__up?t=" + Date.now() + "_" + idx,
+        20000,
+        { method: "POST", body: chunk },
+      );
+    } catch {
+      break; // network/timeout — stop and report what we have
+    }
+    const elapsed = performance.now() - c0;
+    if (elapsed <= 0) continue;
+
+    totalBytes += chunkBytes;
+    activeMs += elapsed;
+    const inst = (chunkBytes * 8) / (elapsed / 1000) / 1e6;
+    samples.push(inst);
+    if (inst > peak) peak = inst;
+    const avg = (totalBytes * 8) / (activeMs / 1000) / 1e6;
+    onSample?.({
+      index: idx++,
+      instMbps: inst,
+      avgMbps: avg,
+      peakMbps: peak,
+      bytes: totalBytes,
+      fraction: Math.min(1, (performance.now() - start) / budgetMs),
+    });
+  }
+
+  const durationMs = performance.now() - start;
+  if (totalBytes < 1_000_000 || activeMs < 100) {
+    return { samples, avgMbps: null, peakMbps: null, bytes: totalBytes, durationMs };
+  }
+  const avg = (totalBytes * 8) / (activeMs / 1000) / 1e6;
+  return { samples, avgMbps: avg, peakMbps: peak, bytes: totalBytes, durationMs };
+}
+
 // ---- connection class via Network Information API (best-effort) ----
 export function getConnection(): ConnectionInfo {
   const nav = navigator as Navigator & {

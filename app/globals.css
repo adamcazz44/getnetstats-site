@@ -357,7 +357,8 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
   .tools-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- ping & jitter tool (/ping-test) ---------- */
+/* ---------- single-column test tools (/ping-test, /download-test,
+   /upload-test, /connection-test) ---------- */
 /* single-column variant of the hero stage */
 .stage.solo { display: block; }
 .tool-head { max-width: 60ch; }
@@ -366,6 +367,8 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 /* big primary latency readout */
 .ping-hero { display: flex; align-items: baseline; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
 .ping-hero .big { font-family: var(--mono); font-size: clamp(40px, 6vw, 64px); font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+/* text headline (e.g. connection type) — smaller than numeric, never wraps */
+.ping-hero .big.conn-big { font-size: clamp(32px, 4.6vw, 50px); white-space: nowrap; }
 .ping-hero .unit { font-family: var(--mono); font-size: 16px; color: var(--dim); }
 /* live sample history */
 .ping-bars { display: flex; align-items: flex-end; gap: 3px; height: 120px; margin-top: 22px;
