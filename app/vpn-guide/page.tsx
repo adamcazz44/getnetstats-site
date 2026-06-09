@@ -60,7 +60,9 @@ export default function VpnGuidePage() {
       <main id="top">
         <section aria-labelledby="guide-h">
           <div className="wrap">
-            <div className="eyebrow">// learn</div>
+            <div className="eyebrow">
+              <a className="eyebrow-home" href="/">Home</a> // learn
+            </div>
             <h2 className="sec" id="guide-h">
               VPN &amp; online privacy guide
             </h2>

@@ -9,7 +9,7 @@ import SiteFooter from "@/components/SiteFooter";
 export default function Home() {
   return (
     <>
-      <SiteHeader home />
+      <SiteHeader />
       <main id="top">
         <HeroTool />
         <div className="wrap">

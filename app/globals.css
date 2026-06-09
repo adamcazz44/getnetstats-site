@@ -53,13 +53,10 @@ header.site {
 .brand b { font-weight: 600; } .brand b span { color: var(--accent-2); }
 nav.main { display: flex; gap: 28px; font-size: 14.5px; color: var(--muted); }
 nav.main a { transition: color .15s; } nav.main a:hover { color: var(--text); }
-/* top-left "← Home" back-link on sub-pages (sits in the gap below the header) */
-.back-home-row { padding-top: 18px; }
-/* matches the .lede / .eyebrow treatment ("// LATENCY PROBE") */
-.back-home { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); transition: color .15s, gap .15s; }
-.back-home:hover { color: var(--accent-2); gap: 10px; }
-.back-home-row + main > section:first-child { padding-top: 24px; }
+/* "HOME" link rendered inline inside the eyebrow ("HOME // LATENCY PROBE").
+   Inherits the eyebrow's mono/uppercase/tracking; just a brighter, clickable color. */
+.eyebrow-home { color: var(--accent-2); transition: color .15s; }
+.eyebrow-home:hover { color: var(--accent); }
 .status-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-size: 12.5px; font-weight: 500;
   padding: 7px 13px; background: rgba(34,211,238,0.1); color: var(--accent-2); border: 1px solid rgba(34,211,238,0.25); font-family: var(--mono); }
 .status-pill .led { width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 8px var(--good); }

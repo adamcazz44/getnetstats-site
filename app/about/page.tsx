@@ -16,7 +16,9 @@ export default function AboutPage() {
       <main id="top">
         <section className="page" aria-labelledby="about-h">
           <div className="wrap">
-            <div className="eyebrow">// about</div>
+            <div className="eyebrow">
+              <a className="eyebrow-home" href="/">Home</a> // about
+            </div>
             <h1 id="about-h">About GetNetStats</h1>
 
             <div className="prose">

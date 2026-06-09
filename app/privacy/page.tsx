@@ -16,7 +16,9 @@ export default function PrivacyPage() {
       <main id="top">
         <section className="page" aria-labelledby="privacy-h">
           <div className="wrap">
-            <div className="eyebrow">// legal</div>
+            <div className="eyebrow">
+              <a className="eyebrow-home" href="/">Home</a> // legal
+            </div>
             <h1 id="privacy-h">Privacy Policy</h1>
             <div className="updated">Last updated: June 8, 2026</div>
 

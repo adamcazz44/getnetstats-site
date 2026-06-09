@@ -155,7 +155,9 @@ export default function PingTool() {
           </div>
 
           <div className="tool-head">
-            <div className="lede">// latency probe</div>
+            <div className="lede">
+              <a className="eyebrow-home" href="/">Home</a> // latency probe
+            </div>
             <h1 className="headline">
               Ping &amp; <em>jitter</em> test
             </h1>
