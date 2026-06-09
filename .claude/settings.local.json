@@ -49,7 +49,17 @@
       "Bash(NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-0000000000000000 NEXT_PUBLIC_ADSENSE_HALFPAGE_SLOT=1234567890 npm run build)",
       "mcp__Claude_in_Chrome__resize_window",
       "mcp__Claude_in_Chrome__computer",
-      "Bash(grep -v '^\\\\.$\\\\|^\\\\.\\\\.$')"
+      "Bash(grep -v '^\\\\.$\\\\|^\\\\.\\\\.$')",
+      "Read(//c/Users/Adam Abshire/**)",
+      "Bash(mkdir -p .claude/skills/static-site-launch/references .claude/skills/static-site-launch/assets/ads .claude/skills/static-site-launch/assets/pages)",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/components/ads/AdSlot.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/ads/AdSlot.tsx')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/components/ads/useInView.ts' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/ads/useInView.ts')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/components/ads/GoogleAd.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/ads/GoogleAd.tsx')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/components/ads/AffiliateAd.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/ads/AffiliateAd.tsx')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/ads.txt/route.ts' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/ads.txt-route.ts')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/privacy/page.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/pages/privacy.tsx')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/terms/page.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/pages/terms.tsx')",
+      "Bash(cp 'C:/Users/Adam Abshire/Downloads/GetNetStats/app/about/page.tsx' 'C:/Users/Adam Abshire/.claude/skills/static-site-launch/assets/pages/about.tsx')"
     ]
   }
 }
