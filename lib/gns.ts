@@ -281,6 +281,98 @@ export async function measureDownload(
   return (received * 8) / elapsed / 1e6; // Mbps
 }
 
+// ---- live download throughput (streams bytes, reports per-window samples) ----
+export interface DownloadSample {
+  index: number;
+  instMbps: number; // instantaneous throughput for this window
+  avgMbps: number; // cumulative average so far
+  peakMbps: number; // best window so far
+  bytes: number; // total bytes received so far
+  fraction: number; // 0..1 test progress
+}
+export interface DownloadLiveOptions {
+  budgetMs?: number; // total test duration (default 10000)
+  windowMs?: number; // window length for one instantaneous sample (default 220)
+  onSample?: (s: DownloadSample) => void;
+  signal?: AbortSignal;
+}
+export interface DownloadLiveResult {
+  samples: number[]; // instantaneous Mbps per window, in order
+  avgMbps: number | null; // overall average throughput
+  peakMbps: number | null; // best single window
+  bytes: number; // total bytes transferred
+  durationMs: number;
+}
+
+export async function measureDownloadLive(
+  options: DownloadLiveOptions = {},
+): Promise<DownloadLiveResult> {
+  const budgetMs = options.budgetMs ?? 10000;
+  const windowMs = options.windowMs ?? 220;
+  const { onSample, signal } = options;
+  // large byte target so even gigabit lines stream for the full time budget
+  // (we always abort at budgetMs; the file is never fully downloaded)
+  const url = "https://speed.cloudflare.com/__down?bytes=2000000000&t=" + Date.now();
+
+  const c = new AbortController();
+  const onAbort = () => c.abort();
+  signal?.addEventListener("abort", onAbort);
+  const to = setTimeout(() => c.abort(), budgetMs);
+
+  const start = performance.now();
+  let received = 0;
+  let windowStart = start;
+  let windowBytes = 0;
+  let peak = 0;
+  let idx = 0;
+  const samples: number[] = [];
+
+  try {
+    const resp = await fetch(url, { signal: c.signal, cache: "no-store" });
+    const reader = resp.body!.getReader();
+    while (true) {
+      const r = await reader.read();
+      if (r.done) break;
+      received += r.value.length;
+      windowBytes += r.value.length;
+      const now = performance.now();
+      const winElapsed = now - windowStart;
+      if (winElapsed >= windowMs) {
+        const inst = (windowBytes * 8) / (winElapsed / 1000) / 1e6;
+        samples.push(inst);
+        if (inst > peak) peak = inst;
+        const totalElapsed = now - start;
+        const avg = (received * 8) / (totalElapsed / 1000) / 1e6;
+        onSample?.({
+          index: idx++,
+          instMbps: inst,
+          avgMbps: avg,
+          peakMbps: peak,
+          bytes: received,
+          fraction: Math.min(1, totalElapsed / budgetMs),
+        });
+        windowStart = now;
+        windowBytes = 0;
+      }
+      if (now - start > budgetMs) {
+        c.abort();
+        break;
+      }
+    }
+  } catch {
+    /* abort after the time budget is expected */
+  }
+
+  clearTimeout(to);
+  signal?.removeEventListener("abort", onAbort);
+  const durationMs = performance.now() - start;
+  if (received < 80000 || durationMs < 200) {
+    return { samples, avgMbps: null, peakMbps: null, bytes: received, durationMs };
+  }
+  const avg = (received * 8) / (durationMs / 1000) / 1e6;
+  return { samples, avgMbps: avg, peakMbps: peak, bytes: received, durationMs };
+}
+
 // ---- upload throughput (POST a blob to the CDN sink) ----
 export async function measureUpload(bytes = 10_000_000): Promise<number | null> {
   const payload = new Blob([new Uint8Array(bytes)]);

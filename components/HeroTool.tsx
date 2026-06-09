@@ -264,9 +264,9 @@ export default function HeroTool() {
   // "good" state stays just "Connected" — the live ms reading lives in the Ping
   // tile; this pill is the live-connection reassurance (see the animated LED).
 
-  // Shared "Test" pill for the readout cards → the Ping & Jitter test.
-  const testPill = (
-    <a className="ro-test" href="/ping-test" aria-label="Open the Ping & Jitter test">
+  // Each readout card links to its own dedicated test page.
+  const testPill = (href: string, label: string) => (
+    <a className="ro-test" href={href} aria-label={label}>
       Test <span aria-hidden="true">→</span>
     </a>
   );
@@ -334,7 +334,7 @@ export default function HeroTool() {
             </div>
 
             <div className="readouts">
-              <Readout shown={shown.ping} k="Ping" action={testPill}>
+              <Readout shown={shown.ping} k="Ping" action={testPill("/ping-test", "Open the Ping & Jitter test")}>
                 <div className="v mono">
                   {ping ? <AnimatedNumber value={ping.ping} fmt={fmtInt} /> : "—"}
                   <small> ms</small>
@@ -345,18 +345,18 @@ export default function HeroTool() {
                   <div className="sub">latency</div>
                 )}
               </Readout>
-              <Readout shown={shown.ul} k="Upload" action={testPill}>
+              <Readout shown={shown.ul} k="Upload" action={testPill("/ping-test", "Open the Upload speed test")}>
                 <div className="v mono">
                   {ul != null ? <AnimatedNumber value={ul} fmt={fmtSpeed} /> : "—"}
                   <small> Mbps</small>
                 </div>
                 <div className="sub">↑ to server</div>
               </Readout>
-              <Readout shown={shown.conn} k="Connection" action={testPill}>
+              <Readout shown={shown.conn} k="Connection" action={testPill("/ping-test", "Open the Connection test")}>
                 <div className="v txt">{connLabel}</div>
                 <div className="sub">{connDetail}</div>
               </Readout>
-              <Readout shown={shown.dl} k="Download" action={testPill}>
+              <Readout shown={shown.dl} k="Download" action={testPill("/download-test", "Open the Download speed test")}>
                 <div className="v mono" style={{ color: "var(--accent-2)" }}>
                   {dl != null ? (
                     <AnimatedNumber value={dl} fmt={fmtSpeed} />
