@@ -27,7 +27,7 @@ export default function AdSlot({ width, height, className, children }: AdSlotPro
   return (
     <div
       ref={ref}
-      className={"ad" + (className ? " " + className : "")}
+      className={"ad" + (className ? " " + className : "") + (ready ? " filled" : "")}
       style={{ minWidth: width, minHeight: height }}
       role="complementary"
       aria-label="Advertisement"
