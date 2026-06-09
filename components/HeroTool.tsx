@@ -259,9 +259,9 @@ export default function HeroTool() {
   } else if (netErr || !online) {
     connState = "bad";
     connText = "Offline";
-  } else if (ping) {
-    connText = "Connected · " + ping.ping + "ms";
   }
+  // "good" state stays just "Connected" — the live ms reading lives in the Ping
+  // tile; this pill is the live-connection reassurance (see the animated LED).
 
   return (
     <section className="hero">
