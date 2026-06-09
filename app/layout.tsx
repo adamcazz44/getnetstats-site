@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Spline_Sans_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+
+// Google AdSense publisher id, e.g. "ca-pub-1234567890123456". When unset,
+// no AdSense script/verification renders and ad slots stay placeholders.
+const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
 const geist = Geist({
   subsets: ["latin"],
@@ -61,6 +66,8 @@ export const metadata: Metadata = {
     description:
       "Free IP lookup and internet speed test. Real download, upload, ping and connection quality in one tap.",
   },
+  // AdSense site-verification meta (rendered only when the publisher id is set).
+  ...(ADSENSE_CLIENT ? { other: { "google-adsense-account": ADSENSE_CLIENT } } : {}),
 };
 
 export const viewport: Viewport = {
@@ -191,6 +198,18 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
         />
+        {/* AdSense library — loaded once sitewide so Google can verify/serve.
+            async + afterInteractive means it never blocks first paint or the scan.
+            Renders only when the publisher id is configured. */}
+        {ADSENSE_CLIENT ? (
+          <Script
+            id="adsbygoogle-lib"
+            async
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          />
+        ) : null}
       </body>
     </html>
   );
