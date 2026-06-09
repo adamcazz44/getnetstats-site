@@ -50,10 +50,10 @@ export default function SiteFooter() {
           <FootCol
             title="Company"
             links={[
-              ["About", "#"],
-              ["Privacy", "#"],
-              ["Terms", "#"],
-              ["Contact", "#"],
+              ["About", "/about"],
+              ["Privacy", "/privacy"],
+              ["Terms", "/terms"],
+              ["Contact", "mailto:hello@getnetstats.com"],
             ]}
           />
         </div>

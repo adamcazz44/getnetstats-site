@@ -324,6 +324,16 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 .tool-soon { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--dim); border: 1px solid var(--border-2); border-radius: 999px; padding: 2px 8px; margin-left: 2px; }
 
+/* ---------- content / legal pages (/privacy, /terms, /about) ---------- */
+.page { padding: 56px 0; }
+.page .wrap { max-width: 860px; }
+.page h1 { font-size: clamp(28px, 3vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 0; text-wrap: balance; }
+.page .updated { color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; margin-top: 12px; }
+.page .prose { margin-top: 26px; }
+.page .prose h2 { font-size: 21px; letter-spacing: -0.02em; margin: 32px 0 12px; font-weight: 600; }
+.page .prose h2:first-child { margin-top: 0; }
+.page .prose a { color: var(--accent-2); border-bottom: 1px solid rgba(95,230,247,0.3); }
+
 /* ---------- reduced motion ---------- */
 /* Respect prefers-reduced-motion: gate the radar sweep / blip / entrance
    animations so reduced-motion users see the resolved state, not motion. */
