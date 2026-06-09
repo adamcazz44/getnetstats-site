@@ -81,9 +81,13 @@ export default function AffiliateAd({
         ) : (
           <span className="aff-card">
             <span className="aff-spon">Sponsored</span>
-            <span className="aff-name">{c.name}</span>
-            <span className="aff-tag">{c.tagline}</span>
-            <span className="aff-cta">{c.cta} →</span>
+            <span className="aff-body">
+              <span className="aff-name">{c.name}</span>
+              <span className="aff-tag">{c.tagline}</span>
+            </span>
+            <span className="aff-cta">
+              {c.cta} <span aria-hidden="true">→</span>
+            </span>
           </span>
         )}
       </a>
