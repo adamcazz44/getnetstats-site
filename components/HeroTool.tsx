@@ -290,13 +290,6 @@ export default function HeroTool() {
             </button>
           </div>
           <div>
-            <div className="lede">
-              {phase === "running"
-                ? "// scanning network interface"
-                : phase === "done"
-                  ? "// scan complete"
-                  : "// network scanner ready"}
-            </div>
             <h1 className="headline">
               Check your connection, <em>keep</em> your privacy
             </h1>

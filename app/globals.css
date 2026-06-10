@@ -66,7 +66,7 @@ nav.main a { transition: color .15s; } nav.main a:hover { color: var(--text); }
 
 /* ---------- hero / tool ---------- */
 /* Aurora fade: pure CSS radial gradients (no images, no blur filter, no animation) */
-.hero { position: relative; padding: 40px 0 56px;
+.hero { position: relative; padding: 24px 0 56px;
   background:
     radial-gradient(46% 60% at 16% -4%, rgba(124,92,255,0.20) 0%, transparent 60%),
     radial-gradient(44% 56% at 78% 4%, rgba(34,211,238,0.18) 0%, transparent 62%),
