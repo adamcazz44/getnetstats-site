@@ -289,7 +289,7 @@ export default function HeroTool() {
               {phase === "running" ? "Scanning…" : phase === "done" ? "Re-run ALL" : "Run All"}
             </button>
           </div>
-          <div>
+          <div className="hero-col">
             <h1 className="headline">
               Check your connection, <em>keep</em> your privacy
             </h1>

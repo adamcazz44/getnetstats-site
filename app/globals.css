@@ -79,6 +79,12 @@ nav.main a { transition: color .15s; } nav.main a:hover { color: var(--text); }
   border: 1px solid var(--border); padding: 30px;
   display: grid; grid-template-columns: 1.04fr 0.96fr; gap: 26px; align-items: center;
 }
+/* Top-align the left text column and drop the headline's top margin so the
+   headline's first line lines up with the Connected pill (pinned at top:30px =
+   the stage's 30px padding). The radar stays vertically centered. On stacked
+   widths the grid row-gap provides the spacing instead. */
+.hero-col { align-self: start; }
+.hero-col > .headline { margin-top: 0; }
 .lede { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); }
 .stage-controls { position: absolute; top: 30px; right: 30px; z-index: 4; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .conn-pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12.5px; font-weight: 500;
