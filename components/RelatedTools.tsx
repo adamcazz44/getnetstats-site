@@ -113,15 +113,13 @@ export default function RelatedTools() {
       <div className="wrap">
         <div className="eyebrow">The network toolkit</div>
         <h2 className="sec" id="tools-h">
-          Every network check in one place
+          Every network check in one place and always free.
+          <br />
+          <span className="sec-accent">Wild Right?</span>
         </h2>
         <p className="sec-intro">
           GetNetStats is a growing hub of fast, no-signup network utilities. Each tool runs in
           your browser and links back here — bookmark the set you use most.
-        </p>
-        <p className="free-line">
-          Every tool&apos;s free, and always will be.{" "}
-          <span className="free-accent">Wild, right?</span>
         </p>
         <div className="tools-grid">
           {TOOLS.map((tool) => {
