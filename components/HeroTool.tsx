@@ -298,7 +298,7 @@ export default function HeroTool() {
                   : "// network scanner ready"}
             </div>
             <h1 className="headline">
-              How fast is your <em>internet</em>, really?
+              Check your connection, <em>keep</em> your privacy
             </h1>
             <ul className="trust-strip" aria-label="Our privacy and usage promises">
               <li>Nothing stored</li>
