@@ -405,6 +405,9 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 /* ---------- "coming soon" tool cards (not-yet-built tools) ---------- */
 .tool-card.soon { cursor: default; opacity: 0.55; }
 .tool-card.soon:hover { border-color: var(--border); background: var(--panel); transform: none; }
+/* live-but-unlinked showcase cards — full opacity, just not clickable */
+.tool-card.static { cursor: default; }
+.tool-card.static:hover { border-color: var(--border); background: var(--panel); transform: none; }
 .tool-soon { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--dim); border: 1px solid var(--border-2); border-radius: 999px; padding: 2px 8px; margin-left: 2px; }
 
