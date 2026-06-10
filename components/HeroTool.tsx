@@ -300,11 +300,6 @@ export default function HeroTool() {
             <h1 className="headline">
               How fast is your <em>internet</em>, really?
             </h1>
-            <p className="subhead">
-              One tap shows your IP, ISP and location, then runs a real download, upload and
-              ping test — your whole connection in one clean scan.
-            </p>
-
             <ul className="trust-strip" aria-label="Our privacy and usage promises">
               <li>Nothing stored</li>
               <li>No app or sign-up</li>
