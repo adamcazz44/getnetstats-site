@@ -144,6 +144,14 @@ const JSON_LD = {
         },
         {
           "@type": "Question",
+          name: "Why do speed tests disagree with each other?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Run two speed tests back-to-back and you'll often get different numbers — and neither is \"wrong.\" Each one measures against different servers, over different routes, using different methods, and your connection shifts moment to moment as other devices use it. A speed test is an honest snapshot, not a fixed number. For the clearest picture, run any tool a few times and look at the range.",
+          },
+        },
+        {
+          "@type": "Question",
           name: "What is the difference between IPv4 and IPv6?",
           acceptedAnswer: {
             "@type": "Answer",

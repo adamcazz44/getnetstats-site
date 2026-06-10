@@ -35,6 +35,18 @@ const FAQS: { q: string; a: ReactNode }[] = [
     ),
   },
   {
+    q: "Why do speed tests disagree with each other?",
+    a: (
+      <>
+        Run two speed tests back-to-back and you&apos;ll often get different numbers — and neither
+        is &quot;wrong.&quot; Each one measures against different servers, over different routes,
+        using different methods, and your connection shifts moment to moment as other devices use
+        it. A speed test is an honest snapshot, not a fixed number. For the clearest picture, run
+        any tool a few times and look at the range.
+      </>
+    ),
+  },
+  {
     q: "What is the difference between IPv4 and IPv6?",
     a: (
       <>
