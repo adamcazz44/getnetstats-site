@@ -254,6 +254,9 @@ section { padding: 56px 0; }
 .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); }
 h2.sec { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 0; text-wrap: balance; }
 .sec-intro { color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 64ch; margin: 14px 0 0; }
+/* cheeky "always free" promise line directly above the tools grid */
+.free-line { color: var(--muted); font-size: 15px; line-height: 1.5; margin: 14px 0 0; }
+.free-accent { color: var(--good); font-weight: 600; }
 .divider { border: 0; border-top: 1px solid var(--border); margin: 0; }
 
 /* how it works */

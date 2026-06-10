@@ -119,6 +119,10 @@ export default function RelatedTools() {
           GetNetStats is a growing hub of fast, no-signup network utilities. Each tool runs in
           your browser and links back here — bookmark the set you use most.
         </p>
+        <p className="free-line">
+          Every tool&apos;s free, and always will be.{" "}
+          <span className="free-accent">Wild, right?</span>
+        </p>
         <div className="tools-grid">
           {TOOLS.map((tool) => {
             const body = (
