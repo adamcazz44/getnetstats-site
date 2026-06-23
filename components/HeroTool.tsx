@@ -294,7 +294,7 @@ export default function HeroTool() {
               Check your connection, <em>keep</em> your privacy
             </h1>
             <ul className="trust-strip" aria-label="Our privacy and usage promises">
-              <li>Nothing stored</li>
+              <li>Your results aren&apos;t stored</li>
               <li>No app or sign-up</li>
               <li>Runs in your browser</li>
               <li>We don&apos;t sell your data</li>

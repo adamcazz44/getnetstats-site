@@ -20,15 +20,15 @@ export default function PrivacyPage() {
               <a className="eyebrow-home" href="/">Home</a> // legal
             </div>
             <h1 id="privacy-h">Privacy Policy</h1>
-            <div className="updated">Last updated: June 8, 2026</div>
+            <div className="updated">Last updated: June 23, 2026</div>
 
             <div className="tldr-card" id="privacy-tldr">
               <div className="tldr-label">Privacy in one sentence</div>
               <p className="tldr-text">
-                The tools run entirely in your browser and store nothing, there&apos;s no account
-                or sign-up, and the only data that leaves your device goes to the IP-lookup
-                services your browser queries and the Google ads that keep the site free — which
-                use cookies you can decline; we never sell your personal data.
+                We don&apos;t store your IP, your location, or your speed-test results — they live in
+                your browser and disappear when you close the tab; the only thing that leaves is
+                anonymous visit stats (Google Analytics) and ad cookies (Google AdSense), the same
+                tools most of the web runs on — and we never sell your data to anyone.
               </p>
             </div>
 
@@ -136,8 +136,21 @@ export default function PrivacyPage() {
 
               <h2>Analytics</h2>
               <p>
-                We do not currently run first-party analytics. Our web fonts are self-hosted, so the
-                site does not call a third-party font CDN. If this changes, we will update this page.
+                We use <strong>Google Analytics</strong> to understand how many people visit
+                GetNetStats and which pages they use — for example, how many run a speed test or open
+                the VPN guide. This is aggregate, traffic-level information; it helps us decide what to
+                build next. Google Analytics sets cookies and processes this visit data on
+                Google&apos;s servers under{" "}
+                <a
+                  href="https://policies.google.com/privacy"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Google&apos;s own privacy terms
+                </a>
+                . It does not capture your speed-test results or anything you do inside the tools, and
+                we don&apos;t combine it with your IP to identify you. If you&apos;re in the EEA, UK, or
+                Switzerland, you can manage analytics and ad cookies through the cookie banner.
               </p>
 
               <h2>Affiliate links</h2>
