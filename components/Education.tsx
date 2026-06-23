@@ -134,6 +134,9 @@ export default function Education() {
               Whichever you use, reload GetNetStats afterward to confirm your visible IP and
               location have actually changed.
             </p>
+            <a className="read-more" href="/hide-your-ip-address/">
+              Read the full guide: how to hide your IP <span aria-hidden="true">→</span>
+            </a>
           </div>
 
           <aside>
