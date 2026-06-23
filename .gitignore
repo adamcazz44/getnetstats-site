@@ -6,6 +6,8 @@
 # next.js
 /.next/
 /out/
+# staged upload artifact (zip of out/ contents for manual GitHub Pages upload)
+/getnetstats-site-upload.zip
 
 # production
 /build
