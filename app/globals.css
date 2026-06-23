@@ -125,6 +125,9 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 .trust-privacy { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-family: var(--mono);
   font-size: 11.5px; letter-spacing: 0.03em; color: var(--accent-dim); transition: color .15s; }
 .trust-privacy:hover { color: var(--accent); }
+.read-more { display: inline-flex; align-items: center; gap: 6px; margin: 4px 0 8px; font-family: var(--mono);
+  font-size: 13px; letter-spacing: 0.02em; color: var(--accent-2); transition: color .15s; }
+.read-more:hover { color: var(--accent); }
 
 /* IP feature row */
 .ip-row { margin-top: 22px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }

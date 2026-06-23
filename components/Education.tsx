@@ -24,6 +24,11 @@ export default function Education() {
               a separate <em>private</em> IP that never leaves your local network.
             </p>
 
+            <a className="read-more" href="/what-is-an-ip-address/">
+              Read the full guide: what an IP reveals about you{" "}
+              <span aria-hidden="true">→</span>
+            </a>
+
             <h3 id="ipv4-ipv6">IPv4 vs IPv6: what&apos;s the difference?</h3>
             <p>
               The internet is mid-migration between two addressing systems. <strong>IPv4</strong>{" "}
