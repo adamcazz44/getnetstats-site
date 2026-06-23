@@ -53,6 +53,7 @@ export default function SiteFooter() {
               ["What Is a DNS Record?", "/what-is-a-dns-record"],
               ["What Is an ASN?", "/what-is-an-asn"],
               ["What Is a Good Internet Speed?", "/what-is-a-good-internet-speed"],
+              ["What Is an ISP?", "/what-is-an-isp"],
             ]}
           />
           <FootCol

@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/what-is-a-dns-record/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/what-is-an-asn/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/what-is-a-good-internet-speed/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE}/what-is-an-isp/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/about/`, lastModified, changeFrequency: "yearly", priority: 0.4 },
     { url: `${SITE}/privacy/`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE}/terms/`, lastModified, changeFrequency: "yearly", priority: 0.3 },
