@@ -35,27 +35,14 @@ export default function Education() {
             </a>
 
             <h3 id="find-ip">How to find your IP address on any device</h3>
-            <ul>
-              <li>
-                <b>Any device:</b> the fastest way is to open this page — your public IP is shown
-                at the top instantly.
-              </li>
-              <li>
-                <b>Windows:</b> open Command Prompt and run <span className="mono">ipconfig</span>{" "}
-                to see your local IPv4/IPv6.
-              </li>
-              <li>
-                <b>macOS:</b> System Settings → Network → Details, or run{" "}
-                <span className="mono">ifconfig</span> in Terminal.
-              </li>
-              <li>
-                <b>iPhone / iPad:</b> Settings → Wi-Fi → tap the (i) next to your network.
-              </li>
-              <li>
-                <b>Android:</b> Settings → About phone → Status, or Network &amp; internet → your
-                Wi-Fi.
-              </li>
-            </ul>
+            <p>
+              Your public IP is shown at the top of this page instantly. To find a specific
+              device&apos;s private IP, check its network settings — <span className="mono">ipconfig</span>{" "}
+              on Windows, Settings → Wi-Fi on phones, or your router&apos;s admin page.
+            </p>
+            <a className="read-more" href="/find-your-ip-address/">
+              Read the full guide: find your IP on any device <span aria-hidden="true">→</span>
+            </a>
 
             <h3 id="hide-ip">How to hide your IP address</h3>
             <p>

@@ -44,7 +44,7 @@ export default function SiteFooter() {
               ["VPN & Privacy Guide", "/vpn-guide"],
               ["What is an IP Address?", "/what-is-an-ip-address"],
               ["IPv4 vs IPv6", "/ipv4-vs-ipv6"],
-              ["Find Your IP on Any Device", "/#find-ip"],
+              ["Find Your IP on Any Device", "/find-your-ip-address"],
               ["How to Hide Your IP", "/hide-your-ip-address"],
             ]}
           />
