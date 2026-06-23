@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Spline_Sans_Mono } from "next/font/google";
 import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 // Google AdSense publisher id, e.g. "ca-pub-1234567890123456". When unset,
 // no AdSense script/verification renders and ad slots stay placeholders.
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+
+// Google Analytics 4 measurement id, e.g. "G-XXXXXXXXXX". When unset, no
+// analytics renders. The @next/third-parties helper also tracks client-side
+// route changes (not just the first load) and works under static export.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const geist = Geist({
   subsets: ["latin"],
@@ -218,6 +224,9 @@ export default function RootLayout({
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
           />
         ) : null}
+        {/* Google Analytics 4 — standard pageviews + client-side route changes.
+            No-op when NEXT_PUBLIC_GA_ID is unset. */}
+        {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
       </body>
     </html>
   );
