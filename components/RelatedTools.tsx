@@ -103,7 +103,7 @@ const TOOLS: Tool[] = [
   { k: "speed", t: "Internet Speed Test", d: "Measure real download, upload, latency and jitter against a global CDN." },
   { k: "ping", t: "Ping & Jitter Test", d: "Check round-trip latency and stability — the numbers that matter for calls and gaming." },
   { k: "whois", t: "WHOIS Lookup", d: "Pull registration, registrar and ownership records for any domain.", soon: true },
-  { k: "dns", t: "DNS Checker", d: "Inspect A, AAAA, MX and TXT records and how they resolve worldwide.", soon: true },
+  { k: "dns", t: "DNS Checker", d: "Inspect A, AAAA, MX, TXT, NS and CNAME records straight from your browser.", href: "/dns-checker" },
   { k: "asn", t: "ASN & Routing", d: "Your ASN, network operator, and whether your IP looks residential, hosting or mobile.", soon: true },
 ];
 

@@ -36,6 +36,7 @@ export default function SiteFooter() {
               ["IP Address Lookup", "/"],
               ["Speed Test", "/"],
               ["Ping Test", "/ping-test"],
+              ["DNS Checker", "/dns-checker"],
             ]}
           />
           <FootCol

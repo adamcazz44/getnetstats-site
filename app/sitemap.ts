@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/download-test/`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE}/upload-test/`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE}/connection-test/`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE}/dns-checker/`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE}/vpn-guide/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/what-is-an-ip-address/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/ipv4-vs-ipv6/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
