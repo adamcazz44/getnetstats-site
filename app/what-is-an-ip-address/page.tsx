@@ -159,7 +159,7 @@ export default function WhatIsAnIpAddressPage() {
               <p>
                 Yes — a VPN or proxy replaces your visible public IP with the server&apos;s, so sites
                 see that address instead of yours. It&apos;s the most common way to mask your IP and
-                rough location. (See our <a href="/#hide-ip">guide on hiding your IP</a> for the
+                rough location. (See our <a href="/hide-your-ip-address/">guide on hiding your IP</a> for the
                 honest version of what that does and doesn&apos;t protect.)
               </p>
 
