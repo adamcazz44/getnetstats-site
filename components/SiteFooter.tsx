@@ -43,7 +43,7 @@ export default function SiteFooter() {
             links={[
               ["VPN & Privacy Guide", "/vpn-guide"],
               ["What is an IP Address?", "/what-is-an-ip-address"],
-              ["IPv4 vs IPv6", "/#ipv4-ipv6"],
+              ["IPv4 vs IPv6", "/ipv4-vs-ipv6"],
               ["Find Your IP on Any Device", "/#find-ip"],
               ["How to Hide Your IP", "/#hide-ip"],
             ]}

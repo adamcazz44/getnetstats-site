@@ -152,7 +152,7 @@ export default function WhatIsAnIpAddressPage() {
                 <span className="mono">192.0.2.146</span> — four numbers separated by dots. IPv6 is
                 longer, like <span className="mono">2001:0db8:85a3::8a2e:0370:7334</span>, and exists
                 because the world ran out of IPv4 addresses. We cover the differences in detail in our{" "}
-                <a href="/#ipv4-ipv6">IPv4 vs IPv6 guide</a>.
+                <a href="/ipv4-vs-ipv6/">IPv4 vs IPv6 guide</a>.
               </p>
 
               <h2>Can you hide it?</h2>

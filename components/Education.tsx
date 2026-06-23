@@ -76,6 +76,9 @@ export default function Education() {
                 </tr>
               </tbody>
             </table>
+            <a className="read-more" href="/ipv4-vs-ipv6/">
+              Read the full guide: IPv4 vs IPv6 <span aria-hidden="true">→</span>
+            </a>
 
             <h3 id="find-ip">How to find your IP address on any device</h3>
             <ul>
