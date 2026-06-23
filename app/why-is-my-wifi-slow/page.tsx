@@ -168,7 +168,8 @@ export default function WhyIsMyWifiSlowPage() {
 
               <h2>Check your speed</h2>
               <p>
-                You can run a real download, upload, and ping test right here on{" "}
+                You can run a real download, upload, and{" "}
+                <a href="/ping-vs-jitter/">ping</a> test right here on{" "}
                 <a href="/">GetNetStats</a> — in your browser, nothing stored, no sign-up.
               </p>
             </div>

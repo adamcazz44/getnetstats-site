@@ -47,6 +47,7 @@ export default function SiteFooter() {
               ["Find Your IP on Any Device", "/find-your-ip-address"],
               ["How to Hide Your IP", "/hide-your-ip-address"],
               ["Why Is My Wi-Fi Slow?", "/why-is-my-wifi-slow"],
+              ["Ping vs Jitter", "/ping-vs-jitter"],
             ]}
           />
           <FootCol
