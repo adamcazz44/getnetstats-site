@@ -139,7 +139,8 @@ export default function WhyIsMyWifiSlowPage() {
                 </li>
                 <li>
                   <b>Your plan simply isn&apos;t fast enough.</b> If every device is slow and a wired
-                  test matches your speeds, you may have outgrown your plan (more people, more devices
+                  test matches your speeds, you may have{" "}
+                  <a href="/what-is-a-good-internet-speed/">outgrown your plan</a> (more people, more devices
                   than when you signed up).
                 </li>
               </ol>

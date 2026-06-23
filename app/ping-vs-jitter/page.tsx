@@ -86,7 +86,8 @@ export default function PingVsJitterPage() {
             <div className="prose">
               <h2>Speed isn&apos;t the whole story</h2>
               <p>
-                People obsess over download speed, but for gaming and video calls, two other numbers
+                People obsess over <a href="/what-is-a-good-internet-speed/">download speed</a>, but
+                for gaming and video calls, two other numbers
                 matter more: <strong>ping</strong> and <strong>jitter</strong>. You can have blazing
                 download speeds and still have a laggy game or a choppy call — because responsiveness
                 isn&apos;t about how much data you can move, it&apos;s about how quickly and
