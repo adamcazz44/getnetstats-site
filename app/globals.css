@@ -453,10 +453,20 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 .guide-figcap { color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; margin: 10px 0 0; text-align: center; }
 
 /* ---------- DNS checker tool ---------- */
-.dns-form { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
-.dns-input { flex: 1 1 260px; min-width: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-  border-radius: var(--r-md); padding: 12px 14px; color: var(--text); font-family: var(--mono); font-size: 15px;
+.dns-label { display: block; font-size: 13px; color: var(--muted); margin: 22px 0 8px; letter-spacing: 0.01em; }
+.dns-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.dns-input-wrap { position: relative; flex: 1 1 260px; min-width: 0; display: flex; }
+.dns-input { flex: 1 1 auto; min-width: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 12px 38px 12px 14px; color: var(--text); font-family: var(--mono); font-size: 15px;
   letter-spacing: -0.01em; transition: border-color .15s; }
+.dns-clear { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: 0;
+  color: var(--faint); cursor: pointer; font-size: 13px; line-height: 1; padding: 6px; border-radius: 5px; transition: color .15s; }
+.dns-clear:hover { color: var(--muted); }
+.dns-hint { font-size: 12.5px; color: var(--dim); margin: 9px 0 0; }
+.dns-chips { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.dns-chip { background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--muted); border-radius: 999px;
+  padding: 5px 12px; font-family: var(--mono); font-size: 12px; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+.dns-chip:hover { background: rgba(34,211,238,0.10); border-color: rgba(34,211,238,0.4); color: var(--accent-2); }
 .dns-input::placeholder { color: var(--faint); }
 .dns-input:focus { outline: none; border-color: rgba(34,211,238,0.5); }
 .dns-go { flex: 0 0 auto; background: rgba(34,211,238,0.14); border: 1px solid rgba(34,211,238,0.4); color: var(--accent-2);

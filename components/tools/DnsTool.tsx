@@ -21,6 +21,7 @@ export default function DnsTool() {
 
   const runningRef = useRef(false);
   const abortRef = useRef<AbortController | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const run = useCallback(async (raw: string) => {
     const d = normalizeDomain(raw);
@@ -62,6 +63,15 @@ export default function DnsTool() {
     [domain, run],
   );
 
+  // example chip: fill the field and run immediately
+  const runExample = useCallback(
+    (d: string) => {
+      setDomain(d);
+      run(d);
+    },
+    [run],
+  );
+
   // auto-run once on load for the default domain
   useEffect(() => {
     run(DEFAULT_DOMAIN);
@@ -101,22 +111,53 @@ export default function DnsTool() {
             </p>
           </div>
 
-          <form className="dns-form" onSubmit={onSubmit}>
-            <input
-              className="dns-input mono"
-              type="text"
-              inputMode="url"
-              autoCapitalize="off"
-              autoCorrect="off"
-              spellCheck={false}
-              aria-label="Domain to look up"
-              placeholder="example.com"
-              value={domain}
-              onChange={(e) => setDomain(e.target.value)}
-            />
-            <button className="dns-go" type="submit" disabled={busy}>
-              {busy ? "Checking…" : "Check"}
-            </button>
+          <form onSubmit={onSubmit}>
+            <label className="dns-label" htmlFor="dns-domain">
+              Enter any domain — we&apos;ve filled in ours to start.
+            </label>
+            <div className="dns-form">
+              <div className="dns-input-wrap">
+                <input
+                  id="dns-domain"
+                  ref={inputRef}
+                  className="dns-input mono"
+                  type="text"
+                  inputMode="url"
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  aria-label="Domain to look up"
+                  placeholder="google.com"
+                  value={domain}
+                  onChange={(e) => setDomain(e.target.value)}
+                />
+                {domain ? (
+                  <button
+                    type="button"
+                    className="dns-clear"
+                    aria-label="Clear domain"
+                    onClick={() => {
+                      setDomain("");
+                      inputRef.current?.focus();
+                    }}
+                  >
+                    ✕
+                  </button>
+                ) : null}
+              </div>
+              <button className="dns-go" type="submit" disabled={busy}>
+                {busy ? "Checking…" : "Check"}
+              </button>
+            </div>
+            <p className="dns-hint">Check any domain, e.g. google.com.</p>
+            <div className="dns-chips">
+              <button type="button" className="dns-chip" onClick={() => runExample("google.com")}>
+                Try google.com
+              </button>
+              <button type="button" className="dns-chip" onClick={() => runExample("github.com")}>
+                Try github.com
+              </button>
+            </div>
           </form>
 
           <div className="dns-status">
