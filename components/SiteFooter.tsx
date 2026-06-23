@@ -37,6 +37,7 @@ export default function SiteFooter() {
               ["Speed Test", "/"],
               ["Ping Test", "/ping-test"],
               ["DNS Checker", "/dns-checker"],
+              ["ASN & Routing", "/asn-routing"],
             ]}
           />
           <FootCol

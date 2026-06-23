@@ -131,3 +131,62 @@ export async function lookupDns(domain: string, signal?: AbortSignal): Promise<D
     return await resolveWith("Google", domain, signal);
   }
 }
+
+/* ---------- reverse DNS (PTR) — used by the ASN & Routing tool ---------- */
+
+/** Expand an IPv6 address to its 32 lowercase hex nibbles, or null if malformed. */
+function expandIpv6(ip: string): string | null {
+  const halves = ip.toLowerCase().split("::");
+  if (halves.length > 2) return null;
+  const head = halves[0] ? halves[0].split(":") : [];
+  const tail = halves.length === 2 ? (halves[1] ? halves[1].split(":") : []) : null;
+  let groups: string[];
+  if (tail === null) {
+    groups = head;
+    if (groups.length !== 8) return null;
+  } else {
+    const missing = 8 - (head.length + tail.length);
+    if (missing < 1) return null; // "::" must stand in for at least one group
+    groups = [...head, ...Array(missing).fill("0"), ...tail];
+  }
+  const nibbles = groups.map((g) => g.padStart(4, "0")).join("");
+  return nibbles.length === 32 && /^[0-9a-f]{32}$/.test(nibbles) ? nibbles : null;
+}
+
+/** Build the reverse-DNS name for an IPv4/IPv6 address, or null if invalid. */
+export function reverseDnsName(ip: string): string | null {
+  if (ip.includes(":")) {
+    const nib = expandIpv6(ip);
+    return nib ? nib.split("").reverse().join(".") + ".ip6.arpa" : null;
+  }
+  const octets = ip.split(".");
+  if (octets.length !== 4 || octets.some((o) => !/^\d{1,3}$/.test(o) || Number(o) > 255)) return null;
+  return octets.reverse().join(".") + ".in-addr.arpa";
+}
+
+export interface PtrResult {
+  hostname: string | null; // null = resolved but no PTR record
+  resolver: ResolverName | null; // null = couldn't reach any resolver / invalid IP
+}
+
+/** Reverse-DNS (PTR) lookup via DoH. Cloudflare first; on a network/HTTP error
+ *  (not an empty answer) fall back to Google. */
+export async function lookupPtr(ip: string, signal?: AbortSignal): Promise<PtrResult> {
+  const name = reverseDnsName(ip);
+  if (!name) return { hostname: null, resolver: null };
+  const order: ResolverName[] = ["Cloudflare", "Google"];
+  for (const rn of order) {
+    try {
+      const url = `${RESOLVERS[rn]}?name=${encodeURIComponent(name)}&type=PTR`;
+      const res = await fetch(url, { headers: { Accept: "application/dns-json" }, signal });
+      if (!res.ok) throw new Error(`DoH HTTP ${res.status}`);
+      const json: DohResponse = await res.json();
+      const ptr = (json.Answer ?? []).find((a) => a.type === 12); // PTR = 12
+      return { hostname: ptr ? ptr.data.replace(/\.$/, "") : null, resolver: rn };
+    } catch (err) {
+      if (signal?.aborted) throw err;
+      // network/HTTP error → try the next resolver
+    }
+  }
+  return { hostname: null, resolver: null };
+}
