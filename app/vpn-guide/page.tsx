@@ -10,7 +10,7 @@ const SITE = "https://getnetstats.com";
 export const metadata: Metadata = {
   title: "VPN & Online Privacy Guide — What a VPN Does (and Doesn't) | GetNetStats",
   description:
-    "An honest guide to VPNs and online privacy: what a VPN actually does, what it can't do (it isn't anonymity and won't speed up your connection), whether you need one, and how to check it's working. Free, no sign-up.",
+    "An honest guide to VPNs and online privacy: what a VPN actually does, what it doesn't (it isn't anonymity and won't make you faster), whether you need one, and how to check it's working. Free, no sign-up.",
   keywords: [
     "vpn guide",
     "what is a vpn",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "GetNetStats",
     title: "VPN & Online Privacy Guide — GetNetStats",
     description:
-      "What a VPN actually does, what it can't do, whether you need one, and how to check it's working — honest and free.",
+      "What a VPN actually does, what it doesn't, whether you need one, and how to check it's working — honest and free.",
     url: `${SITE}/vpn-guide/`,
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "GetNetStats" }],
   },
@@ -84,17 +84,11 @@ export default function VpnGuidePage() {
               <a className="eyebrow-home" href="/">Home</a> // learn
             </div>
             <h1 id="guide-h">VPN &amp; online privacy guide</h1>
+            <p className="page-sub">
+              What a VPN actually does, what it doesn&apos;t, and whether you need one.
+            </p>
 
             <div className="prose">
-              <p>
-                A VPN is one of the most over-marketed tools on the internet — sold as a magic cloak
-                that makes you invisible and your connection faster. The reality is more useful and
-                more honest: a VPN is a specific privacy and security tool that does a few things
-                genuinely well, and a few things not at all. Here&apos;s the straight version — what
-                it does, what it doesn&apos;t, whether you need one, and how to confirm it&apos;s
-                actually working.
-              </p>
-
               {intro ? (
                 <figure className="guide-video">
                   <LiteYouTube id={intro.youtubeId!} title={intro.topic} />
@@ -106,121 +100,96 @@ export default function VpnGuidePage() {
 
               <h2>What is a VPN?</h2>
               <p>
-                A VPN — virtual private network — creates an encrypted tunnel between your device and
-                a server run by the VPN provider. All your internet traffic travels through that
-                tunnel, which has two effects. The websites and apps you connect to see the{" "}
-                <strong>VPN server&apos;s</strong> IP address and location instead of your own. And
-                anyone watching your local network — your internet provider, the operator of a public
-                Wi-Fi hotspot — sees only encrypted data heading to the VPN, not which sites
-                you&apos;re visiting or what you&apos;re sending.
+                A VPN (Virtual Private Network) routes your internet traffic through an encrypted
+                tunnel to a server run by the VPN provider. Two things happen as a result: the
+                websites you visit see the VPN server&apos;s IP address instead of your real one, and
+                anyone watching your connection — your internet provider, a public Wi-Fi network, a
+                network administrator — sees only encrypted traffic to the VPN, not what you&apos;re
+                actually doing. In short, a VPN changes what your IP reveals and who can read your
+                traffic.
               </p>
 
-              <h2>What it does well</h2>
+              <h2>What a VPN does well</h2>
               <ul>
                 <li>
-                  <b>Hides your real IP and rough location</b> from the sites and services you
-                  connect to — they see the VPN&apos;s exit server instead.
+                  <b>Hides your real IP and rough location</b> from the sites you visit. Run the{" "}
+                  <a href="/">IP check on this site</a> before and after connecting and you&apos;ll
+                  see the address change.
                 </li>
                 <li>
-                  <b>Encrypts your traffic on untrusted networks</b> — airport, hotel, and café
-                  Wi-Fi — so it can&apos;t be read or tampered with by others on that network.
+                  <b>Encrypts your traffic on untrusted networks</b> — coffee-shop, airport, and
+                  hotel Wi-Fi are the classic cases, where you don&apos;t control the network.
                 </li>
                 <li>
-                  <b>Keeps your browsing private from your ISP.</b> Your provider sees encrypted
-                  traffic to the VPN, not the individual sites you visit.
+                  <b>Stops your ISP from logging which sites you visit</b>, since they only see
+                  encrypted traffic to the VPN server.
                 </li>
                 <li>
-                  <b>Restores the open internet in restrictive regions</b> by routing your connection
-                  through a server in another country.
-                </li>
-                <li>
-                  <b>Lets you appear to be elsewhere</b> for region-locked content — where the
-                  service&apos;s own terms permit it.
+                  <b>Lets you appear to be in another region</b>, which can matter for travel or
+                  accessing services tied to location.
                 </li>
               </ul>
 
-              <h2>What it doesn&apos;t do</h2>
+              <h2>What a VPN does not do</h2>
               <p>
-                This is where the marketing oversells. Be clear-eyed about the limits — a VPN is a
-                tool, not a force field:
+                This is where a lot of marketing oversells it, so here&apos;s the honest version:
               </p>
               <ul>
                 <li>
-                  <b>It won&apos;t make you anonymous.</b> You&apos;re moving your trust from your ISP
-                  to the VPN provider, so choose one with a real, independently audited no-logs
-                  policy. And logins, cookies, and browser fingerprinting still identify you across
-                  sites no matter what IP you use.
+                  <b>A VPN is not anonymity.</b> You&apos;re trusting the VPN provider instead of
+                  your ISP — they can see your traffic, so the provider&apos;s logging policy matters
+                  enormously. &quot;No-logs,&quot; independently audited providers are the ones worth
+                  considering.
                 </li>
                 <li>
-                  <b>It won&apos;t make your connection faster.</b> Encrypting and rerouting traffic
-                  adds overhead, so a VPN is typically a little <em>slower</em>, never faster. (If
-                  your ISP throttles a specific service it can sometimes sidestep that — but it
-                  isn&apos;t adding bandwidth.)
+                  <b>It won&apos;t make you faster.</b> Routing through an extra server almost always
+                  reduces speed slightly. (You can measure the difference with the{" "}
+                  <a href="/">speed test on this site</a>.)
                 </li>
                 <li>
-                  <b>It&apos;s not antivirus.</b> It doesn&apos;t stop malware, phishing, or you
-                  typing your password into a fake login page.
+                  <b>It doesn&apos;t replace good security habits.</b> It won&apos;t stop malware,
+                  phishing, or you handing over your password on a fake site.
                 </li>
                 <li>
-                  <b>It doesn&apos;t encrypt everything end-to-end.</b> It protects the link to the
-                  VPN server; from there to the destination, ordinary web security (HTTPS) takes
-                  over.
+                  <b>It doesn&apos;t fully stop tracking.</b> Sites can still identify you through
+                  logins, cookies, and browser fingerprinting regardless of your IP.
                 </li>
               </ul>
 
-              <h2>Do you need one?</h2>
-              <p>
-                There&apos;s no universal &quot;everyone must use a VPN.&quot; It depends on what you
-                do:
-              </p>
+              <h2>Do you actually need one?</h2>
+              <p>Honestly, it depends on what you&apos;re trying to solve:</p>
               <ul>
                 <li>
-                  <b>Often on public Wi-Fi?</b> Yes — the encryption is genuinely worth it.
+                  <b>Often worth it:</b> you regularly use public Wi-Fi, you want your ISP to stop
+                  seeing your browsing, or you travel and need a stable home region.
                 </li>
                 <li>
-                  <b>Want to keep browsing private from your ISP, or mask your IP from sites?</b> A
-                  VPN helps directly.
-                </li>
-                <li>
-                  <b>In a region that blocks parts of the internet?</b> A VPN is often the practical
-                  fix.
-                </li>
-                <li>
-                  <b>Mostly at home on your own trusted network, visiting HTTPS sites?</b> The
-                  security gain is smaller — your traffic is already encrypted site-by-site — though
-                  the IP-masking and ISP-privacy benefits still apply.
+                  <b>Less necessary:</b> you&apos;re only ever on your own trusted home network and
+                  your main goal is &quot;be faster&quot; — a VPN won&apos;t help there.
                 </li>
               </ul>
+              <p>
+                A VPN is one privacy tool, not a magic cloak. The right move is matching the tool to
+                the actual problem.
+              </p>
 
               <h2>How to check it&apos;s working</h2>
-              <p>
-                Once you&apos;re connected, confirm the VPN is actually doing its job rather than
-                assuming it:
-              </p>
-              <ul>
+              <ol>
                 <li>
-                  <b>Note your real IP first.</b> With the VPN off, check your public IP, ISP, and
-                  location on the <a href="/">GetNetStats homepage</a>.
+                  Note your current IP and location using the <a href="/">IP lookup on this page</a>.
                 </li>
+                <li>Connect to your VPN and pick a server.</li>
                 <li>
-                  <b>Connect, then re-check.</b> Turn the VPN on, reload, and look again — your IP,
-                  ISP, and country should now be the VPN server&apos;s, not your own.
+                  Reload and check your IP again — it should now show the VPN server&apos;s address
+                  and region, not your own. If it still shows your real IP, the VPN isn&apos;t routing
+                  correctly (a &quot;DNS or IP leak&quot;).
                 </li>
-                <li>
-                  <b>Test for leaks.</b> Your provider usually has a DNS/WebRTC leak-test page; your
-                  real IP shouldn&apos;t appear anywhere on it.
-                </li>
-                <li>
-                  <b>Run a speed test before and after.</b> Expect a modest drop — a server closer to
-                  you generally means a smaller one.
-                </li>
-              </ul>
+              </ol>
 
-              <h2>Our recommendation</h2>
+              <h2>The VPN we recommend</h2>
               <p>
-                If you&apos;ve decided a VPN fits your situation, we use and recommend{" "}
-                <strong>NordVPN</strong> — fast, with an independently audited no-logs policy and
-                apps on every platform. It&apos;s the one we&apos;d point a friend to.
+                <strong>NordVPN</strong> — a fast, independently audited no-logs provider with apps on
+                every platform. It&apos;s the one we&apos;d point a friend to.
               </p>
               <a
                 className="guide-cta"
