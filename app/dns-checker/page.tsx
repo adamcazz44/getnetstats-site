@@ -88,6 +88,9 @@ export default function DnsCheckerPage() {
             <h2 className="sec" id="dns-learn-h">
               What each DNS record means
             </h2>
+            <a className="read-more" href="/what-is-a-dns-record/">
+              New to DNS? Read the guide <span aria-hidden="true">→</span>
+            </a>
             <div className="content-grid">
               <div className="prose">
                 <h3>A record (IPv4 address)</h3>

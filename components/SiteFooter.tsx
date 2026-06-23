@@ -50,6 +50,7 @@ export default function SiteFooter() {
               ["How to Hide Your IP", "/hide-your-ip-address"],
               ["Why Is My Wi-Fi Slow?", "/why-is-my-wifi-slow"],
               ["Ping vs Jitter", "/ping-vs-jitter"],
+              ["What Is a DNS Record?", "/what-is-a-dns-record"],
             ]}
           />
           <FootCol
