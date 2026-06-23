@@ -51,6 +51,7 @@ export default function SiteFooter() {
               ["Why Is My Wi-Fi Slow?", "/why-is-my-wifi-slow"],
               ["Ping vs Jitter", "/ping-vs-jitter"],
               ["What Is a DNS Record?", "/what-is-a-dns-record"],
+              ["What Is an ASN?", "/what-is-an-asn"],
             ]}
           />
           <FootCol

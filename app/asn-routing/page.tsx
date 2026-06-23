@@ -87,6 +87,9 @@ export default function AsnRoutingPage() {
             <h2 className="sec" id="asn-learn-h">
               What the routing fields mean
             </h2>
+            <a className="read-more" href="/what-is-an-asn/">
+              New to ASNs? Read the guide <span aria-hidden="true">→</span>
+            </a>
             <div className="content-grid">
               <div className="prose">
                 <h3>ASN (autonomous system number)</h3>
