@@ -149,8 +149,8 @@ export default function WhyIsMyWifiSlowPage() {
               <p>
                 Wi-Fi is convenient but always loses some speed and stability to interference and
                 distance. For anything that needs maximum reliability — gaming, video calls, big
-                uploads — a wired Ethernet connection is consistently better. If a device sits near
-                the router, plugging in is the simplest real fix.
+                uploads — a <a href="/wifi-vs-ethernet/">wired Ethernet connection</a> is consistently
+                better. If a device sits near the router, plugging in is the simplest real fix.
               </p>
 
               <h2>A note on what a speed test can and can&apos;t tell you</h2>

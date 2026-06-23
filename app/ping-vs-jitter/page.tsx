@@ -170,9 +170,9 @@ export default function PingVsJitterPage() {
               <h2>How to improve both</h2>
               <ol>
                 <li>
-                  <b>Use a wired Ethernet connection.</b> This is the single biggest fix —{" "}
-                  <a href="/why-is-my-wifi-slow/">Wi-Fi</a> adds latency and jitter through
-                  interference and distance.
+                  <b>Use a <a href="/wifi-vs-ethernet/">wired Ethernet connection</a>.</b> This is the
+                  single biggest fix — <a href="/why-is-my-wifi-slow/">Wi-Fi</a> adds latency and
+                  jitter through interference and distance.
                 </li>
                 <li>
                   <b>Reduce network congestion.</b> Background downloads, updates, and other heavy
