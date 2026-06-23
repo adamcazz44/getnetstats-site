@@ -46,6 +46,7 @@ export default function SiteFooter() {
               ["IPv4 vs IPv6", "/ipv4-vs-ipv6"],
               ["Find Your IP on Any Device", "/find-your-ip-address"],
               ["How to Hide Your IP", "/hide-your-ip-address"],
+              ["Why Is My Wi-Fi Slow?", "/why-is-my-wifi-slow"],
             ]}
           />
           <FootCol
