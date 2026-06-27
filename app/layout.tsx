@@ -72,6 +72,10 @@ export const metadata: Metadata = {
     description:
       "Free IP lookup and a real speed test — download, upload, ping. Nothing stored, no sign-up, no data sold.",
   },
+  // Google Search Console site verification (HTML-tag method).
+  verification: {
+    google: "DDY2dZ3UOrK-f76EZA86fSZzS66RvhaKA2-LSm-Zezw",
+  },
   // AdSense site-verification meta (rendered only when the publisher id is set).
   ...(ADSENSE_CLIENT ? { other: { "google-adsense-account": ADSENSE_CLIENT } } : {}),
 };
