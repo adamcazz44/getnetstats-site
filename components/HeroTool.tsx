@@ -273,7 +273,7 @@ export default function HeroTool() {
 
   return (
     <section className="hero">
-      <div className="wrap hero-grid">
+      <div className="wrap">
         <div className="stage">
           <div className="stage-controls">
             <span className={"conn-pill " + connState}>
@@ -413,16 +413,16 @@ export default function HeroTool() {
             ) : null}
           </div>
         </div>
+      </div>
 
-        <aside className="rail" aria-label="Advertisements">
-          {/* Swappable, lazy-loaded ad slots. Google → 300×600 half-page,
-              affiliate → 300×250 rectangle. Publisher/slot ids come from env
-              (see .env.example); both fall back to the dashed placeholder until
-              configured. Google is first in source order so it stays the
-              priority unit when the rail stacks on mobile. */}
-          <GoogleAd width={300} height={600} className="halfpage" />
-          <AffiliateAd width={300} height={250} className="mrec" />
-        </aside>
+      {/* Elongated affiliate banner, full content width, below the hero. */}
+      <div className="wrap hero-ad" aria-label="Advertisement">
+        <AffiliateAd width={300} height={116} className="banner" />
+        {/* AdSense half-page parked until approval: renders nothing while
+            NEXT_PUBLIC_ADSENSE_HALFPAGE_SLOT is unset (one-line re-enable via
+            GoogleAd). Its 300×600 shape will want revisiting for this horizontal
+            band when it actually goes live. */}
+        <GoogleAd width={300} height={600} className="halfpage" />
       </div>
     </section>
   );

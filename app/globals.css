@@ -262,6 +262,24 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 .aff:hover .aff-cta { box-shadow: 0 9px 26px rgba(34,211,238,0.45); }
 .aff:active .aff-cta { transform: scale(0.98); }
 
+/* Elongated affiliate banner below the hero (full content width, short height).
+   Lays the CTA card out horizontally: "Sponsored" eyebrow, then name/tagline on
+   the left with the button on the right. Overrides the old rail .ad max-widths. */
+.hero-ad { margin-top: 30px; }
+.ad.banner { width: 100%; max-width: none; min-height: 116px; height: auto; }
+.ad.banner .aff { height: auto; }
+.ad.banner .aff-card { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 6px 32px; padding: 22px 28px; text-align: left; }
+.ad.banner .aff-spon { flex-basis: 100%; }
+.ad.banner .aff-body { flex: 1 1 340px; gap: 5px; }
+.ad.banner .aff-name { font-size: 22px; }
+.ad.banner .aff-tag { font-size: 14px; }
+.ad.banner .aff-cta { width: auto; flex: 0 0 auto; padding: 13px 32px; }
+@media (max-width: 560px) {
+  .ad.banner .aff-card { gap: 14px; }
+  .ad.banner .aff-cta { width: 100%; }
+}
+
 /* ---------- section scaffolding ---------- */
 section { padding: 56px 0; }
 .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); }
