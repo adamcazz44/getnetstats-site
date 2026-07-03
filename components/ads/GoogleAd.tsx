@@ -66,11 +66,19 @@ export default function GoogleAd({
   const slotId = slot ?? process.env.NEXT_PUBLIC_ADSENSE_HALFPAGE_SLOT;
   const enabled = Boolean(client && slotId);
 
+  // PARKED UNTIL ADSENSE APPROVES. With no slot id configured we render nothing
+  // (rather than the dashed "Advertisement 300×600" placeholder), so no empty ad
+  // box shows while ads aren't serving. Re-enabling is a one-line change: set
+  // NEXT_PUBLIC_ADSENSE_HALFPAGE_SLOT in .env.production and rebuild — `enabled`
+  // flips true and the real <ins> unit renders here in place.
+  // NOTE: this parks the visual slot ONLY. AdSense account verification — the
+  // adsbygoogle loader (app/layout.tsx), the google-adsense-account meta, and
+  // public/ads.txt — is separate and deliberately left untouched.
+  if (!enabled) return null;
+
   return (
     <AdSlot width={width} height={height} className={className}>
-      {enabled ? (
-        <GoogleInsTag client={client!} slot={slotId!} width={width} height={height} />
-      ) : null}
+      <GoogleInsTag client={client!} slot={slotId!} width={width} height={height} />
     </AdSlot>
   );
 }

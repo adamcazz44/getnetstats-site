@@ -224,7 +224,10 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 .run-btn svg { width: 17px; height: 17px; }
 
 /* ---------- ad rail ---------- */
-.rail { display: flex; flex-direction: column; gap: 14px; }
+/* Center the rail's contents vertically so a lone card (e.g. when the AdSense
+   half-page is parked pre-approval) reads as intentional rather than leaving a
+   tall empty gap. No-op once the half-page (flex:1) is re-enabled and fills the rail. */
+.rail { display: flex; flex-direction: column; justify-content: center; gap: 14px; }
 .ad { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
   border-radius: var(--r-md); background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.13); color: var(--faint);
   background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px); }
