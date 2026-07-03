@@ -330,7 +330,7 @@ export default function HeroTool() {
                 <CopyIP ip={ipInfo ? ipInfo.ip : null} />
                 {shown.ip && !ipErr ? (
                   <div className="ip-hide-cta">
-                    <span>Your IP can reveal your location and ISP.</span>{" "}
+                    <span>Your IP reveals your location &amp; ISP.</span>
                     <a
                       className="ip-cta"
                       href={NORDVPN_HREF}
