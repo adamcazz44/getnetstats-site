@@ -75,6 +75,9 @@ nav.main a { transition: color .15s; } nav.main a:hover { color: var(--text); }
 .hero-grid { display: grid; grid-template-columns: 1fr 300px; gap: 28px; }
 .stage {
   position: relative; border-radius: var(--r-lg);
+  /* Clip the radar sweep's rotating (transparent) corners so they can't cause a
+     few-px horizontal scroll on mobile. overflow-x:clip leaves the Y axis visible. */
+  overflow-x: clip;
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
   border: 1px solid var(--border); padding: 30px;
   display: grid; grid-template-columns: 1.04fr 0.96fr; gap: 26px; align-items: center;
