@@ -133,15 +133,18 @@ export default function ConnectionTool() {
           <div className={"tool-grade " + grade.cls}>{grade.label}</div>
           <p className="tool-grade-note">{grade.note}</p>
 
+          {/* Live readouts of the visitor's own connection — value cells are
+              masked from Clarity session replays (data-clarity-mask). The static
+              labels stay visible so replays keep their context. */}
           <div className="readouts" style={{ marginTop: 26 }}>
             <div className="ro">
               <div className="k">Speed class</div>
-              <div className="v txt">{classLabel}</div>
+              <div className="v txt" data-clarity-mask="true">{classLabel}</div>
               <div className="sub">browser profile</div>
             </div>
             <div className="ro">
               <div className="k">Est. downlink</div>
-              <div className="v mono">
+              <div className="v mono" data-clarity-mask="true">
                 {downlink}
                 <small> Mbps</small>
               </div>
@@ -149,7 +152,7 @@ export default function ConnectionTool() {
             </div>
             <div className="ro">
               <div className="k">Round-trip</div>
-              <div className="v mono">
+              <div className="v mono" data-clarity-mask="true">
                 {rtt}
                 <small> ms</small>
               </div>
@@ -157,7 +160,7 @@ export default function ConnectionTool() {
             </div>
             <div className="ro">
               <div className="k">Data saver</div>
-              <div className="v txt">{saver}</div>
+              <div className="v txt" data-clarity-mask="true">{saver}</div>
               <div className="sub">reduced-data mode</div>
             </div>
           </div>

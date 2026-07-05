@@ -17,6 +17,11 @@ export default function AsnTool() {
   const [result, setResult] = useState<AsnInfo | null>(null);
   const [ptr, setPtr] = useState<PtrState | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // True while the readouts show the VISITOR'S OWN IP (auto-detected on load).
+  // When they analyze someone else's IP (e.g. 8.8.8.8) it flips false, so we
+  // only mask the visitor's own data from Clarity replays — a looked-up public
+  // IP isn't sensitive and stays visible for support/debugging.
+  const [isOwnIp, setIsOwnIp] = useState(true);
 
   const abortRef = useRef<AbortController | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -37,6 +42,7 @@ export default function AsnTool() {
     const ac = new AbortController();
     abortRef.current = ac;
     setPhase(raw === undefined ? "detecting" : "running");
+    setIsOwnIp(raw === undefined);
     setError(null);
     setPtr(null);
 
@@ -191,7 +197,13 @@ export default function AsnTool() {
           ) : null}
 
           {result ? (
-            <div className="readouts" style={{ marginTop: 20 }}>
+            // Mask the routing readouts from Clarity replays only when they show
+            // the visitor's OWN IP/ASN; a looked-up public IP isn't masked.
+            <div
+              className="readouts"
+              style={{ marginTop: 20 }}
+              data-clarity-mask={isOwnIp ? "true" : undefined}
+            >
               <div className="ro">
                 <div className="k">ASN</div>
                 <div className="v mono">{na(result.asn)}</div>

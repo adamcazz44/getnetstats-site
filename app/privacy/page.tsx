@@ -27,8 +27,9 @@ export default function PrivacyPage() {
               <p className="tldr-text">
                 We don&apos;t store your IP, your location, or your speed-test results — they live in
                 your browser and disappear when you close the tab; the only thing that leaves is
-                anonymous visit stats (Google Analytics) and ad cookies (Google AdSense), the same
-                tools most of the web runs on — and we never sell your data to anyone.
+                anonymous visit stats (Google Analytics and Microsoft Clarity) and ad cookies (Google
+                AdSense), the same tools most of the web runs on — and we never sell your data to
+                anyone.
               </p>
             </div>
 
@@ -151,6 +152,24 @@ export default function PrivacyPage() {
                 . It does not capture your speed-test results or anything you do inside the tools, and
                 we don&apos;t combine it with your IP to identify you. If you&apos;re in the EEA, UK, or
                 Switzerland, you can manage analytics and ad cookies through the cookie banner.
+              </p>
+
+              <h2>Microsoft Clarity</h2>
+              <p>
+                We use <strong>Microsoft Clarity</strong> to understand how visitors use the site so
+                we can improve it. Clarity captures anonymized session replays and heatmaps — things
+                like where you click, how far you scroll, and how you move around a page. It does not
+                capture anything you type into the tools on this site, and we&apos;ve configured it to
+                mask sensitive content. This data is processed by Microsoft under the{" "}
+                <a
+                  href="https://privacy.microsoft.com/privacystatement"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Microsoft Privacy Statement
+                </a>
+                . Like our other analytics, it&apos;s used only in aggregate to see what&apos;s working
+                and what isn&apos;t — never to identify you personally, and never sold.
               </p>
 
               <h2>Affiliate links</h2>

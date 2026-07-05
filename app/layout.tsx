@@ -13,6 +13,11 @@ const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 // route changes (not just the first load) and works under static export.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
+// Microsoft Clarity project id, e.g. "xhva0c7mbj". When unset, no Clarity tag
+// renders. Visitor-specific readouts (IP/ISP/location) are masked in the tools
+// via data-clarity-mask so session replays never capture them.
+const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
+
 const geist = Geist({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -231,6 +236,26 @@ export default function RootLayout({
         {/* Google Analytics 4 — standard pageviews + client-side route changes.
             No-op when NEXT_PUBLIC_GA_ID is unset. */}
         {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
+        {/* Microsoft Clarity — session replays + heatmaps. Loads after hydration
+            (afterInteractive) so it never blocks first paint or the scan, and
+            only when the project id is configured. Visitor-specific readouts are
+            masked with data-clarity-mask in the tool components, so replays never
+            record a visitor's IP/ISP/location. Loads independently of GA4.
+            TODO: when consent-gating (Consent Mode v2) ships, include Clarity in
+            that logic so it only loads after the visitor's analytics consent. */}
+        {CLARITY_PROJECT_ID ? (
+          <Script
+            id="microsoft-clarity"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");`,
+            }}
+          />
+        ) : null}
       </body>
     </html>
   );

@@ -307,8 +307,10 @@ export default function HeroTool() {
               <div className={"ip-box reveal" + (shown.ip ? " in" : "")}>
                 <div className="ip-content">
                   <div className="k">Your IP address</div>
-                  <div className="ip">{ipErr ? "Unavailable" : ipInfo ? ipInfo.ip : "···"}</div>
-                  <div className="meta isp">
+                  {/* Visitor's live public IP — masked from Clarity session
+                      replays so recordings never accumulate a log of real IPs. */}
+                  <div className="ip" data-clarity-mask="true">{ipErr ? "Unavailable" : ipInfo ? ipInfo.ip : "···"}</div>
+                  <div className="meta isp" data-clarity-mask="true">
                     {ipErr ? (
                       "Could not reach lookup service"
                     ) : ipInfo ? (
@@ -322,7 +324,7 @@ export default function HeroTool() {
                     )}
                   </div>
                   {ipv6 ? (
-                    <div className="meta">
+                    <div className="meta" data-clarity-mask="true">
                       <span className="ver">IPv6</span> {ipv6}
                     </div>
                   ) : null}
