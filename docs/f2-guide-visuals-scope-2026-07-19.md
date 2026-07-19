@@ -4,15 +4,27 @@
 have zero in-body visuals (only `vpn-guide` has one, a video thumbnail). Deferred at audit
 time as its own session — this is that session's plan, written before building anything.
 
-**Status (2026-07-19):** Phase 1 BUILT — commit `1fa4a5e`. 3 pilot guides done
-(`ping-vs-jitter`, `what-is-a-good-internet-speed`, `what-is-an-ip-address`), verified at
-375px/1280px, typecheck clean. **Adjustment from the original plan below:** none of the 3
-pilots actually needed `IconRow` or `FlowDiagram` (they needed a waveform comparison, a bar
-chart, and a branching network map instead), so only `JitterWaveform`, `LabeledBars`, and
-`HomeNetworkMap` got built — building the other two primitives speculatively, before a real
-guide needed them, would've been premature. **This is the check-in point** — confirm the
-style lands before Phase 2 (the remaining 8 guides, which do need `IconRow` for device/
-connection-type rows and `FlowDiagram` for the DNS lookup flow).
+**Status (2026-07-19): F2 COMPLETE — all 12 guides now have a diagram.** Phase 1 commit
+`1fa4a5e`, Phase 2 commit `4c54ce4`. Neither phase is deployed yet (local repo only).
+
+Phase 1: 3 pilot guides done (`ping-vs-jitter`, `what-is-a-good-internet-speed`,
+`what-is-an-ip-address`), verified at 375px/1280px, typecheck clean. **Adjustment from the
+original plan below:** none of the 3 pilots actually needed `IconRow` or `FlowDiagram` (they
+needed a waveform comparison, a bar chart, and a branching network map instead), so only
+`JitterWaveform`, `LabeledBars`, and `HomeNetworkMap` got built — building the other two
+primitives speculatively, before a real guide needed them, would've been premature.
+
+Phase 2: remaining 8 guides done. `IconRow` and `FlowDiagram` turned out genuinely justified
+this round (3 guides need `IconRow`, 1 needs `FlowDiagram`), so both got built for real. The
+other 4 guides (`hide-your-ip-address`, `ipv4-vs-ipv6`, `what-is-an-asn`,
+`why-is-my-wifi-slow`) got bespoke components, same spirit as Phase 1's `HomeNetworkMap`.
+One real bug caught during Phase 2 verification: `SignalThroughWalls` used the site's
+`.sigbars` CSS class on the assumption it was already wired up elsewhere — a codebase grep
+found nothing else actually uses it, so the bars silently rendered at zero height until
+fixed with explicit per-bar heights. Full detail in the Phase 2 commit message.
+
+(The rest of this doc is the original pre-build plan, kept for history — see the status note
+above for what actually shipped.)
 
 ## Goal
 

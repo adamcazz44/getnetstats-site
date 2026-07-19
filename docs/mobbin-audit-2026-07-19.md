@@ -49,8 +49,9 @@ orphaned routes), every hero stat card's "Test →" routes to its own tool page,
   fit the brand system better than stock photography.
 - **Cross-site:** PetPickHQ has the identical gap (idea backlog).
 - **Guardrail check:** ok.
-→ **DEFERRED** by Adam 2026-07-19 — real design/content work, scoped as its own future session
-  rather than folded into this fix pass.
+→ **FIXED** — deferred at audit time, scoped in `docs/f2-guide-visuals-scope-2026-07-19.md`,
+  then built same day across two sessions: Phase 1 commit `1fa4a5e` (3 pilot guides), Phase 2
+  commit `4c54ce4` (remaining 8). All 12 guides now have a diagram. Not deployed yet.
 
 ## Pass 3 — Color & accessibility [COMPLETE 2026-07-19] (measured, not eyeballed)
 
@@ -198,7 +199,7 @@ set exactly — no stale/orphaned routes, no missing live pages.
 | # | Finding | Severity | Effort | Pass | Outcome |
 |---|---|---|---|---|---|
 | F5 | Tap targets under ~44px (2 are revenue CTAs) | MED/HIGH | Quick | 5, 6 | FIXED `b14c5ee` |
-| F2 | 11 of 12 guides have zero visuals | MED | Strategic | 2 | DEFERRED |
+| F2 | 11 of 12 guides have zero visuals | MED | Strategic | 2 | FIXED `1fa4a5e` + `4c54ce4` |
 | F6 | No "last updated" on any guide | MED | Quick | 7 | FIXED `a9b979f` |
 | F1 | About page undersells toolkit (says DNS/ASN "coming" — already live) | MED | Quick | 1 | FIXED `4a1671f` |
 | F4 | Guide body text ~99 chars/line at desktop | LOW/MED | Quick | 4 | FIXED `b14c5ee` |
