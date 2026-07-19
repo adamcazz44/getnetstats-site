@@ -1,6 +1,7 @@
 # GetNetStats — Mobbin Audit — 2026-07-19
 
-**Status:** passes complete: 1,2,3,4,5,6,7,8,9,10 · findings: 6 (+2 flags, +1 idea)
+**Status:** passes complete: 1,2,3,4,5,6,7,8,9,10 · findings: 6 (5 fixed, 1 deferred) · both flags
+resolved · 1 idea logged to the portfolio tracker
 **Baseline:** live getnetstats.com checked 2026-07-19; local build (`npm run dev`, commit at working tree)
 confirmed to match live exactly — the 2026-07-14 UX pass IS live despite RESUME-HERE saying otherwise
 (see FLAG-1). Viewports: 375px, 1440px desktop.
@@ -13,6 +14,8 @@ today shows the Download-featured hero, the fixed connection-quality copy, the f
 (all 3 nav links visible, no overflow), and the footer tool links are **already live and byte-for-byte
 matching local**. Recommend updating RESUME-HERE's "Where things stand" section — Adam likely deployed
 this in the days since 7/14 and the doc wasn't updated after.
+→ **FIXED** — RESUME-HERE's "Where things stand" and "Next action" sections updated (gitignored file,
+no commit hash).
 
 ## Pass 1 — UX & structure [COMPLETE 2026-07-19]
 
@@ -26,6 +29,7 @@ this in the days since 7/14 and the doc wasn't updated after.
   the only "coming soon" item.
 - **Cross-site:** none
 - **Guardrail check:** ok — pure accuracy fix, no constraint touched.
+→ **FIXED** — commit `4a1671f`.
 
 Structure otherwise checked clean: all 21 `app/` route folders match the footer's link set 1:1 (no
 orphaned routes), every hero stat card's "Test →" routes to its own tool page, "Contact" is a
@@ -45,6 +49,8 @@ orphaned routes), every hero stat card's "Test →" routes to its own tool page,
   fit the brand system better than stock photography.
 - **Cross-site:** PetPickHQ has the identical gap (idea backlog).
 - **Guardrail check:** ok.
+→ **DEFERRED** by Adam 2026-07-19 — real design/content work, scoped as its own future session
+  rather than folded into this fix pass.
 
 ## Pass 3 — Color & accessibility [COMPLETE 2026-07-19] (measured, not eyeballed)
 
@@ -61,7 +67,17 @@ orphaned routes), every hero stat card's "Test →" routes to its own tool page,
 **Broad scan result (informational, not a finding):** ~70 other text/background pairs across nav, body
 copy, footer, and every accent color (cyan `#5fe6f7`, amber `#fbbf24`, green `#34d399`) all measured
 between **4.88:1 and 13.28:1** — comfortably over AA. The color system is solid; F3 is the only failure
-found.
+found via the DOM-visible scan.
+
+→ **FIXED, scope expanded** — commit `b14c5ee`. While implementing, grepped every other use of the
+`--faint` token (`#4a5a70`, same 2.80:1 failure) and found 4 more instances the DOM scan missed because
+they're lazy-mounted or weren't in viewport when the scan ran: `.aff-spon` ("Sponsored" disclosure
+label), `.ip-cta::before` and `.guide-cta-ad` (both render the "Ad" disclosure badge), `.ro .v .na`
+("Not exposed" connection-quality text), and `.dns-none` (DNS tool empty state). The `.aff-spon`/
+`::before` "Ad" instances matter most — they're the disclosure labels the site's own monetization
+guardrail requires to be "visible," so 2.80:1 contrast undermined that requirement. Swapped disclosure
+labels to `--muted` (6.79:1) and informational text to `--dim` (4.88:1); left `.dns-input::placeholder`
+alone since form placeholders are commonly exempt from strict AA and it's a hint, not content.
 
 ## Pass 4 — Typography [COMPLETE 2026-07-19]
 
@@ -75,6 +91,12 @@ found.
   rules away.
 - **Cross-site:** none noted.
 - **Guardrail check:** ok.
+→ **FIXED, adjusted during verify** — commit `b14c5ee`. 68ch measured wider than expected in Geist
+(721px, still 99 chars/line) — `ch` is based on the "0" glyph width, which is proportionally wide in
+this font, so it undershot the target. Recalibrated to `50ch` (≈71 chars/line at 1280px, confirmed by
+measuring rendered line-boxes) and scoped it to `.prose > p, .prose > ul, .prose > ol` instead of the
+whole `.prose` container — a blanket max-width would have also shrunk the VPN guide's video embed,
+which lives inside `.prose` too.
 
 ## Pass 5 — Mobile experience [COMPLETE 2026-07-19] (measured at real 375px viewport)
 
@@ -96,6 +118,11 @@ found.
 - **Cross-site:** worth checking if other portfolio sites share this button-padding pattern.
 - **Guardrail check:** ok. No horizontal overflow anywhere (`document.documentElement.scrollWidth`
   equals `window.innerWidth` on every page checked) — the 7/14 mobile-header fix is holding.
+→ **FIXED** — commit `b14c5ee`. Nav links → 43px (real padding), Copy → 41px, footer links → 39px,
+`.ip-cta` (both affiliate CTAs) → ~40px (all real padding increases, re-measured after). The "Test"
+chips kept their exact 16×41px visual size — used an invisible `::after` hit-slop (`inset: -14px`)
+instead of growing the pill, since a visually bigger chip would have clashed with the compact `.ro`
+card design. Re-verified: no horizontal overflow introduced at 375px on any page checked.
 
 ## Pass 6 — Conversion & CTAs [COMPLETE 2026-07-19]
 
@@ -115,6 +142,8 @@ revenue paths.
 - **Not fixing this myself** — it's marked "never violate" in CLAUDE.md, so I'm surfacing it rather
   than silently rewriting a hard constraint. Recommend: confirm the current (broader) placement is
   what you want, then I'll update the CLAUDE.md line to match.
+→ **RESOLVED** — Adam confirmed 2026-07-19 the homepage placement is intentional. CLAUDE.md's
+  guardrail line updated to match, commit `7597d3d`.
 
 Otherwise clean: no placeholder CTAs rendering as fake buttons, no CTA-stuffing in the guide bodies —
 the VPN guide has exactly one CTA at the bottom, positioned after the "which VPN we recommend" section
@@ -131,6 +160,7 @@ where intent peaks.
   honest/sourced brand voice the privacy page already uses.
 - **Guardrail check:** ok — strengthens the honesty positioning, doesn't touch the Wi-Fi Signal or
   privacy hard constraints.
+→ **FIXED** — commit `a9b979f`.
 
 No fake trust badges or invented stats found. The "Honest by design" callouts and the FAQ's plain
 explanation of why browsers can't read Wi-Fi radio signal are genuine trust demonstrations — nothing
@@ -165,14 +195,14 @@ set exactly — no stale/orphaned routes, no missing live pages.
 
 ## Summary — findings by severity
 
-| # | Finding | Severity | Effort | Pass |
-|---|---|---|---|---|
-| F5 | Tap targets under ~44px (2 are revenue CTAs) | MED/HIGH | Quick | 5, 6 |
-| F2 | 11 of 12 guides have zero visuals | MED | Strategic | 2 |
-| F6 | No "last updated" on any guide | MED | Quick | 7 |
-| F1 | About page undersells toolkit (says DNS/ASN "coming" — already live) | MED | Quick | 1 |
-| F4 | Guide body text ~99 chars/line at desktop | LOW/MED | Quick | 4 |
-| F3 | Ad-placeholder label fails WCAG AA (2.80:1) | LOW | Quick | 3 |
-| FLAG-1 | RESUME-HERE wrongly says UX pass is undeployed — it's live | — | doc fix | pre-audit |
-| FLAG-2 | CLAUDE.md guardrail text stale vs. live affiliate placement | — | needs Adam's confirm | 6 |
-| IDEA-1 | Client-side "vs. last test" comparison | IDEA | Medium | 10 |
+| # | Finding | Severity | Effort | Pass | Outcome |
+|---|---|---|---|---|---|
+| F5 | Tap targets under ~44px (2 are revenue CTAs) | MED/HIGH | Quick | 5, 6 | FIXED `b14c5ee` |
+| F2 | 11 of 12 guides have zero visuals | MED | Strategic | 2 | DEFERRED |
+| F6 | No "last updated" on any guide | MED | Quick | 7 | FIXED `a9b979f` |
+| F1 | About page undersells toolkit (says DNS/ASN "coming" — already live) | MED | Quick | 1 | FIXED `4a1671f` |
+| F4 | Guide body text ~99 chars/line at desktop | LOW/MED | Quick | 4 | FIXED `b14c5ee` |
+| F3 | Ad/disclosure-label text fails WCAG AA (2.80:1, 5 instances) | LOW/MED | Quick | 3 | FIXED `b14c5ee` |
+| FLAG-1 | RESUME-HERE wrongly says UX pass is undeployed — it's live | — | doc fix | pre-audit | RESOLVED |
+| FLAG-2 | CLAUDE.md guardrail text stale vs. live affiliate placement | — | needs Adam's confirm | 6 | RESOLVED `7597d3d` |
+| IDEA-1 | Client-side "vs. last test" comparison | IDEA | Medium | 10 | logged to tracker |
