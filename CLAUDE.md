@@ -15,9 +15,11 @@ below** before acting on it (this has caught real mistakes before).
 Keep the boundary clean: you implement; Chat plans. If Adam asks for strategy,
 copy direction, or research that Chat is better placed to do, say so.
 
-**Source of truth for project narrative:** the handoff docs in `Handoffs/` — start
-with `GetNetStats-RESUME-HERE.md` (and its companions). Read before major work. If
-this file ever conflicts with the code, trust the code and fix this file.
+**Source of truth for project narrative:** `GetNetStats-RESUME-HERE.md` at the **repo
+root** (gitignored — it holds deploy/monetization notes). Read before major work.
+Superseded docs (SEO Phase 1, the design prototype) live in `Archive/`. There is **no
+`Handoffs/` folder** — it was reorganised away; this file said otherwise until
+2026-07-14. If this file ever conflicts with the code, trust the code and fix this file.
 
 ## Session kickoff
 
@@ -58,9 +60,13 @@ must fit this system — use the exact existing tokens in `app/globals.css`.
   nothing stored" where accurate); never claim accuracy superiority over competitors.
 - **A11y/quality:** respect `prefers-reduced-motion` (incl. JS tweens), tabular
   figures for counters, exact design tokens.
-- **Monetization integrity:** affiliate CTAs only in the VPN guide and hide-your-IP
-  guide; `rel="sponsored"` + visible "Ad"/"Sponsored" disclosure; no CTA-stuffing in
-  explanatory content; AdSense Auto ads stay OFF (single manual slot model).
+- **Monetization integrity:** affiliate CTAs currently live on the homepage (hero IP
+  card, FAQ, "how to hide your IP" Education blurb, sponsored NordPass banner), the
+  VPN guide, and the hide-your-IP guide — confirmed intentional 2026-07-19 (this line
+  previously restricted CTAs to the two guides only; that was stale against the
+  2026-07-05 homepage placement). Every instance must carry `rel="sponsored"` +
+  visible "Ad"/"Sponsored" disclosure; no CTA-stuffing beyond what's already placed;
+  AdSense Auto ads stay OFF (single manual slot model).
 - **Never invent identifiers** (slot ids, keys, DNS values). The AdSense publisher
   id and affiliate links in the handoff are real — use them as given. Ask if
   anything is unknown.
@@ -126,8 +132,15 @@ lib/          helpers (gns.ts, asn.ts, dns.ts, videos.ts)
 public/       static assets (CNAME, .nojekyll, favicons, og.png)
 out/          build output — the folder whose CONTENTS get uploaded
 marketing/    marketing assets + YouTube kit
-Handoffs/     project narrative — start with GetNetStats-RESUME-HERE.md
+Archive/      superseded docs + the original design prototype (reference only)
+GetNetStats-RESUME-HERE.md   project narrative (repo root, gitignored)
+OnlineMotivateYoutube/       paired YouTube ad channel — nested on purpose, gitignored
 ```
+
+**Shared-CSS trap:** `.readouts` styles the homepage hero grid AND the `/ping-test`,
+`/download-test`, `/upload-test`, `/connection-test`, `/asn-routing` tools. It must stay
+2-col; the hero opts into its featured layout via `.readouts-hero`. Editing `.readouts`
+itself silently re-flows five other pages.
 
 **Conventions:**
 - Keep analytics tags (GA4, Clarity) in the App Router layout — don't scatter them.
