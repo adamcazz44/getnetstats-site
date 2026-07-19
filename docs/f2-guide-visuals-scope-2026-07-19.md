@@ -4,6 +4,16 @@
 have zero in-body visuals (only `vpn-guide` has one, a video thumbnail). Deferred at audit
 time as its own session — this is that session's plan, written before building anything.
 
+**Status (2026-07-19):** Phase 1 BUILT — commit `1fa4a5e`. 3 pilot guides done
+(`ping-vs-jitter`, `what-is-a-good-internet-speed`, `what-is-an-ip-address`), verified at
+375px/1280px, typecheck clean. **Adjustment from the original plan below:** none of the 3
+pilots actually needed `IconRow` or `FlowDiagram` (they needed a waveform comparison, a bar
+chart, and a branching network map instead), so only `JitterWaveform`, `LabeledBars`, and
+`HomeNetworkMap` got built — building the other two primitives speculatively, before a real
+guide needed them, would've been premature. **This is the check-in point** — confirm the
+style lands before Phase 2 (the remaining 8 guides, which do need `IconRow` for device/
+connection-type rows and `FlowDiagram` for the DNS lookup flow).
+
 ## Goal
 
 Give each of the 11 text-only guides one lede visual that illustrates its own content —
