@@ -52,7 +52,8 @@ header.site {
 .brand .dot { width: 11px; height: 11px; border-radius: 3px; background: #ffffff; box-shadow: 0 0 14px rgba(255,255,255,0.5); }
 .brand b { font-weight: 600; } .brand b span { color: var(--accent-2); }
 nav.main { display: flex; gap: 28px; font-size: 14.5px; color: var(--muted); }
-nav.main a { transition: color .15s; } nav.main a:hover { color: var(--text); }
+nav.main a { display: inline-flex; align-items: center; padding: 12px 4px; margin: -12px -4px; transition: color .15s; }
+nav.main a:hover { color: var(--text); }
 /* "HOME" link rendered inline inside the eyebrow ("HOME // LATENCY PROBE").
    Inherits the eyebrow's mono/uppercase/tracking; just a brighter, clickable color. */
 .eyebrow-home { color: var(--accent-2); transition: color .15s; }
@@ -154,27 +155,41 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 /* ISP / location line — amber so the provider info stands out */
 .ip-box .meta.isp, .ip-box .meta.isp .ver { color: var(--warn); }
 .copy-btn { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; border: 1px solid var(--border-2);
-  background: rgba(255,255,255,0.04); color: var(--text); border-radius: var(--r-sm); padding: 9px 13px; font-family: var(--mono);
+  background: rgba(255,255,255,0.04); color: var(--text); border-radius: var(--r-sm); padding: 12px 16px; font-family: var(--mono);
   font-size: 12.5px; font-weight: 500; transition: background .15s, border-color .15s, transform .08s; }
 .copy-btn:hover { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.4); }
 .copy-btn:active { transform: scale(0.96); }
 .copy-btn.copied { color: var(--good); border-color: rgba(52,211,153,0.5); background: rgba(52,211,153,0.12); }
 .copy-btn svg { width: 14px; height: 14px; }
 
-/* readout grid (ping / upload / connection / quality) */
+/* readout grid — 2x2 by default. Shared by the hero AND the /ping-test,
+   /download-test, /upload-test, /connection-test and /asn-routing tools, so the
+   base grid must stay 2-col; only the hero opts into the featured layout. */
 .readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
 .ro { position: relative; background: rgba(255,255,255,0.028); border: 1px solid var(--border); border-radius: var(--r-md); padding: 13px 15px; min-height: 78px; }
+/* Hero only: Download is the featured full-width cell (it's the number visitors
+   came for); Upload / Ping / Connection sit in a 3-up row beneath it. */
+.readouts-hero { grid-template-columns: repeat(3, 1fr); }
+.ro-feat { grid-column: 1 / -1; padding: 15px 18px; min-height: 96px;
+  background: rgba(34,211,238,0.045); border-color: rgba(34,211,238,0.22); }
+/* `.ro.ro-feat` (not `.ro-feat`) so these beat the `.ro .v` sizes below
+   regardless of source order. */
+.ro.ro-feat .v { font-size: clamp(34px, 4.4vw, 46px); margin-top: 4px; }
+.ro.ro-feat .v small { font-size: 15px; }
 /* corner action (e.g. the "Test" pill on the Ping card) */
 .ro-action { position: absolute; top: 10px; right: 10px; }
-.ro-test { display: inline-flex; align-items: center; gap: 2px; font-family: var(--mono); font-size: 7px; font-weight: 500;
+.ro-test { position: relative; display: inline-flex; align-items: center; gap: 2px; font-family: var(--mono); font-size: 7px; font-weight: 500;
   letter-spacing: 0.02em; color: var(--accent-2); background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.28);
   border-radius: 999px; padding: 2px 5px; transition: background .15s, border-color .15s; }
 .ro-test:hover { background: rgba(34,211,238,0.18); border-color: rgba(34,211,238,0.5); }
+/* invisible hit-slop: keeps the pill's compact visual size but widens the real tap
+   target toward the ~44px guideline (measured 16x41 visual otherwise). */
+.ro-test::after { content: ""; position: absolute; inset: -14px; }
 .ro .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--dim); display: flex; align-items: center; gap: 6px; }
 .ro .v { font-family: var(--mono); font-size: 23px; font-weight: 600; margin-top: 6px; line-height: 1.1; letter-spacing: -0.01em; }
 .ro .v small { font-size: 12px; color: var(--dim); font-weight: 400; letter-spacing: 0; }
 .ro .v.txt { font-size: 18px; }
-.ro .v .na { color: var(--faint); font-size: 15px; font-weight: 400; }
+.ro .v .na { color: var(--dim); font-size: 15px; font-weight: 400; }
 .ro .sub { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
 /* contextual "hide your IP" CTA below the readouts */
 .ip-hide-cta { margin-top: 14px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
@@ -241,7 +256,7 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 .ad { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
   border-radius: var(--r-md); background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.13); color: var(--faint);
   background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px); }
-.ad .lab { position: absolute; top: 9px; left: 11px; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-family: var(--mono); color: var(--faint); }
+.ad .lab { position: absolute; top: 9px; left: 11px; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-family: var(--mono); color: var(--dim); }
 .ad .big { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
 .ad.mrec { height: 250px; } .ad.halfpage { flex: 1; min-height: 600px; } .ad.leaderboard { height: 90px; }
 /* real creative present → drop the dashed placeholder look */
@@ -261,7 +276,7 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
     radial-gradient(120% 90% at 0% 0%, rgba(34,211,238,0.2) 0%, transparent 55%),
     radial-gradient(120% 90% at 100% 100%, rgba(124,92,255,0.18) 0%, transparent 55%),
     linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)); }
-.aff-spon { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+.aff-spon { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
 .aff-body { display: flex; flex-direction: column; gap: 9px; }
 .aff-name { font-weight: 700; font-size: 25px; letter-spacing: -0.02em; line-height: 1.05; color: var(--text); }
 .aff-tag { font-size: 14px; color: var(--muted); line-height: 1.55; }
@@ -344,10 +359,10 @@ h2.sec { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; letter-spacing: 
 /* inline affiliate CTA (e.g. the VPN bullet in "how to hide your IP") */
 .ip-cta { display: inline-flex; align-items: center; gap: 6px; vertical-align: baseline; white-space: nowrap;
   font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--accent-2);
-  border: 1px solid rgba(34,211,238,0.3); border-radius: 999px; padding: 2px 10px; margin-left: 4px;
+  border: 1px solid rgba(34,211,238,0.3); border-radius: 999px; padding: 10px 14px; margin-left: 4px;
   transition: background .15s, border-color .15s; }
 .ip-cta:hover { background: rgba(34,211,238,0.14); border-color: rgba(34,211,238,0.5); }
-.ip-cta::before { content: "Ad"; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint);
+.ip-cta::before { content: "Ad"; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
   border: 1px solid var(--border-2); border-radius: 4px; padding: 0 3px; }
 
 /* comparison table */
@@ -388,7 +403,7 @@ h2.sec { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; letter-spacing: 
 footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; background: #05070c; }
 .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
 .foot-col h5 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin: 0 0 14px; }
-.foot-col a { display: block; color: var(--muted); font-size: 14px; padding: 5px 0; transition: color .15s; }
+.foot-col a { display: block; color: var(--muted); font-size: 14px; padding: 9px 0; transition: color .15s; }
 .foot-col a:hover { color: var(--text); }
 .foot-brand p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 14px 0 0; max-width: 34ch; }
 .foot-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; padding-top: 24px;
@@ -412,11 +427,19 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
   .how-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
-  nav.main { display: none; }
+  /* The nav used to be display:none here, which left phones with a header that
+     was nothing but a logo — no way to reach anything. Keep all three links and
+     compact the bar instead; measured to fit without overflow down to 320px. */
+  nav.main { gap: 15px; font-size: 13px; }
+  .brand { font-size: 15px; gap: 8px; }
+  .brand .dot { width: 9px; height: 9px; }
   .wrap { padding: 0 18px; }
   .stage { padding: 22px; }
   .stage-controls { top: 22px; right: 22px; }
-  .readouts { grid-template-columns: 1fr 1fr; }
+  /* Hero's 3-up row gets too tight here: drop to 2-col so Upload | Ping pair
+     up, and let Connection span the full width beneath them. */
+  .readouts-hero { grid-template-columns: 1fr 1fr; }
+  .ro-conn { grid-column: 1 / -1; min-height: 0; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .rail { flex-direction: column; align-items: center; }
   .ad { width: 100%; max-width: 336px; flex: none; }
@@ -424,6 +447,8 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 }
 @media (max-width: 480px) {
   .tools-grid { grid-template-columns: 1fr; }
+  nav.main { gap: 12px; font-size: 12.5px; }
+  .wrap { padding: 0 14px; }
 }
 
 /* ---------- single-column test tools (/ping-test, /download-test,
@@ -465,6 +490,9 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 .page .updated { color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; margin-top: 12px; }
 .page-sub { color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 64ch; margin: 14px 0 0; }
 .page .prose { margin-top: 26px; }
+/* cap line length on running text only — figures/videos/tables inside .prose
+   (e.g. the VPN guide's embed) stay full width. */
+.page .prose > p, .page .prose > ul, .page .prose > ol { max-width: 50ch; }
 .page .prose h2 { font-size: 21px; letter-spacing: -0.02em; margin: 32px 0 12px; font-weight: 600; }
 .page .prose h2:first-child { margin-top: 0; }
 .page .prose a { color: var(--accent-2); border-bottom: 1px solid rgba(95,230,247,0.3); }
@@ -478,7 +506,7 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
   font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--accent-2);
   border: 1px solid rgba(34,211,238,0.32); border-radius: 999px; padding: 8px 14px; transition: background .15s, border-color .15s; }
 .guide-cta:hover { background: rgba(34,211,238,0.14); border-color: rgba(34,211,238,0.5); }
-.guide-cta-ad { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint);
+.guide-cta-ad { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
   border: 1px solid var(--border-2); border-radius: 4px; padding: 0 3px; }
 .guide-more { color: var(--dim); font-size: 12px; margin-top: 30px; text-align: center; }
 .guide-video { margin: 24px 0 22px; }
@@ -517,7 +545,7 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 .dns-rec-vals li { font-family: var(--mono); font-size: 13.5px; color: var(--text); word-break: break-all; line-height: 1.45;
   font-variant-numeric: tabular-nums; }
 .dns-prio { color: var(--warn); margin-right: 8px; }
-.dns-none { font-family: var(--mono); font-size: 13px; color: var(--faint); }
+.dns-none { font-family: var(--mono); font-size: 13px; color: var(--dim); }
 @media (max-width: 640px) { .dns-results { grid-template-columns: 1fr; } }
 
 .lyt { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); background: #05070c; }
