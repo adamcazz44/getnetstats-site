@@ -54,9 +54,10 @@ export default function AboutPage() {
 
               <h2>The toolkit</h2>
               <p>
-                Today: <a href="/">IP lookup &amp; internet speed test</a> and a{" "}
-                <a href="/ping-test/">ping &amp; jitter test</a>. More network checks (WHOIS, DNS,
-                and others) are on the way.
+                Live now: <a href="/">IP lookup &amp; internet speed test</a>,{" "}
+                <a href="/ping-test/">ping &amp; jitter test</a>,{" "}
+                <a href="/dns-checker/">DNS Checker</a>, and{" "}
+                <a href="/asn-routing/">ASN &amp; Routing</a>. WHOIS lookup is on the way.
               </p>
 
               <h2>Contact</h2>
