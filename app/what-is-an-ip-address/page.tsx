@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import HomeNetworkMap from "@/components/guides/HomeNetworkMap";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -115,6 +116,14 @@ export default function WhatIsAnIpAddressPage() {
                 So when a website &quot;sees your IP,&quot; it sees your public one — your
                 router&apos;s address, not your individual device.
               </p>
+
+              <figure className="guide-diagram">
+                <HomeNetworkMap />
+                <figcaption className="guide-figcap">
+                  Each device on your network gets its own private IP from the router; the router
+                  shows one shared public IP to the internet.
+                </figcaption>
+              </figure>
 
               <h2>What your public IP actually reveals</h2>
               <p>

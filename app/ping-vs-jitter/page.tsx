@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import JitterWaveform from "@/components/guides/JitterWaveform";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -132,6 +133,15 @@ export default function PingVsJitterPage() {
                 reliable that delay is. You can have a low average ping but high jitter — and high
                 jitter is often what actually ruins the experience.
               </p>
+
+              <figure className="guide-diagram">
+                <JitterWaveform />
+                <figcaption className="guide-figcap">
+                  Same average delay, different consistency — a steady connection (top) delivers
+                  each ping at a regular interval; a jittery one (bottom) delivers the same average
+                  but unevenly, which is what actually disrupts calls and games.
+                </figcaption>
+              </figure>
 
               <h2>Why jitter wrecks calls and games more than you&apos;d expect</h2>
               <p>

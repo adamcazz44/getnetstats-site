@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import LabeledBars from "@/components/guides/LabeledBars";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-23";
@@ -135,6 +136,25 @@ export default function WhatIsAGoodInternetSpeedPage() {
                   <b>Working from home / large downloads:</b> 50–100+ Mbps is comfortable.
                 </li>
               </ul>
+
+              <figure className="guide-diagram">
+                <LabeledBars
+                  max={100}
+                  rows={[
+                    { label: "Browsing, email, social", display: "5–10 Mbps", value: 10 },
+                    { label: "HD video streaming", display: "~5–10 Mbps", value: 10 },
+                    { label: "4K streaming", display: "~25 Mbps", value: 25 },
+                    { label: "Video calls", display: "~3–5 Mbps", value: 5 },
+                    { label: "Online gaming", display: "3–6 Mbps", value: 6 },
+                    { label: "WFH / large downloads", display: "50–100+ Mbps", value: 100 },
+                  ]}
+                />
+                <figcaption className="guide-figcap">
+                  Rough Mbps guidelines by activity, from the numbers above. Gaming needs the least
+                  bandwidth but the most consistency — see{" "}
+                  <a href="/ping-vs-jitter/">Ping vs Jitter</a>.
+                </figcaption>
+              </figure>
 
               <h2>The real multiplier: people and devices</h2>
               <p>
