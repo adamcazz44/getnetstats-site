@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import AddressFormatCompare from "@/components/guides/AddressFormatCompare";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -113,6 +114,14 @@ export default function Ipv4VsIpv6Page() {
                 IPv4; if it has colons and hex characters, that&apos;s IPv6. Many connections show
                 both.
               </p>
+
+              <figure className="guide-diagram">
+                <AddressFormatCompare />
+                <figcaption className="guide-figcap">
+                  Same job, different format — length and punctuation are the fastest way to tell
+                  them apart at a glance.
+                </figcaption>
+              </figure>
 
               <h2>Why IPv6 exists</h2>
               <p>

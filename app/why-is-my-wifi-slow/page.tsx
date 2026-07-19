@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import SignalThroughWalls from "@/components/guides/SignalThroughWalls";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -104,6 +105,14 @@ export default function WhyIsMyWifiSlowPage() {
                 </li>
               </ul>
               <p>Knowing which bucket you&apos;re in saves you from fixing the wrong thing.</p>
+
+              <figure className="guide-diagram">
+                <SignalThroughWalls />
+                <figcaption className="guide-figcap">
+                  Wi-Fi signal weakens with every wall, floor, and piece of furniture it crosses —
+                  that&apos;s why a far room reads far fewer bars than the room the router sits in.
+                </figcaption>
+              </figure>
 
               <h2>The most common causes, easiest fixes first</h2>
               <ol>

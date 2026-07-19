@@ -548,6 +548,70 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
 .net-map .box.router { stroke: var(--accent-2); }
 .net-map .box.internet { stroke: var(--good); }
 .net-map line { stroke: var(--border-2); stroke-width: 1.5; }
+
+/* ---------- guide diagrams, phase 2 (Mobbin audit F2, 2026-07-19) ---------- */
+
+/* IconRow — labeled icon row (find-your-ip-address, what-is-an-isp, wifi-vs-ethernet) */
+.icon-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 18px; }
+.icon-row-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+.icon-row-icon { width: 34px; height: 34px; color: var(--accent-2); }
+.icon-row-icon svg { width: 100%; height: 100%; }
+.icon-row-label { font-size: 13px; font-weight: 600; color: var(--text); }
+.icon-row-sub { font-size: 11.5px; color: var(--muted); }
+
+/* FlowDiagram — linear N-step chain (what-is-a-dns-record) */
+.flow-diagram { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; }
+.flow-diagram-item { display: flex; align-items: center; gap: 10px; }
+.flow-node { background: rgba(255,255,255,0.03); border: 1px solid var(--border-2); border-radius: var(--r-sm);
+  padding: 12px 16px; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 120px; text-align: center; }
+.flow-node-label { font-size: 13px; color: var(--accent-2); font-weight: 600; }
+.flow-node-sub { font-size: 11px; color: var(--muted); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+
+/* PrivacyPaths — hop-chain comparison (hide-your-ip-address) */
+.privacy-paths { display: flex; flex-direction: column; gap: 20px; }
+.pp-row { display: flex; flex-direction: column; gap: 6px; }
+.pp-method { font-family: var(--mono); font-size: 13px; font-weight: 700; }
+.pp-track { display: flex; align-items: center; flex-wrap: wrap; }
+.pp-hop { display: flex; align-items: center; }
+.pp-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+.pp-hop-label { font-size: 11.5px; color: var(--muted); margin: 0 6px; white-space: nowrap; }
+.pp-line { width: 24px; height: 2px; opacity: 0.4; }
+.pp-note { font-size: 12px; color: var(--dim); }
+
+/* AddressFormatCompare — IPv4 vs IPv6 examples (ipv4-vs-ipv6) */
+.addr-compare { display: flex; flex-direction: column; gap: 14px; }
+.addr-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+.addr-tag { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent-2);
+  border: 1px solid rgba(34,211,238,0.32); border-radius: 999px; padding: 3px 9px; }
+.addr-example { font-size: 16px; color: var(--text); }
+.addr-note { font-size: 12px; color: var(--dim); }
+
+/* NetworkMesh — interconnected networks (what-is-an-asn) */
+.net-mesh text { font-family: var(--sans); }
+.net-mesh .lbl-strong { font-weight: 600; fill: var(--accent-2); font-family: var(--mono); }
+.net-mesh .lbl-muted { fill: var(--muted); }
+.net-mesh .lbl-accent { fill: var(--good); font-family: var(--mono); font-weight: 600; }
+.net-mesh .node { fill: rgba(255,255,255,0.03); stroke: var(--border-2); stroke-width: 1.2; }
+.net-mesh .node.hub { stroke: var(--good); }
+.net-mesh line, .net-mesh path { stroke: var(--border-2); stroke-width: 1.3; fill: none; }
+
+/* SignalThroughWalls — signal weakening through obstacles (why-is-my-wifi-slow) */
+.signal-walls { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.sw-node { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 0 0 auto; }
+.sw-icon { width: 32px; height: 32px; color: var(--accent-2); }
+.sw-icon svg { width: 100%; height: 100%; }
+.sw-label { font-size: 12.5px; color: var(--muted); }
+.sw-path { display: flex; align-items: center; flex: 1 1 auto; min-width: 60px; }
+.sw-line { flex: 1 1 auto; height: 1.5px; background: var(--border-2); }
+.sw-wall { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--dim); border-left: 1px dashed var(--border-2); border-right: 1px dashed var(--border-2); padding: 2px 4px; white-space: nowrap; }
+@media (max-width: 640px) {
+  .signal-walls { flex-direction: column; }
+  .sw-path { flex-direction: column; height: 60px; min-width: 0; }
+  .sw-line { width: 1.5px; height: auto; flex: 1 1 auto; }
+}
+
 .guide-figcap { color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; margin: 10px 0 0; text-align: center; }
 
 /* ---------- DNS checker tool ---------- */

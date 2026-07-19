@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { NORDVPN_HREF } from "@/components/ads/affiliates";
+import PrivacyPaths from "@/components/guides/PrivacyPaths";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -97,6 +98,15 @@ export default function HideYourIpPage() {
               </p>
 
               <h2>The three main ways</h2>
+
+              <figure className="guide-diagram">
+                <PrivacyPaths />
+                <figcaption className="guide-figcap">
+                  Fewer hops isn&apos;t always better — what matters is who&apos;s at each hop. A VPN
+                  and a proxy each route through one server that can see your traffic; Tor spreads
+                  that trust across several relays instead.
+                </figcaption>
+              </figure>
 
               <h3>1. A VPN (the common choice)</h3>
               <p>

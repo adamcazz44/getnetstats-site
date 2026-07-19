@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import NetworkMesh from "@/components/guides/NetworkMesh";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -93,6 +94,14 @@ export default function WhatIsAnAsnPage() {
                 routed between them. That identifier is an <strong>ASN</strong> — an Autonomous System
                 Number.
               </p>
+
+              <figure className="guide-diagram">
+                <NetworkMesh />
+                <figcaption className="guide-figcap">
+                  AS7922 and AS15169 are the real, publicly registered ASNs for Comcast and Google —
+                  every independent network on the internet has one.
+                </figcaption>
+              </figure>
 
               <h2>What an ASN actually is</h2>
               <p>

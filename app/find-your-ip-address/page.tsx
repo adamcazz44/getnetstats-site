@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import IconRow from "@/components/guides/IconRow";
+import { IconDesktop, IconLaptop, IconPhone } from "@/components/guides/icons";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -95,6 +97,17 @@ export default function FindYourIpPage() {
                 <span className="mono">10.</span>) — you find that in your device&apos;s settings,
                 below. Most steps below find your private IP.
               </p>
+
+              <figure className="guide-diagram">
+                <IconRow
+                  items={[
+                    { icon: <IconDesktop />, label: "Windows", sublabel: "Command Prompt" },
+                    { icon: <IconLaptop />, label: "macOS", sublabel: "Network settings" },
+                    { icon: <IconPhone />, label: "iPhone / iPad", sublabel: "Wi-Fi settings" },
+                    { icon: <IconPhone />, label: "Android", sublabel: "Wi-Fi settings" },
+                  ]}
+                />
+              </figure>
 
               <h2>On Windows</h2>
               <ol>

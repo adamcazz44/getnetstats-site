@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FlowDiagram from "@/components/guides/FlowDiagram";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-22";
@@ -94,6 +95,20 @@ export default function WhatIsADnsRecordPage() {
                 stored entries called records. Without it, you&apos;d have to memorize IP addresses
                 for every site you visit.
               </p>
+
+              <figure className="guide-diagram">
+                <FlowDiagram
+                  nodes={[
+                    { label: "getnetstats.com", sublabel: "domain name" },
+                    { label: "DNS resolver", sublabel: "looks it up" },
+                    { label: "185.199.108.153", sublabel: "IP address" },
+                  ]}
+                />
+                <figcaption className="guide-figcap">
+                  DNS is the translation step between a name you type and the numeric address your
+                  device actually connects to.
+                </figcaption>
+              </figure>
 
               <h2>What a DNS record actually is</h2>
               <p>

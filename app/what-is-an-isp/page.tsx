@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import IconRow from "@/components/guides/IconRow";
+import { IconLightPulse, IconCable, IconPhone, IconTower, IconSatelliteDish, IconWifi } from "@/components/guides/icons";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-23";
@@ -146,6 +148,19 @@ export default function WhatIsAnIspPage() {
                   <b>Mobile</b> — your cellular carrier is also an ISP for your phone&apos;s data.
                 </li>
               </ul>
+
+              <figure className="guide-diagram">
+                <IconRow
+                  items={[
+                    { icon: <IconLightPulse />, label: "Fiber" },
+                    { icon: <IconCable />, label: "Cable" },
+                    { icon: <IconPhone />, label: "DSL" },
+                    { icon: <IconTower />, label: "Fixed wireless" },
+                    { icon: <IconSatelliteDish />, label: "Satellite" },
+                    { icon: <IconWifi />, label: "Mobile" },
+                  ]}
+                />
+              </figure>
 
               <h2>What your ISP can see (the honest part)</h2>
               <p>This is worth being straight about, because it&apos;s often misunderstood:</p>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import IconRow from "@/components/guides/IconRow";
+import { IconCable, IconWifi } from "@/components/guides/icons";
 
 const SITE = "https://getnetstats.com";
 const PUBLISHED = "2026-06-23";
@@ -105,6 +107,19 @@ export default function WifiVsEthernetPage() {
                   and is affected by walls, floors, other devices, and neighbors&apos; networks.
                 </li>
               </ul>
+
+              <figure className="guide-diagram">
+                <IconRow
+                  items={[
+                    { icon: <IconCable />, label: "Ethernet", sublabel: "cable to router" },
+                    { icon: <IconWifi />, label: "Wi-Fi", sublabel: "radio waves" },
+                  ]}
+                />
+                <figcaption className="guide-figcap">
+                  One physical connection, one wireless — the tradeoffs below follow directly from
+                  that difference.
+                </figcaption>
+              </figure>
 
               <h2>Where Ethernet wins</h2>
               <ul>
