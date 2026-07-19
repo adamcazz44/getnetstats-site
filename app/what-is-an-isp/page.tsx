@@ -82,6 +82,7 @@ export default function WhatIsAnIspPage() {
               The company that connects you to the internet — what it does, what it sees, and how to
               choose one.
             </p>
+            <p className="updated">Last reviewed: June 23, 2026</p>
 
             <div className="prose">
               <h2>The basics</h2>

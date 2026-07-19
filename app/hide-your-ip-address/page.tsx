@@ -83,6 +83,7 @@ export default function HideYourIpPage() {
               The honest guide to masking your IP — what works, what it protects, and what it
               doesn&apos;t.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>Why hide it?</h2>

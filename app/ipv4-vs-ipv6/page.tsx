@@ -81,6 +81,7 @@ export default function Ipv4VsIpv6Page() {
             <p className="page-sub">
               Why the internet runs two address systems — and what it means for you.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>The short version</h2>

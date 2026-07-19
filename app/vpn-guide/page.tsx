@@ -6,6 +6,7 @@ import { GUIDE_VIDEOS } from "@/lib/videos";
 import { NORDVPN_HREF } from "@/components/ads/affiliates";
 
 const SITE = "https://getnetstats.com";
+const PUBLISHED = "2026-06-09";
 
 export const metadata: Metadata = {
   title: "VPN & Online Privacy Guide — What a VPN Does (and Doesn't) | GetNetStats",
@@ -87,6 +88,7 @@ export default function VpnGuidePage() {
             <p className="page-sub">
               What a VPN actually does, what it doesn&apos;t, and whether you need one.
             </p>
+            <p className="updated">Last reviewed: June 9, 2026</p>
 
             <div className="prose">
               {intro ? (

@@ -81,6 +81,7 @@ export default function WifiVsEthernetPage() {
             <p className="page-sub">
               Convenience or performance — when the cable is worth it, and when Wi-Fi is fine.
             </p>
+            <p className="updated">Last reviewed: June 23, 2026</p>
 
             <div className="prose">
               <h2>The short answer</h2>

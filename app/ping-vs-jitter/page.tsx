@@ -82,6 +82,7 @@ export default function PingVsJitterPage() {
               Two numbers that decide whether your connection feels smooth — and why speed alone
               doesn&apos;t.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>Speed isn&apos;t the whole story</h2>

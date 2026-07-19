@@ -81,6 +81,7 @@ export default function WhatIsAnIpAddressPage() {
             <p className="page-sub">
               A plain-English guide to the number that identifies your device on the internet.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>The basics</h2>

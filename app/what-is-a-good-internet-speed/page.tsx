@@ -82,6 +82,7 @@ export default function WhatIsAGoodInternetSpeedPage() {
               How much speed you actually need — by what you do, not by the biggest number a provider
               can sell you.
             </p>
+            <p className="updated">Last reviewed: June 23, 2026</p>
 
             <div className="prose">
               <h2>First, what &quot;speed&quot; even means</h2>

@@ -81,6 +81,7 @@ export default function WhyIsMyWifiSlowPage() {
             <p className="page-sub">
               The common causes of a sluggish connection — and how to fix them, in order.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>First, find out where the problem actually is</h2>

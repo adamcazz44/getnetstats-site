@@ -81,6 +81,7 @@ export default function FindYourIpPage() {
             <p className="page-sub">
               Public or private, on any phone or computer — here&apos;s where to look.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>First: which IP do you want?</h2>

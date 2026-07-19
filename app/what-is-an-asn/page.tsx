@@ -82,6 +82,7 @@ export default function WhatIsAnAsnPage() {
               The number that identifies who actually runs a piece of the internet — and what it
               reveals about an IP.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>The internet is a network of networks</h2>

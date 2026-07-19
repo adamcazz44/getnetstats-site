@@ -81,6 +81,7 @@ export default function WhatIsADnsRecordPage() {
             <p className="page-sub">
               The internet&apos;s address book, explained — plus how to read your own records.
             </p>
+            <p className="updated">Last reviewed: June 22, 2026</p>
 
             <div className="prose">
               <h2>The problem DNS solves</h2>
