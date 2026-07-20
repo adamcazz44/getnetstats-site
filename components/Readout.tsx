@@ -7,12 +7,14 @@ interface ReadoutProps {
   kIcon?: ReactNode;
   /** Optional element pinned to the card's top-right corner (e.g. a "Test" pill). */
   action?: ReactNode;
+  /** Extra card class — e.g. `ro-feat` for the featured Download cell. */
+  className?: string;
 }
 
-/** A single stat cell in the 2×2 readout grid; fades/slides in when revealed. */
-export default function Readout({ shown, k, children, kIcon, action }: ReadoutProps) {
+/** A single stat cell in the readout grid; fades/slides in when revealed. */
+export default function Readout({ shown, k, children, kIcon, action, className }: ReadoutProps) {
   return (
-    <div className={"ro reveal" + (shown ? " in" : "")}>
+    <div className={"ro reveal" + (shown ? " in" : "") + (className ? " " + className : "")}>
       {action ? <div className="ro-action">{action}</div> : null}
       <div className="k">
         {kIcon}

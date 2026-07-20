@@ -514,7 +514,10 @@ export function connectionLabel(conn: ConnectionInfo): string {
     return map[conn.type] || conn.type.charAt(0).toUpperCase() + conn.type.slice(1);
   }
   if (conn.effectiveType) return conn.effectiveType.toUpperCase() + "-class";
-  return "Broadband";
+  // Never invent a medium we were not told: with no `type` and no `effectiveType`
+  // there is nothing to report. (This used to return "Broadband", which asserted a
+  // connection type on zero evidence.)
+  return "Unknown";
 }
 
 // ---- derived connection-quality score (NOT Wi-Fi radio signal) ----

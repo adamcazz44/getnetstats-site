@@ -245,13 +245,19 @@ export default function HeroTool() {
     ipInfo && (ipInfo.city || ipInfo.country)
       ? [ipInfo.city, ipInfo.region, ipInfo.country].filter(Boolean).join(", ")
       : null;
-  const connLabel = conn ? conn.label : "—";
-  const connDetail =
-    conn && conn.detail.downlink
-      ? "≈ " + conn.detail.downlink + " Mbps est."
-      : conn && conn.detail.effectiveType
-        ? conn.detail.effectiveType.toUpperCase() + " profile"
-        : "Network class";
+  // The Network Information API's numbers are clamped by the browser to limit
+  // fingerprinting: Chrome pins `downlink` at 10 and `rtt` at 0 regardless of the
+  // real connection (measured here: 348 Mbps / 40 ms against downlink 10 / rtt 0).
+  // So this card never prints them — a "≈ 10 Mbps est." sitting beside the measured
+  // Download above read as the site contradicting itself. It reports the browser's
+  // coarse class only; /connection-test explains the API's limits in full.
+  const connSupported = !!conn?.detail.supported;
+  const connLabel = !conn ? "—" : connSupported ? conn.label : "Not exposed";
+  const connDetail = !conn
+    ? "Network class"
+    : connSupported
+      ? "Browser-reported class"
+      : "This browser hides it";
   let connState = "good";
   let connText = "Connected";
   if (phase === "running" && !ping) {
@@ -346,30 +352,15 @@ export default function HeroTool() {
               </div>
             </div>
 
-            <div className="readouts">
-              <Readout shown={shown.ping} k="Ping" action={testPill("/ping-test", "Open the Ping & Jitter test")}>
-                <div className="v mono">
-                  {ping ? <AnimatedNumber value={ping.ping} fmt={fmtInt} /> : "—"}
-                  <small> ms</small>
-                </div>
-                {ping ? (
-                  <div className="sub">{ping.jitter} ms jitter</div>
-                ) : (
-                  <div className="sub">latency</div>
-                )}
-              </Readout>
-              <Readout shown={shown.ul} k="Upload" action={testPill("/upload-test", "Open the Upload speed test")}>
-                <div className="v mono">
-                  {ul != null ? <AnimatedNumber value={ul} fmt={fmtSpeed} /> : "—"}
-                  <small> Mbps</small>
-                </div>
-                <div className="sub">↑ to server</div>
-              </Readout>
-              <Readout shown={shown.conn} k="Connection" action={testPill("/connection-test", "Open the Connection test")}>
-                <div className="v txt">{connLabel}</div>
-                <div className="sub">{connDetail}</div>
-              </Readout>
-              <Readout shown={shown.dl} k="Download" action={testPill("/download-test", "Open the Download speed test")}>
+            {/* Download leads: it's the number visitors came for, so it gets the
+                featured full-width cell. Upload / Ping / Connection follow. */}
+            <div className="readouts readouts-hero">
+              <Readout
+                shown={shown.dl}
+                k="Download"
+                className="ro-feat"
+                action={testPill("/download-test", "Open the Download speed test")}
+              >
                 <div className="v mono" style={{ color: "var(--accent-2)" }}>
                   {dl != null ? (
                     <AnimatedNumber value={dl} fmt={fmtSpeed} />
@@ -381,6 +372,33 @@ export default function HeroTool() {
                   <small style={{ color: "var(--dim)" }}> Mbps</small>
                 </div>
                 <div className="sub">↓ from server</div>
+              </Readout>
+              <Readout shown={shown.ul} k="Upload" action={testPill("/upload-test", "Open the Upload speed test")}>
+                <div className="v mono">
+                  {ul != null ? <AnimatedNumber value={ul} fmt={fmtSpeed} /> : "—"}
+                  <small> Mbps</small>
+                </div>
+                <div className="sub">↑ to server</div>
+              </Readout>
+              <Readout shown={shown.ping} k="Ping" action={testPill("/ping-test", "Open the Ping & Jitter test")}>
+                <div className="v mono">
+                  {ping ? <AnimatedNumber value={ping.ping} fmt={fmtInt} /> : "—"}
+                  <small> ms</small>
+                </div>
+                {ping ? (
+                  <div className="sub">{ping.jitter} ms jitter</div>
+                ) : (
+                  <div className="sub">latency</div>
+                )}
+              </Readout>
+              <Readout
+                shown={shown.conn}
+                k="Connection"
+                className="ro-conn"
+                action={testPill("/connection-test", "Open the Connection test")}
+              >
+                <div className="v txt">{connLabel}</div>
+                <div className="sub">{connDetail}</div>
               </Readout>
             </div>
           </div>

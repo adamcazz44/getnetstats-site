@@ -34,8 +34,10 @@ export default function SiteFooter() {
             title="Tools"
             links={[
               ["IP Address Lookup", "/"],
-              ["Speed Test", "/"],
-              ["Ping Test", "/ping-test"],
+              ["Download Speed Test", "/download-test"],
+              ["Upload Speed Test", "/upload-test"],
+              ["Ping & Jitter Test", "/ping-test"],
+              ["Connection Test", "/connection-test"],
               ["DNS Checker", "/dns-checker"],
               ["ASN & Routing", "/asn-routing"],
             ]}
