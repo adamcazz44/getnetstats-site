@@ -1,10 +1,24 @@
-# GetNetStats — Mobbin Audit — 2026-07-19
+# GetNetStats — Mobbin Audit — 2026-07-19 (+ Pass 11/Refero addendum 2026-07-20)
 
-**Status:** passes complete: 1,2,3,4,5,6,7,8,9,10 · findings: 6 (5 fixed, 1 deferred) · both flags
-resolved · 1 idea logged to the portfolio tracker
+**Status:** passes complete: 1,2,3,4,5,6,7,8,9,10,11 · findings: 7 (6 fixed, 1 deferred) · both flags
+resolved · 1 idea logged to the portfolio tracker · Refero supplemental pass complete, no visual-style
+divergence found
 **Baseline:** live getnetstats.com checked 2026-07-19; local build (`npm run dev`, commit at working tree)
 confirmed to match live exactly — the 2026-07-14 UX pass IS live despite RESUME-HERE saying otherwise
 (see FLAG-1). Viewports: 375px, 1440px desktop.
+
+**2026-07-20 addendum baseline:** scanned live getnetstats.com directly (axe-core CLI 4.12.1,
+`wcag2a,wcag2aa,wcag21aa` tags) across 6 page types: home, `/vpn-guide` (guide), `/privacy` (legal),
+`/about`, `/dns-checker` and `/connection-test` (client-rendered tool pages). Raw JSON saved per page:
+`docs/axe-scan-2026-07-20-{home,vpn-guide,privacy,about,dns-checker,connection-test}.json`.
+**Housekeeping note, not a design finding:** `git status` at the start of this session showed
+`components/HeroTool.tsx`, `components/Readout.tsx`, `components/SiteFooter.tsx`, and `lib/gns.ts`
+as uncommitted changes against HEAD — diffed and confirmed these ARE the 2026-07-14 UX pass content
+(Download-featured hero, connection-API-clamp copy, footer tool links) that FLAG-1 below already
+confirmed is live. That pass was apparently never committed to git even though it shipped via manual
+upload; it has sat as an uncommitted working-tree diff since. Recommend Adam commit it so a future
+`git reset`/`checkout` can't silently revert live behavior. Not fixed as part of this audit (commits
+are the site's own housekeeping, not a design/a11y finding) — flagged for Adam's call.
 
 ## Pre-audit flag — RESUME-HERE is stale on deploy status
 
@@ -192,12 +206,66 @@ set exactly — no stale/orphaned routes, no missing live pages.
   browser only, never sent anywhere."
 - **Fits other sites:** none directly — this is specific to GetNetStats' tool-result format.
 
+## Pass 11 — Automated accessibility scan (axe-core) [COMPLETE 2026-07-20]
+
+### F7. Site-wide "Home" breadcrumb link distinguishable only by color — HIGH · Quick
+- **Evidence:** axe-core rule `link-in-text-block`, impact: **serious**. Flagged explicitly on 3 of 6
+  scanned pages (`/vpn-guide`, `/privacy`, `/about`): `<a class="eyebrow-home" href="/">Home</a>` sits
+  inline in the eyebrow line (e.g. `Home // legal`) with a color-only distinction from the surrounding
+  text — computed contrast between the link (`#5fe6f7`, `--accent-2`) and the adjacent text
+  (`#46b8cc`, `--accent-dim`) is **1.57:1** (needs 3:1 minimum), and there's no underline or other
+  non-color cue. `home`, `/dns-checker`, and `/connection-test` scanned clean, but source confirms
+  this is a false negative, not a real absence — `.eyebrow-home { color: var(--accent-2); }` in
+  `app/globals.css:59` (no underline rule) is the single shared style for every instance, and grep
+  shows the identical `<a className="eyebrow-home" href="/">Home</a>` markup on **all 12 guide pages,
+  5 tool pages (`AsnTool`, `ConnectionTool`, `DnsTool`, `DownloadTool`, `PingTool`, `UploadTool`), plus
+  `/about`, `/privacy`, `/terms`** — i.e. every non-homepage route on the site. `dns-checker` and
+  `connection-test` are client-rendered tool components; axe's headless run likely scanned before that
+  part of the DOM hydrated (the exact false-negative trap this pass's own reference doc warns about),
+  not because those pages are actually exempt.
+- **Refero corroboration:** pulled comparable dark-theme dev/privacy-tool reference pages (Vercel,
+  Resend, Appwrite privacy policies) — all use a clearly-distinguished link treatment (bold hue jump
+  or underline), not two near-identical cyans with no underline. Reinforces this as a real divergence,
+  not just an automated-scanner technicality.
+- **Where:** `app/globals.css:59-60` (`.eyebrow-home` / `:hover` rule)
+- **Fix:** add a non-color distinguisher to `.eyebrow-home` — e.g. `text-decoration: underline;
+  text-underline-offset: 2px;` (matches the pattern the site already uses for `.prose a` / `.faq-item
+  .a a`, which pair `--accent-2` with a `border-bottom`). One shared CSS rule fixes every instance
+  site-wide.
+- **Cross-site:** worth checking the other 5 portfolio sites for the same "secondary link
+  distinguished only by a close hue shift" pattern in breadcrumb/eyebrow components.
+- **Guardrail check:** ok — pure CSS, no brand-token or copy change.
+→ **FIXED** — commit `a40137b`. `.eyebrow-home` now carries `text-decoration: underline;
+  text-underline-offset: 2px;` alongside its existing color, verified locally at `/vpn-guide`
+  (screenshot: "HOME" clearly underlined against the plain "// LEARN" text beside it). `npx tsc
+  --noEmit` clean. Not yet deployed — next manual `out/` upload will ship it.
+
+**Broad scan result:** no other rule violations found across all 6 page types (no missing alt text,
+no form-label issues, no heading-order skips, no ARIA misuse, no keyboard traps) — cross-confirms
+Pass 3's manual contrast math rather than finding a new category of issue.
+
+**Caveat on scan coverage:** per this pass's false-failure note, client-rendered tool pages
+(`/dns-checker`, `/connection-test`, and by the same logic `/asn-routing`, `/download-test`,
+`/upload-test`, `/ping-test`) were only scanned in their default/idle state — no test was actually run
+before axe captured the DOM, so post-run result states weren't exercised.
+
+## Refero supplemental pass — Visual style check [COMPLETE 2026-07-20]
+
+Pulled reference screens for dark-theme privacy/network-tool product pages (Vercel Analytics/Privacy,
+Resend, Appwrite Privacy) and utility landing pages with live stat readouts. **No visual-style
+divergence found** — GetNetStats' dark background + cyan/mono accent system, card-based stat
+readouts, and mono-labeled technical copy are consistent with category norms for developer/privacy
+tool sites in this reference set. The one concrete gap the pass surfaced (F7's link-distinction issue)
+is logged above under Pass 11 since it had a measurable a11y basis, not filed as a separate
+taste-only Refero finding.
+
 ---
 
 ## Summary — findings by severity
 
 | # | Finding | Severity | Effort | Pass | Outcome |
 |---|---|---|---|---|---|
+| F7 | "Home" breadcrumb link distinguished only by color, site-wide (axe `link-in-text-block`, serious) | HIGH | Quick | 11 | FIXED `a40137b` |
 | F5 | Tap targets under ~44px (2 are revenue CTAs) | MED/HIGH | Quick | 5, 6 | FIXED `b14c5ee` |
 | F2 | 11 of 12 guides have zero visuals | MED | Strategic | 2 | FIXED `1fa4a5e` + `4c54ce4` |
 | F6 | No "last updated" on any guide | MED | Quick | 7 | FIXED `a9b979f` |
