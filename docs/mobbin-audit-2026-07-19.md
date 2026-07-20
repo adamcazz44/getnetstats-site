@@ -238,7 +238,12 @@ set exactly — no stale/orphaned routes, no missing live pages.
 → **FIXED** — commit `a40137b`. `.eyebrow-home` now carries `text-decoration: underline;
   text-underline-offset: 2px;` alongside its existing color, verified locally at `/vpn-guide`
   (screenshot: "HOME" clearly underlined against the plain "// LEARN" text beside it). `npx tsc
-  --noEmit` clean. Not yet deployed — next manual `out/` upload will ship it.
+  --noEmit` clean. **Deployed and live-verified 2026-07-20** — `npm run build` clean (28/28 routes,
+  `.nojekyll`/`CNAME` survived in `out/`), Adam uploaded, then verified directly against the live DOM:
+  re-ran axe-core on live `/vpn-guide` and `/privacy` (0 violations, was 1 each pre-fix), a fresh
+  `no-store` fetch of the live homepage confirmed the 2026-07-14 UX pass content (`readouts-hero`,
+  Download-featured card, full 6-tool footer), all `_next/` asset requests returned 200 (no
+  `.nojekyll` breakage), and a fresh screenshot of live `/vpn-guide` shows "HOME" underlined.
 
 **Broad scan result:** no other rule violations found across all 6 page types (no missing alt text,
 no form-label issues, no heading-order skips, no ARIA misuse, no keyboard traps) — cross-confirms
