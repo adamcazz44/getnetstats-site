@@ -55,8 +55,10 @@ nav.main { display: flex; gap: 28px; font-size: 14.5px; color: var(--muted); }
 nav.main a { display: inline-flex; align-items: center; padding: 12px 4px; margin: -12px -4px; transition: color .15s; }
 nav.main a:hover { color: var(--text); }
 /* "HOME" link rendered inline inside the eyebrow ("HOME // LATENCY PROBE").
-   Inherits the eyebrow's mono/uppercase/tracking; just a brighter, clickable color. */
-.eyebrow-home { color: var(--accent-2); transition: color .15s; }
+   Inherits the eyebrow's mono/uppercase/tracking; a brighter color PLUS an underline —
+   color alone against the adjacent `--accent-dim` eyebrow text measured 1.57:1 (axe
+   `link-in-text-block`, serious; needs 3:1 without a non-color cue). */
+.eyebrow-home { color: var(--accent-2); text-decoration: underline; text-underline-offset: 2px; transition: color .15s; }
 .eyebrow-home:hover { color: var(--accent); }
 .status-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-size: 12.5px; font-weight: 500;
   padding: 7px 13px; background: rgba(34,211,238,0.1); color: var(--accent-2); border: 1px solid rgba(34,211,238,0.25); font-family: var(--mono); }
