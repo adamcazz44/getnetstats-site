@@ -9,7 +9,7 @@ export default function SiteHeader() {
           </b>
         </a>
         <nav className="main">
-          <a href="/vpn-guide">VPN Guide</a>
+          <a href="/vpn-guide/">VPN Guide</a>
           <a href="/#how">How It Works</a>
           <a href="/#faq">FAQ</a>
         </nav>

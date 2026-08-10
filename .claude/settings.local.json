@@ -71,7 +71,31 @@
       "Bash(awk '{print $5\" bytes\"}')",
       "Bash(git check-ignore *)",
       "Bash(curl -s \"https://www.youtube.com/oembed?url=https://youtu.be/QdKTM3l3YF0&format=json\")",
-      "PowerShell($p = \"D:\\\\GetNetStats\"; if \\(Test-Path $p\\) { \"EXISTS: $p`n\"; Get-ChildItem -Force $p | Select-Object Mode, Name | Format-Table -AutoSize | Out-String; \"`n--- .git present? ---\"; Test-Path \"$p\\\\.git\"; \"`n--- top-level item count ---\"; \\(Get-ChildItem -Force $p | Measure-Object\\).Count } else { \"NOT FOUND: $p\" })"
+      "PowerShell($p = \"D:\\\\GetNetStats\"; if \\(Test-Path $p\\) { \"EXISTS: $p`n\"; Get-ChildItem -Force $p | Select-Object Mode, Name | Format-Table -AutoSize | Out-String; \"`n--- .git present? ---\"; Test-Path \"$p\\\\.git\"; \"`n--- top-level item count ---\"; \\(Get-ChildItem -Force $p | Measure-Object\\).Count } else { \"NOT FOUND: $p\" })",
+      "PowerShell(npm run build 2>&1)",
+      "Bash(git commit *)",
+      "Bash(node -e \"console.log\\(require\\('@next/third-parties/package.json'\\).version\\)\")",
+      "Bash(echo \"version: $\\(node -e \"console.log\\(require\\('@next/third-parties/package.json'\\).version\\)\" \\)\")",
+      "Bash(npm audit *)",
+      "PowerShell(git -C E:\\\\GetNetStats add app/layout.tsx)",
+      "PowerShell(git -C E:\\\\GetNetStats commit -m 'add Google Search Console verification meta tag' -m 'Additive: verification.google in the root metadata emits the google-site-verification meta sitewide. No other metadata touched.' -m 'Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>')",
+      "PowerShell(git -C E:\\\\GetNetStats log --oneline -2)",
+      "PowerShell(git -C E:\\\\GetNetStats add components/ads/GoogleAd.tsx app/globals.css)",
+      "PowerShell(git -C E:\\\\GetNetStats commit -m 'homepage: park empty AdSense placeholder until approval \\(keep verification\\)' -m 'GoogleAd now renders nothing when no slot id is configured \\(was: dashed Advertisement 300x600 placeholder\\), so no empty ad box shows while AdSense isnt serving. Re-enable is a one-line change: set NEXT_PUBLIC_ADSENSE_HALFPAGE_SLOT and rebuild. Rail centers its lone card vertically so the layout reads as intentional \\(no top-heavy gap\\) on desktop; mobile shows it full-width below the hero. AdSense account verification \\(loader script, google-adsense-account meta, ads.txt\\) untouched. NordVPN/NordPass affiliate rotator kept with rel=sponsored + Sponsored disclosure.' -m 'Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>')",
+      "PowerShell(git -C E:\\\\GetNetStats add components/HeroTool.tsx app/globals.css)",
+      "PowerShell(git -C E:\\\\GetNetStats commit -m 'homepage: move affiliate card to an elongated banner below the hero' -m 'Removed the right rail; hero now runs full-width. The NordVPN/NordPass affiliate rotator moves to a full-width, short-height banner below the hero \\(name/tagline left, CTA right on desktop; stacked with full-width CTA on mobile\\), filling the empty band. rel=sponsored + Sponsored disclosure preserved. Parked AdSense half-page kept \\(renders null; one-line re-enable\\) - its 300x600 shape will want revisiting for this horizontal band when it goes live. AdSense verification \\(script/meta/ads.txt\\) untouched.' -m 'Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>')",
+      "PowerShell(git -C E:\\\\GetNetStats commit -m 'homepage: keep the IP-card CTA on one line' -m 'The caption + Hide-it-with-NordVPN pill wrapped at narrower desktop widths. Removed the stray whitespace node between them \\(an extra flex item + gap\\), trimmed the caption font to 12px, and shortened it to Your IP reveals your location and ISP. Now fits on one line down to ~1024px and wraps gracefully on mobile. rel=sponsored and Ad disclosure unchanged.' -m 'Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>')",
+      "PowerShell(git -C E:\\\\GetNetStats log --oneline -1)",
+      "PowerShell(git -C E:\\\\GetNetStats add app/globals.css)",
+      "PowerShell(git -C E:\\\\GetNetStats commit -m 'homepage: stop the radar sweep from causing mobile horizontal scroll' -m 'The sweep is a square element rotated continuously, so its bounding box grows to about root-2 times at 45deg and poked past the viewport on mobile \\(a few px of horizontal scroll\\). Added overflow-x:clip on the stage to clip the sweep transparent rotating corners; the visible radar, rings, and progress are unaffected. Verified no overflow across a full rotation.' -m 'Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>')",
+      "PowerShell(git -C E:\\\\GetNetStats log --oneline -3)",
+      "Bash(git commit -m ' *)",
+      "Bash(gh auth *)",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__navigate",
+      "mcp__claude-in-chrome__read_network_requests",
+      "mcp__claude-in-chrome__javascript_tool",
+      "Bash(grep -c '```' CLAUDE.md)"
     ]
   }
 }

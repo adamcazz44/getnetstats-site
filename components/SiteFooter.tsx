@@ -34,37 +34,37 @@ export default function SiteFooter() {
             title="Tools"
             links={[
               ["IP Address Lookup", "/"],
-              ["Download Speed Test", "/download-test"],
-              ["Upload Speed Test", "/upload-test"],
-              ["Ping & Jitter Test", "/ping-test"],
-              ["Connection Test", "/connection-test"],
-              ["DNS Checker", "/dns-checker"],
-              ["ASN & Routing", "/asn-routing"],
+              ["Download Speed Test", "/download-test/"],
+              ["Upload Speed Test", "/upload-test/"],
+              ["Ping & Jitter Test", "/ping-test/"],
+              ["Connection Test", "/connection-test/"],
+              ["DNS Checker", "/dns-checker/"],
+              ["ASN & Routing", "/asn-routing/"],
             ]}
           />
           <FootCol
             title="Guides"
             links={[
-              ["VPN & Privacy Guide", "/vpn-guide"],
-              ["What is an IP Address?", "/what-is-an-ip-address"],
-              ["IPv4 vs IPv6", "/ipv4-vs-ipv6"],
-              ["Find Your IP on Any Device", "/find-your-ip-address"],
-              ["How to Hide Your IP", "/hide-your-ip-address"],
-              ["Why Is My Wi-Fi Slow?", "/why-is-my-wifi-slow"],
-              ["Ping vs Jitter", "/ping-vs-jitter"],
-              ["What Is a DNS Record?", "/what-is-a-dns-record"],
-              ["What Is an ASN?", "/what-is-an-asn"],
-              ["What Is a Good Internet Speed?", "/what-is-a-good-internet-speed"],
-              ["What Is an ISP?", "/what-is-an-isp"],
-              ["Wi-Fi vs Ethernet", "/wifi-vs-ethernet"],
+              ["VPN & Privacy Guide", "/vpn-guide/"],
+              ["What is an IP Address?", "/what-is-an-ip-address/"],
+              ["IPv4 vs IPv6", "/ipv4-vs-ipv6/"],
+              ["Find Your IP on Any Device", "/find-your-ip-address/"],
+              ["How to Hide Your IP", "/hide-your-ip-address/"],
+              ["Why Is My Wi-Fi Slow?", "/why-is-my-wifi-slow/"],
+              ["Ping vs Jitter", "/ping-vs-jitter/"],
+              ["What Is a DNS Record?", "/what-is-a-dns-record/"],
+              ["What Is an ASN?", "/what-is-an-asn/"],
+              ["What Is a Good Internet Speed?", "/what-is-a-good-internet-speed/"],
+              ["What Is an ISP?", "/what-is-an-isp/"],
+              ["Wi-Fi vs Ethernet", "/wifi-vs-ethernet/"],
             ]}
           />
           <FootCol
             title="Company"
             links={[
-              ["About", "/about"],
-              ["Privacy", "/privacy"],
-              ["Terms", "/terms"],
+              ["About", "/about/"],
+              ["Privacy", "/privacy/"],
+              ["Terms", "/terms/"],
               ["Contact", "mailto:hello@getnetstats.com"],
             ]}
           />

@@ -1,13 +1,48 @@
-# Deploying GetNetStats — Tier 1 on GitHub Pages (manual upload)
+# Deploying GetNetStats — Tier 1 on GitHub Pages (GitHub Actions, since 2026-08-10)
 
 **Production scope = Tier 1 only:** the landing page (hero IP + speed-test tool,
 content hub, Education, FAQ, SEO) and the client-side **`/ping-test`** tool.
 
 Tier 1 is **fully client-side** — no server routes — so it's a **static export**
-you upload to GitHub Pages as prebuilt files (no Actions pipeline).
+published to GitHub Pages. Since 2026-08-10 that export is built and deployed by a
+**GitHub Actions workflow on every push to `main`** (see the box below); it is no
+longer uploaded by hand.
 
 > GitHub Pages is static-only and can't run Tier 2 (`/api/whois` needs a Node
 > serverless runtime). Tier 2 stays on the **`tier2-prep`** branch, unaffected.
+
+---
+
+> ## ⚠️ THIS PROCESS CHANGED ON 2026-08-10 — read this box first
+>
+> **Deploy is now `git push`. Do NOT upload files by hand any more.**
+> `.github/workflows/deploy.yml` builds the site on GitHub and publishes it, with
+> guard rails that fail the build rather than republish a mistake.
+>
+> **Why it changed.** The manual upload below was done wrong at least once: instead of
+> the *contents* of `out/`, a whole-project upload published 25 stray
+> `index (N).html` browser downloads, the `out/` folder itself (serving a **stale old
+> homepage** at `/out/`), the entire source tree, and
+> **`GetNetStats-YouTube-Kit.md` — a file `.gitignore` says must never reach a public
+> remote.**
+>
+> **The lesson worth remembering: `.gitignore` protects nothing when you deploy by
+> dragging files into a web uploader.** It is a git mechanism; the uploader never reads
+> it. Deploying by `git push` is what makes it actually protect you.
+>
+> **The new process, in full:**
+> 1. `npm run build` locally if you want to check it (optional — CI builds it too).
+> 2. `git add -A && git commit -m "..." && git push`
+> 3. Watch the **Actions** tab. Green = live in ~2 minutes. Red = nothing was published,
+>    and the log says which check failed.
+>
+> **Pages must be set to Settings → Pages → Source: _GitHub Actions_** (not "Deploy from
+> a branch"). If it is ever switched back to branch/root, this workflow stops taking
+> effect and the site freezes at whatever files are in the repo.
+>
+> Sections 1–4 below describe the **old, retired** manual process. They are kept only
+> because the build details and the `.nojekyll` / `CNAME` notes are still accurate and
+> still worth understanding. **Do not follow step 3.**
 
 ---
 

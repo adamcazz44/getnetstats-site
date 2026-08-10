@@ -6,6 +6,8 @@
 # next.js
 /.next/
 /out/
+# safety backups written by tooling (e.g. the 2026-08-10 trailing-slash fix)
+/.trailingslash-backup-*/
 # staged upload artifact (zip of out/ contents for manual GitHub Pages upload)
 /getnetstats-site-upload.zip
 
@@ -22,8 +24,15 @@ yarn-debug.log*
 yarn-error.log*
 
 # env files
-.env*.local
-.env
+# Deny-by-default: ignore EVERY .env* file, then explicitly allow back the two
+# that are safe and required. Reason (2026-08-10): the old pattern only listed
+# `.env*.local` and `.env`, so a future `.env.staging` / `.env.server` holding a
+# real secret would have been committed to a PUBLIC repo without warning.
+# Only add an exception below if the file contains NEXT_PUBLIC_* values, which
+# end up in the client bundle and are public anyway.
+.env*
+!.env.example
+!.env.production
 
 # typescript
 *.tsbuildinfo
@@ -37,3 +46,12 @@ GetNetStats-YouTube-Kit.md
 
 # marketing assets (Product Hunt captures, etc.) + scratch capture scripts
 marketing/
+
+# GetNetStats' paired YouTube ad channel (Node/Remotion). It lives nested here on
+# purpose — the channel exists to promote the site — but it is its own project and
+# must never be committed into the site repo, whose contents ship to GitHub Pages.
+OnlineMotivateYoutube/
+
+# project state doc — holds deploy/monetization/account notes, same reason as the
+# context docs above; kept on disk, never pushed to a public remote
+GetNetStats-RESUME-HERE.md

@@ -1,0 +1,101 @@
+name: Build and deploy to GitHub Pages
+
+# Deploys getnetstats.com on every push to main.
+# Replaces the old manual "upload the contents of out/" process — see DEPLOY.md.
+#
+# Why this exists (2026-08-10): the manual upload published 25 stray files, the
+# out/ folder itself, the source tree, and a gitignored private notes file.
+# .gitignore cannot protect a drag-and-drop upload. It can protect this.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once; don't cancel one mid-flight.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the source
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      # Guard rails. These are the exact failures found on 2026-08-10.
+      # Better to fail the build than to publish them again.
+      - name: Verify the export is complete and clean
+        shell: bash
+        run: |
+          set -e
+          cd out
+
+          for f in .nojekyll CNAME index.html sitemap.xml robots.txt; do
+            [ -f "$f" ] || { echo "FAIL: out/$f is missing"; exit 1; }
+          done
+          echo "OK: required files present"
+
+          # A lost CNAME breaks the custom domain; a lost .nojekyll 404s every asset.
+          # tr -d strips any stray CR so a CRLF checkout can't cause a false failure.
+          [ "$(tr -d '\r\n' < CNAME)" = "getnetstats.com" ] || { echo "FAIL: CNAME is not getnetstats.com"; exit 1; }
+          echo "OK: CNAME pins getnetstats.com"
+
+          # Nothing private, no source, no nested build, no browser-download strays.
+          STRAYS=$(find . \( -iname '*RESUME-HERE*' -o -iname '*context-handoff*' \
+                 -o -iname '*chat-instructions*' -o -iname '*YouTube-Kit*' \
+                 -o -iname '.env*' -o -iname 'next.config.*' \
+                 -o -iname '*.tsbuildinfo' -o -iname 'index (*' \) -print)
+          if [ -n "$STRAYS" ]; then
+            echo "FAIL: private, source or stray files found in out/:"
+            echo "$STRAYS"
+            exit 1
+          fi
+          echo "OK: no private, source or stray files"
+
+          if [ -d out ]; then echo "FAIL: nested out/ directory"; exit 1; fi
+          echo "OK: no nested out/"
+
+          # trailingSlash: true means every internal link must end in a slash,
+          # or Google logs each one as a wasted "Page with redirect" hop.
+          NOSLASH=$(grep -rIoh 'href="/[a-z0-9-]\+"' --include='*.html' . | sort -u || true)
+          if [ -n "$NOSLASH" ]; then
+            echo "FAIL: internal links missing a trailing slash:"
+            echo "$NOSLASH"
+            exit 1
+          fi
+          echo "OK: every internal link ends with a slash"
+
+      - name: Upload the export as the Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -359,7 +359,7 @@ export default function HeroTool() {
                 shown={shown.dl}
                 k="Download"
                 className="ro-feat"
-                action={testPill("/download-test", "Open the Download speed test")}
+                action={testPill("/download-test/", "Open the Download speed test")}
               >
                 <div className="v mono" style={{ color: "var(--accent-2)" }}>
                   {dl != null ? (
@@ -373,14 +373,14 @@ export default function HeroTool() {
                 </div>
                 <div className="sub">↓ from server</div>
               </Readout>
-              <Readout shown={shown.ul} k="Upload" action={testPill("/upload-test", "Open the Upload speed test")}>
+              <Readout shown={shown.ul} k="Upload" action={testPill("/upload-test/", "Open the Upload speed test")}>
                 <div className="v mono">
                   {ul != null ? <AnimatedNumber value={ul} fmt={fmtSpeed} /> : "—"}
                   <small> Mbps</small>
                 </div>
                 <div className="sub">↑ to server</div>
               </Readout>
-              <Readout shown={shown.ping} k="Ping" action={testPill("/ping-test", "Open the Ping & Jitter test")}>
+              <Readout shown={shown.ping} k="Ping" action={testPill("/ping-test/", "Open the Ping & Jitter test")}>
                 <div className="v mono">
                   {ping ? <AnimatedNumber value={ping.ping} fmt={fmtInt} /> : "—"}
                   <small> ms</small>
@@ -395,7 +395,7 @@ export default function HeroTool() {
                 shown={shown.conn}
                 k="Connection"
                 className="ro-conn"
-                action={testPill("/connection-test", "Open the Connection test")}
+                action={testPill("/connection-test/", "Open the Connection test")}
               >
                 <div className="v txt">{connLabel}</div>
                 <div className="sub">{connDetail}</div>
