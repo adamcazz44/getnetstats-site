@@ -169,8 +169,8 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
    base grid must stay 2-col; only the hero opts into the featured layout. */
 .readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
 .ro { position: relative; background: rgba(255,255,255,0.028); border: 1px solid var(--border); border-radius: var(--r-md); padding: 13px 15px; min-height: 78px; }
-/* Hero only: Ping is the featured full-width cell (latency is what our search
-   visitors come for); Download / Upload / Connection sit in a 3-up row beneath it. */
+/* Hero only: Download is the featured full-width cell (it's the number visitors
+   came for); Upload / Ping / Connection sit in a 3-up row beneath it. */
 .readouts-hero { grid-template-columns: repeat(3, 1fr); }
 .ro-feat { grid-column: 1 / -1; padding: 15px 18px; min-height: 96px;
   background: rgba(34,211,238,0.045); border-color: rgba(34,211,238,0.22); }
@@ -178,9 +178,6 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
    regardless of source order. */
 .ro.ro-feat .v { font-size: clamp(34px, 4.4vw, 46px); margin-top: 4px; }
 .ro.ro-feat .v small { font-size: 15px; }
-/* Hero's small cards: the corner pill collided with longer labels ("DOWNLOAD",
-   "CONNECTION") at narrow cell widths, so it sits in flow above the label here. */
-.readouts-hero .ro:not(.ro-feat) .ro-action { position: static; display: flex; justify-content: flex-end; margin: -4px -6px 3px 0; }
 /* corner action (e.g. the "Test" pill on the Ping card) */
 .ro-action { position: absolute; top: 10px; right: 10px; }
 .ro-test { position: relative; display: inline-flex; align-items: center; gap: 2px; font-family: var(--mono); font-size: 7px; font-weight: 500;
@@ -215,9 +212,6 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
    won't state. Differentiator, not a disclaimer. */
 .radar-note { max-width: 32ch; text-align: center; font-size: 11.5px; line-height: 1.5; color: var(--dim); margin: 0; }
 .radar-note-k { color: var(--muted); font-weight: 600; }
-/* the derived Wi-Fi Signal score, demoted to one line under the latency radar */
-.radar-wifi { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0; text-align: center; }
-.radar-wifi b { font-weight: 600; }
 .radar { position: relative; width: 100%; max-width: 320px; aspect-ratio: 1; border-radius: 50%;
   background: radial-gradient(circle, rgba(34,211,238,0.06), rgba(34,211,238,0) 70%); }
 .radar .ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(34,211,238,0.15); }
@@ -244,11 +238,6 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 .radar .center .sig.q-fair i:not(.off) { background: var(--warn); opacity: 1; }
 .radar .center .sig.q-bad i:not(.off) { background: var(--bad); opacity: 1; }
 .radar .center .big-sig { font-family: var(--sans); font-size: clamp(24px, 3.2vw, 33px); font-weight: 500; line-height: 1; letter-spacing: -0.015em; }
-/* measured latency readout (replaces the derived label once a test finishes) */
-.radar .center .big-lat { font-family: var(--mono); font-size: clamp(30px, 4vw, 40px); font-weight: 600; line-height: 1;
-  letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.radar .center .big-lat small { font-size: 14px; font-weight: 400; color: var(--dim); letter-spacing: 0; }
-.radar .center .jit { font-size: 11.5px; color: var(--muted); margin-top: 5px; font-variant-numeric: tabular-nums; }
 .radar .center .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-top: 7px; }
 .radar .center .phase { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-dim); margin-top: 4px; min-height: 14px; }
 
@@ -449,7 +438,7 @@ footer.site { border-top: 1px solid var(--border); padding: 48px 0 36px; backgro
   .wrap { padding: 0 18px; }
   .stage { padding: 22px; }
   .stage-controls { top: 22px; right: 22px; }
-  /* Hero's 3-up row gets too tight here: drop to 2-col so Download | Upload pair
+  /* Hero's 3-up row gets too tight here: drop to 2-col so Upload | Ping pair
      up, and let Connection span the full width beneath them. */
   .readouts-hero { grid-template-columns: 1fr 1fr; }
   .ro-conn { grid-column: 1 / -1; min-height: 0; }

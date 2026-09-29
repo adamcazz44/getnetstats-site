@@ -1,13 +1,11 @@
 "use client";
 
-import { latencyLabel } from "@/lib/gns";
-import type { PingResult } from "@/lib/gns";
+import type { QualityLabel } from "@/lib/gns";
 
 interface RadarProps {
   scanning: boolean;
   done: boolean;
-  /** Measured ping + jitter; null before/while testing (center stays idle). */
-  latency: PingResult | null;
+  quality: (QualityLabel & { score: number }) | null;
   phaseText: string;
   prog: number;
 }
@@ -18,13 +16,12 @@ const BAR_COLORS: Record<string, string> = {
   "q-bad": "#f87171",
 };
 
-/** The radar "scan-to-reveal": rings, sweep, progress ring, and a measured latency readout. */
-export default function Radar({ scanning, done, latency, phaseText, prog }: RadarProps) {
+/** The radar "scan-to-reveal": rings, sweep, progress ring, and a derived signal readout. */
+export default function Radar({ scanning, done, quality, phaseText, prog }: RadarProps) {
   const R = 48;
   const C = 2 * Math.PI * R;
-  const rating = latency ? latencyLabel(latency.ping) : null;
-  const bars = rating ? rating.bars : 0;
-  const qcls = rating ? rating.cls : "";
+  const bars = quality ? quality.bars : 0;
+  const qcls = quality ? quality.cls : "";
   const activeColor = BAR_COLORS[qcls] || "#34d399";
 
   return (
@@ -60,7 +57,7 @@ export default function Radar({ scanning, done, latency, phaseText, prog }: Rada
             (compositor layer) left reused sibling bars showing stale colors. */}
         <div className={"sig " + qcls} key={qcls || "idle"} aria-hidden="true">
           {[0, 1, 2, 3, 4].map((i) => {
-            const on = rating != null && i < bars;
+            const on = quality != null && i < bars;
             return (
               <i
                 key={i}
@@ -74,18 +71,8 @@ export default function Radar({ scanning, done, latency, phaseText, prog }: Rada
             );
           })}
         </div>
-        {latency && rating ? (
-          <>
-            <div className={"big-lat mono " + qcls}>
-              {latency.ping}
-              <small> ms</small>
-            </div>
-            <div className="jit mono">± {latency.jitter} ms jitter</div>
-          </>
-        ) : (
-          <div className="big-sig mono">— — —</div>
-        )}
-        <div className="lbl">Latency</div>
+        <div className={"big-sig mono " + qcls}>{quality ? quality.label : "— — —"}</div>
+        <div className="lbl">Wi-Fi Signal</div>
         <div className="phase">{phaseText}</div>
       </div>
     </div>

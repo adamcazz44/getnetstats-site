@@ -62,7 +62,7 @@ export interface ConnectionInfo {
 export type QualityClass = "q-good" | "q-fair" | "q-bad";
 
 export interface QualityLabel {
-  label: "Excellent" | "Good" | "Fair" | "Weak" | "Poor" | "High";
+  label: "Excellent" | "Good" | "Fair" | "Weak" | "Poor";
   cls: QualityClass;
   bars: number;
 }
@@ -537,15 +537,4 @@ export function qualityLabel(score: number): QualityLabel {
   if (score >= 38) return { label: "Fair", cls: "q-fair", bars: 3 };
   if (score >= 18) return { label: "Weak", cls: "q-bad", bars: 2 };
   return { label: "Poor", cls: "q-bad", bars: 1 };
-}
-
-// ---- latency rating (drives the homepage radar) ----
-// Mirrors the "What's a good ping?" bands published on /ping-test/ so the site
-// never contradicts itself: "Under 20" / "20–50" / "50–100" / "Over 100".
-// So 20 is Good (not under 20), 50 stays Good, 100 stays Fair (not over 100).
-export function latencyLabel(pingMs: number): QualityLabel {
-  if (pingMs < 20) return { label: "Excellent", cls: "q-good", bars: 5 };
-  if (pingMs <= 50) return { label: "Good", cls: "q-good", bars: 4 };
-  if (pingMs <= 100) return { label: "Fair", cls: "q-fair", bars: 3 };
-  return { label: "High", cls: "q-bad", bars: 2 };
 }
