@@ -170,8 +170,9 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 .readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
 .ro { position: relative; background: rgba(255,255,255,0.028); border: 1px solid var(--border); border-radius: var(--r-md); padding: 13px 15px; min-height: 78px; }
 /* Hero only: Download is the featured full-width cell (it's the number visitors
-   came for); Upload / Ping / Connection sit in a 3-up row beneath it. */
-.readouts-hero { grid-template-columns: repeat(3, 1fr); }
+   came for); Upload / Ping / Connection sit in a 3-up row beneath it. Upload is
+   narrower so the longer "PING/JITTER" and "CONNECTION" labels clear their Test pills. */
+.readouts-hero { grid-template-columns: 0.82fr 1.1fr 1.08fr; }
 .ro-feat { grid-column: 1 / -1; padding: 15px 18px; min-height: 96px;
   background: rgba(34,211,238,0.045); border-color: rgba(34,211,238,0.22); }
 /* `.ro.ro-feat` (not `.ro-feat`) so these beat the `.ro .v` sizes below
@@ -187,6 +188,15 @@ h1.headline em { font-style: normal; color: var(--accent-2); }
 /* invisible hit-slop: keeps the pill's compact visual size but widens the real tap
    target toward the ~44px guideline (measured 16x41 visual otherwise). */
 .ro-test::after { content: ""; position: absolute; inset: -14px; }
+/* Hero only: below ~1260px (incl. scrollbar) the small cards are too narrow for "PING/JITTER" /
+   "CONNECTION" to clear the corner pill, so the pill moves onto its own line above
+   the label. On phones Connection spans the full row, so it keeps the corner pill. */
+@media (max-width: 1259px) {
+  .readouts-hero .ro:not(.ro-feat) .ro-action { position: static; display: flex; justify-content: flex-end; margin: -4px -6px 3px 0; }
+}
+@media (max-width: 720px) {
+  .readouts-hero .ro.ro-conn .ro-action { position: absolute; margin: 0; }
+}
 .ro .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--dim); display: flex; align-items: center; gap: 6px; }
 .ro .v { font-family: var(--mono); font-size: 23px; font-weight: 600; margin-top: 6px; line-height: 1.1; letter-spacing: -0.01em; }
 .ro .v small { font-size: 12px; color: var(--dim); font-weight: 400; letter-spacing: 0; }
