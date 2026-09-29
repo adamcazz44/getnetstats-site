@@ -202,7 +202,7 @@ export default function HeroTool() {
     // reveal connection now that we have a moment
     reveal("conn");
 
-    // download (live number feeds the Download tile; radar shows signal)
+    // download (live number feeds the Download tile; radar shows latency when done)
     setPhaseText("Testing download…");
     reveal("dl");
     const dlRes = await GNS.measureDownload((mbps, pr) => {
@@ -352,16 +352,28 @@ export default function HeroTool() {
               </div>
             </div>
 
-            {/* Download leads: it's the number visitors came for, so it gets the
-                featured full-width cell. Upload / Ping / Connection follow. */}
+            {/* Ping leads: latency is what our search visitors come for ("ping and
+                jitter test" is the top query; /ping-test/ the most-visited page), so
+                it gets the featured full-width cell. Download / Upload / Connection follow. */}
             <div className="readouts readouts-hero">
               <Readout
-                shown={shown.dl}
-                k="Download"
+                shown={shown.ping}
+                k="Ping"
                 className="ro-feat"
-                action={testPill("/download-test/", "Open the Download speed test")}
+                action={testPill("/ping-test/", "Open the Ping & Jitter test")}
               >
                 <div className="v mono" style={{ color: "var(--accent-2)" }}>
+                  {ping ? <AnimatedNumber value={ping.ping} fmt={fmtInt} /> : "—"}
+                  <small style={{ color: "var(--dim)" }}> ms</small>
+                </div>
+                {ping ? (
+                  <div className="sub">{ping.jitter} ms jitter</div>
+                ) : (
+                  <div className="sub">latency</div>
+                )}
+              </Readout>
+              <Readout shown={shown.dl} k="Download" action={testPill("/download-test/", "Open the Download speed test")}>
+                <div className="v mono">
                   {dl != null ? (
                     <AnimatedNumber value={dl} fmt={fmtSpeed} />
                   ) : phase === "running" && dlLive > 0 ? (
@@ -369,7 +381,7 @@ export default function HeroTool() {
                   ) : (
                     "—"
                   )}
-                  <small style={{ color: "var(--dim)" }}> Mbps</small>
+                  <small> Mbps</small>
                 </div>
                 <div className="sub">↓ from server</div>
               </Readout>
@@ -379,17 +391,6 @@ export default function HeroTool() {
                   <small> Mbps</small>
                 </div>
                 <div className="sub">↑ to server</div>
-              </Readout>
-              <Readout shown={shown.ping} k="Ping" action={testPill("/ping-test/", "Open the Ping & Jitter test")}>
-                <div className="v mono">
-                  {ping ? <AnimatedNumber value={ping.ping} fmt={fmtInt} /> : "—"}
-                  <small> ms</small>
-                </div>
-                {ping ? (
-                  <div className="sub">{ping.jitter} ms jitter</div>
-                ) : (
-                  <div className="sub">latency</div>
-                )}
               </Readout>
               <Readout
                 shown={shown.conn}
@@ -407,14 +408,18 @@ export default function HeroTool() {
             <Radar
               scanning={phase === "running"}
               done={phase === "done"}
-              quality={quality}
+              latency={phase === "done" ? ping : null}
               phaseText={phaseText}
               prog={prog}
             />
+            <p className="radar-wifi">
+              Wi-Fi Signal (estimated):{" "}
+              {quality ? <b className={quality.cls}>{quality.label}</b> : "—"}
+            </p>
             <p className="radar-note">
               <span className="radar-note-k">Honest by design:</span> your IP location is an
-              estimate, and the Wi-Fi Signal above is derived from real latency &amp; throughput — not
-              your router&apos;s radio signal.
+              estimate, and the Wi-Fi Signal score is derived from your real latency &amp; throughput
+              — it is not a reading of your router&apos;s radio signal.
             </p>
             {netErr ? (
               <div

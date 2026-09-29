@@ -7,7 +7,7 @@ interface ReadoutProps {
   kIcon?: ReactNode;
   /** Optional element pinned to the card's top-right corner (e.g. a "Test" pill). */
   action?: ReactNode;
-  /** Extra card class — e.g. `ro-feat` for the featured Download cell. */
+  /** Extra card class — e.g. `ro-feat` for the featured Ping cell. */
   className?: string;
 }
 
