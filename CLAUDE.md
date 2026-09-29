@@ -78,9 +78,10 @@ must fit this system — use the exact existing tokens in `app/globals.css`.
 - **Stack:** Next.js 15 App Router + React 19 + TypeScript, static export
   (`output: "export"`), single global stylesheet with exact design tokens,
   self-hosted fonts (Geist + Spline Sans Mono).
-- **Deploy:** GitHub Pages (`adamcazz44.github.io`), manual model — build locally,
-  upload the *contents of* `out/` to the repo root, **including hidden `.nojekyll`**.
-  Commits are NOT live until this happens — remind Adam after every commit.
+- **Deploy:** GitHub Actions (`.github/workflows/deploy.yml`, remote
+  `adamcazz44/getnetstats-site`) — **every push to `main` builds and deploys live**
+  (the workflow checks `.nojekyll` + `CNAME` before publishing). The old manual `out/`
+  upload model is retired. Commits are NOT live until pushed — never push without Adam's OK.
   Domain: getnetstats.com (GoDaddy DNS, HTTPS enforced).
 - **Live content:** homepage (hero IP + speed test + content hub + FAQ), four test
   pages (`/ping-test`, `/download-test`, `/upload-test`, `/connection-test`),
@@ -145,8 +146,9 @@ itself silently re-flows five other pages.
 **Conventions:**
 - Keep analytics tags (GA4, Clarity) in the App Router layout — don't scatter them.
 - Don't hardcode the domain in components — keep canonical/site config central.
-- Deploy is a manual upload; follow `DEPLOY.md` exactly (upload the *contents of*
-  `out/` to the Pages repo root, including hidden `.nojekyll` and `CNAME`).
+- Deploy = push to `main` (GitHub Actions). `public/CNAME` and `public/.nojekyll` must
+  survive — the workflow fails the deploy if either is missing. (`DEPLOY.md` may still
+  describe the retired manual upload — verify before trusting it.)
 
 ## Gotchas (don't re-learn these)
 
@@ -165,6 +167,6 @@ itself silently re-flows five other pages.
 
 ## After any significant change
 
-Remind Adam: (1) not live until `out/` is rebuilt + re-uploaded, and (2) offer to
+Remind Adam: (1) not live until pushed to `main` (needs his OK), and (2) offer to
 note the change so Chat's handoff doc can be regenerated — the handoff docs are the
 sync bridge between the two sessions, and drift is the main risk.
